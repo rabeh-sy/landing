@@ -3,14 +3,14 @@ publishDate: 2025-06-10T00:00:00Z
 author: خالد بادنجكي
 title: إعادة بناء الاقتصاد السوري - كيف تواكب المنظمات والشركات النمو الاقتصادي بالحلول الرقمية؟
 excerpt: مع انطلاق مرحلة التعافي الاقتصادي في سوريا، تبرز فرص ذهبية للمنظمات والشركات الناشئة لتحقيق قفزات نوعية. لكن هل أنت مستعد لمواكبة هذا النمو المتسارع؟
-image: https://images.unsplash.com/photo-1516996087931-5ae405802f9f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80
+image: https://images.unsplash.com/photo-1734278095046-f31918334855?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 category: تحليلات
 tags:
   - اقتصاد
   - التحول الرقمي
   - سوريا
 metadata:
-  canonical: https://astrowind.vercel.app/get-started-website-with-astro-tailwind-css
+  canonical: https://astonishing-yeot-7e4f64.netlify.app/rebuilding-syrian-economy
 ---
 
 يشهد الاقتصاد السوري حالياً مرحلة انتعاش واعدة، حيث تعمل المنظمات والشركات الناشئة بجد لتعويض ما فاتها ومواكبة مسيرة التنمية. مع عودة الاستقرار الأمني وبدء تدفق الاستثمارات، أصبحت الفرص متاحة أكثر من أي وقت مضى للنهوض بالمشاريع وتوسيع نطاق العمل. في هذا السياق المشرق، تبرز الحلول المالية الرقمية كأداة محورية لتعزيز هذا النمو وتسريع وتيرته.
