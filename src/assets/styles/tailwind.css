@@ -90,3 +90,7 @@
 .dd *:first-child {
   margin-top: 0;
 }
+
+.astro-code {
+  direction: ltr;
+}
