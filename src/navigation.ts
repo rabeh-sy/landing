@@ -41,6 +41,6 @@ export const footerData = {
     { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/onwidget/astrowind' },
   ],
   footNote: `
-    رابح شركة تكنولوجية متخصصة في التحول الرقمي
+    رابح شركة تكنولوجية سورية متخصصة في التحول الرقمي
   `,
 };
