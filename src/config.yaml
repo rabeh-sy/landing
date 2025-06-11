@@ -4,14 +4,14 @@ site:
   base: '/'
   trailingSlash: false
 
-  googleSiteVerificationId: orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M
+  googleSiteVerificationId: O7X9f-0KkZtZYkMp7si8u7ii3gsD5BFceCURQpKqKzg
 
 # Default SEO metadata
 metadata:
   title:
     default: رابح
     template: '%s — رابح'
-  description: "\U0001F680 حلول ذكية سحابية لادارة المنشآت الصغيرة والمتوسطة، بأسعار منافسة"
+  description: "\U0001F680 حلول ذكية سحابية لادارة المنشآت الصغيرة والمتوسطة في سوريا، بأسعار منافسة"
   robots:
     index: true
     follow: true
