@@ -1,4 +1,3 @@
-import { get } from 'node:http';
 import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
 
 export const headerData = {
