@@ -9,9 +9,9 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: رابح
-    template: '%s — رابح'
-  description: "\U0001F680 حلول ذكية سحابية لادارة المنشآت الصغيرة والمتوسطة في سوريا، بأسعار منافسة"
+    default: رابح للتقنيّة
+    template: '%s — رابح للتقنيّة'
+  description: "\U0001F680 التحول الرقمي في سوريا، برمجة مواقع ويب وتطبيقات موبايل ومتاجر إلكترونية. Digital transformation in Syria, web and mobile development, ecommerce"
   robots:
     index: true
     follow: true

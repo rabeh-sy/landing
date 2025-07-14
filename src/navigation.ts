@@ -6,6 +6,15 @@ export const headerData = {
       text: 'الرئيسية',
       href: getPermalink('/'),
     },
+    // {
+    //   text: 'خدماتنا',
+    //   links: [
+    //     {
+    //       text: 'بناء البرامج على حسب الطلب',
+    //       href: getPermalink('/services/custom-software-development'),
+    //     },
+    //   ]
+    // },
     {
       text: 'اتصل بنا',
       href: getPermalink('/contact'),
