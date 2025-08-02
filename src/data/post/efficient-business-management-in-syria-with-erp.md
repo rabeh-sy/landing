@@ -3,7 +3,7 @@ publishDate: 2025-06-10T00:00:00Z
 author: خالد بادنجكي
 title: تعزيز كفاءة الأعمال في سوريا عبر أنظمة ERP السحابية المتكاملة
 excerpt: في ظل التحول الرقمي المتسارع، أصبحت أنظمة ERP السحابية عصباً رئيسياً لنجاح الأعمال في سوريا. هذه الحلول المتكاملة تتيح إدارة شاملة للموارد المالية والمخزون وسلاسل التوريد من خلال منصة موحدة، مما يضمن دقة البيانات ورفع الكفاءة التشغيلية.
-image: https://images.unsplash.com/photo-1516996087931-5ae405802f9f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1674&q=80
+image: https://plus.unsplash.com/premium_photo-1720857673569-3b2d8c886096?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 category: تكنولوجيا
 tags:
   - التحول الرقمي
