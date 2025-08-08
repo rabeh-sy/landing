@@ -100,3 +100,7 @@
 .astro-code {
   direction: ltr;
 }
+
+h1 {
+  line-height: 1.3 !important;
+}
