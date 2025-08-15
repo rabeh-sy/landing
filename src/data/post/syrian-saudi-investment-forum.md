@@ -3,7 +3,7 @@ publishDate: 2025-07-26T00:00:00Z
 author: خالد بادنجكي
 title: نحو آفاق واعدة للاستثمار التقني في سوريا
 excerpt: يشهد قطاع التكنولوجيا في سوريا بداية مرحلة جديدة بعد توقيع اتفاقيات استثمارية كبيرة بين سوريا والسعودية، تركز على دعم التحول الرقمي وخلق فرص للشركات الناشئة.
-image: https://en.maaal.com/wp-content/uploads/2025/07/Gwd5_RdXQAAjDMN.webp
+image: https://www.spa.gov.sa/_next/image?url=https%3A%2F%2Fportalcdn.spa.gov.sa%2Fbackend%2Foriginal%2F202507%2F0TydOruUzgLlkiWSUOc7rXnZ04mEZlM1BBsEds0E.jpg&w=3840&q=75
 category: اقتصاد
 tags:
   - اقتصاد
