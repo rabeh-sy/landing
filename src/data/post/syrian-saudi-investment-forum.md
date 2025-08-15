@@ -1,9 +1,9 @@
 ---
 publishDate: 2025-07-26T00:00:00Z
 author: خالد بادنجكي
-title: نحو آفاق واعدة للاستثمار التقني في سوريا
+title: منتدى الاستثمار السوري السعودي - آفاق واعدة
 excerpt: يشهد قطاع التكنولوجيا في سوريا بداية مرحلة جديدة بعد توقيع اتفاقيات استثمارية كبيرة بين سوريا والسعودية، تركز على دعم التحول الرقمي وخلق فرص للشركات الناشئة.
-image: https://www.spa.gov.sa/_next/image?url=https%3A%2F%2Fportalcdn.spa.gov.sa%2Fbackend%2Foriginal%2F202507%2F0TydOruUzgLlkiWSUOc7rXnZ04mEZlM1BBsEds0E.jpg&w=3840&q=75
+image: https://images.unsplash.com/photo-1506795213373-430e921fe2ed?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 category: اقتصاد
 tags:
   - اقتصاد
