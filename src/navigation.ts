@@ -54,6 +54,7 @@ export const footerData = {
       title: 'منتجاتنا',
       links: [
         { text: 'طلباتك', href: getPermalink('/products/talabatak') },
+        { text: 'منارة', href: getPermalink('/products/manara') },
       ],
     },
   ],
