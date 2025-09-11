@@ -1,0 +1,189 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Header from '~/components/widgets/Header.astro';
+import Hero2 from '~/components/widgets/Hero2.astro';
+import Features from '~/components/widgets/Features.astro';
+import Steps2 from '~/components/widgets/Steps2.astro';
+import Content from '~/components/widgets/Content.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+
+import { headerData } from '~/navigation';
+
+const metadata = {
+  title: 'منارة - دليل المساجد في سوريا',
+};
+---
+
+<Layout metadata={metadata} dir="rtl" lang="ar">
+  <Fragment slot="header">
+    <Header
+      {...headerData}
+      actions={[
+        {
+          variant: 'primary',
+          text: 'استكشف المساجد',
+          href: '#features',
+        },
+      ]}
+      isSticky
+    />
+  </Fragment>
+
+  <!-- Hero ******************* -->
+
+  <Hero2
+    tagline="منارة - مساجد سوريا في متناول يدك"
+    actions={[
+      { variant: 'primary', target: '_blank', text: 'ابدأ الآن', href: 'https://manara.rabeh.sy' },
+      { text: 'تعرف أكثر', href: '#features' },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1643275729346-7f2d02ee8687?q=80&w=2336&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      alt: 'منارة',
+    }}
+  >
+    <Fragment slot="title">
+      منصة <span class="text-accent dark:text-white">منارة</span><br />
+      للتعريف بالمساجد ودعمها
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      مشروع خيري يهدف لتوثيق المساجد في سوريا، توفير معلومات عنها، وإتاحة التبرع والصيانة عبر صفحة خاصة بكل مسجد.
+    </Fragment>
+  </Hero2>
+
+  <!-- Features *************** -->
+
+  <Features
+    id="features"
+    title="ماذا تقدم منارة؟"
+    subtitle="خدمة غير ربحية لتعزيز التواصل مع المساجد"
+    columns={2}
+    items={[
+      {
+        title: 'صفحة خاصة بكل مسجد',
+        description:
+          'كل مسجد يملك صفحة تحتوي صورة، معلومات عنه، موقعه، وحاجاته من التبرعات أو الصيانة.',
+        icon: 'tabler:building-community',
+      },
+      {
+        title: 'رمز QR لكل مسجد',
+        description: `يمكن طباعة رمز QR على لافتة المسجد ليصل الناس لصفحته مباشرة.`,
+        icon: 'tabler:qrcode',
+      },
+      {
+        title: 'خريطة تفاعلية',
+        description:
+          'خريطة ديناميكية تعرض المساجد في مختلف المدن، مع إمكانية التكبير والتصغير لاستكشاف أقرب مسجد.',
+        icon: 'tabler:map-search',
+      },
+      {
+        title: 'بحث وتصفية',
+        description: `ابحث عن المساجد حسب المدينة أو الاسم، وفلتر النتائج بسهولة.`,
+        icon: 'tabler:search',
+      },
+      {
+        title: 'التبرعات والصيانة',
+        description: `إمكانية متابعة حالات الصيانة أو التبرعات المفتوحة للمساجد.`,
+        icon: 'tabler:heart-handshake',
+      },
+      {
+        title: 'مشروع خيري',
+        description: `منارة ليست للبيع أو الربح، بل لخدمة بيوت الله ودعمها.`,
+        icon: 'tabler:heart-filled',
+      },
+    ]}
+  />
+
+  <!-- Use Cases *************** -->
+
+  <Content
+    title="كيف يعمل منارة؟"
+    subtitle="رحلة بسيطة للتعرف على المساجد ودعمها"
+    isReversed
+    items={[
+      {
+        title: 'ملف المسجد',
+        description:
+          'تصفح صفحة المسجد للاطلاع على صوره، معلوماته، وموقعه على الخريطة.',
+      },
+      {
+        title: 'رمز QR',
+        description: `امسح رمز QR للوصول مباشرة إلى صفحة المسجد والتعرف على احتياجاته.`,
+      },
+      {
+        title: 'خريطة شاملة',
+        description: `استخدم الخريطة للبحث عن أقرب مسجد إليك حسب المدينة أو الحي.`,
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1700127350778-69dedc8e25ff?q=80&w=1335&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      alt: 'ملف مسجد',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+        مساجد سوريا في خريطة واحدة <br /><span class="text-2xl">اكتشف، شارك، وادعم</span>
+      </h3>
+    </Fragment>
+  </Content>
+
+  <!-- FAQs ******************* -->
+
+  <FAQs
+    title="الأسئلة الشائعة"
+    items={[
+      {
+        title: 'هل منارة مشروع رسمي؟',
+        description:
+          'تم التواصل مع وزارة الأوقاف بخصوص المشروع، لكن حتى الآن لم يُعتمد بشكل رسمي.',
+        icon: 'tabler:chevrons-right',
+      },
+      {
+        title: 'هل منارة تهدف للربح؟',
+        description: `لا، منارة مشروع خيري غير ربحي يهدف لخدمة المساجد في سوريا.`,
+        icon: 'tabler:chevrons-right',
+      },
+      {
+        title: 'كيف أضيف مسجد جديد؟',
+        description:
+          'يمكنك التواصل معنا لإرسال بيانات المسجد ليتم التحقق منها وإضافتها للخريطة.',
+        icon: 'tabler:chevrons-right',
+      },
+      {
+        title: 'هل يمكنني التبرع مباشرة؟',
+        description: `منارة تسهل الوصول إلى احتياجات المساجد، وسيتم إضافة طرق آمنة للتبرع عند اعتماد المشروع بشكل رسمي.`,
+        icon: 'tabler:chevrons-right',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </FAQs>
+
+  <!-- Contact ****************** -->
+
+  <Steps2
+    title="تواصل معنا"
+    subtitle="هل لديك استفسار؟ تواصل معنا وسنساعدك مباشرة."
+    callToAction={{
+      text: 'تواصل الآن',
+      href: 'https://wa.me/+963954183399?text=manara-contact-click', 
+      target: '_blank',
+    }}
+    items={[
+      {
+        title: 'راسلنا',
+        description: 'contact@rabeh.sy',
+        icon: 'tabler:mail',
+      },
+      {
+        title: 'اتصل بنا',
+        description: '0954183399',
+        icon: 'tabler:headset',
+      },
+    ]}
+  />
+</Layout>

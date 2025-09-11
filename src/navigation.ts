@@ -13,6 +13,10 @@ export const headerData = {
           text: 'طلباتك',
           href: getPermalink('/products/talabatak'),
         },
+        {
+          text: 'منارة',
+          href: getPermalink('/products/manara'),
+        },
       ]
     },
     // {
