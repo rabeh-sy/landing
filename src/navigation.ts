@@ -6,6 +6,15 @@ export const headerData = {
       text: 'الرئيسية',
       href: getPermalink('/'),
     },
+    {
+      text: 'منتجاتنا',
+      links: [
+        {
+          text: 'طلباتك',
+          href: getPermalink('/products/talabatak'),
+        },
+      ]
+    },
     // {
     //   text: 'خدماتنا',
     //   links: [
@@ -37,6 +46,12 @@ export const footerData = {
         { text: 'من نحن', href: getPermalink('/about') },
       ],
     },
+    {
+      title: 'منتجاتنا',
+      links: [
+        { text: 'طلباتك', href: getPermalink('/products/talabatak') },
+      ],
+    },
   ],
   secondaryLinks: [
     { text: 'الشروط', href: getPermalink('/terms') },
@@ -50,6 +65,6 @@ export const footerData = {
     { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/onwidget/astrowind' },
   ],
   footNote: `
-    رابح للتقنية شركة سورية متخصصة في التحول الرقمي
+    رابح للتقنية شركة سورية محدودة المسؤولية مسجلة في السجل التجاري تحت رقم 23888
   `,
 };

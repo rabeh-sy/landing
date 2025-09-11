@@ -1,0 +1,191 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Hero2 from '~/components/widgets/Hero2.astro';
+import Features from '~/components/widgets/Features.astro';
+import Steps2 from '~/components/widgets/Steps2.astro';
+import Content from '~/components/widgets/Content.astro';
+import Pricing from '~/components/widgets/Pricing.astro';
+
+import FAQs from '~/components/widgets/FAQs.astro';
+
+const metadata = {
+  title: 'طلباتك - نظام الطلبات البسيط من رابح',
+};
+---
+
+<Layout metadata={metadata}>
+
+  <!-- Hero ******************* -->
+
+  <Hero2
+    tagline="طلباتك - نظام الطلبات الذكي"
+    actions={[
+      { variant: 'primary', href: 'https://qr.rabeh.sy/restaurants/res_ZkMxjEADv2GkLfv2neVOwKRG', target: '_blank', text: 'جرّب واجهة العميل الآن' },
+      { text: 'تواصل معنا', href: 'https://wa.me/+963954183399?text=talabatak-hero-click', target: '_blank' },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=2070&q=80',
+      alt: 'طلباتك',
+    }}
+  >
+    <Fragment slot="title">
+      اجعل متجرك في جيب عملائك<br />
+      مع <span class="text-accent dark:text-white">طلباتك</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      أنشئ صفحة بسيطة لعرض منتجاتك واستقبل الطلبات مباشرة من عملائك. مثالي للمطاعم، الصيدليات، والمتاجر الصغيرة.
+    </Fragment>
+  </Hero2>
+
+  <!-- Features *************** -->
+
+  <Features
+    id="features"
+    title="لماذا طلباتك؟"
+    subtitle="حل بسيط وفعّال لأي متجر أو مطعم"
+    columns={2}
+    items={[
+      {
+        title: 'نظام طلبات للمطاعم',
+        description:
+          'اسمح لعملائك بالطلب مباشرة من هواتفهم سواء من داخل المطعم أو من خارجه. ودّع الطوابير وانتظر الطلبات تصل إليك بسهولة.',
+        icon: 'tabler:tools-kitchen-2',
+      },
+      {
+        title: 'مناسب للصيدليات والمتاجر',
+        description: `اعرض منتجاتك أو أدويتك ليستطيع الزبائن الطلب بسهولة عبر رابط خاص بك.`,
+        icon: 'tabler:shopping-cart',
+      },
+      {
+        title: 'واجهة سهلة وبسيطة',
+        description:
+          'صمّمنا طلباتك ليكون سهل الاستخدام، فلا حاجة لأي خبرة تقنية لبدء استقبال الطلبات.',
+        icon: 'tabler:smart-home',
+      },
+      {
+        title: 'دفع مرن',
+        description: `إمكانية تحديد طرق الدفع المناسبة لك (عند الاستلام أو عبر التحويل).`,
+        icon: 'tabler:credit-card',
+      },
+      {
+        title: 'تجربة سريعة',
+        description: `صفحات الطلبات خفيفة وسريعة التحميل، ما يضمن تجربة رائعة لعملائك.`,
+        icon: 'tabler:rocket',
+      },
+      {
+        title: 'رابط خاص بك',
+        description: `كل متجر يحصل على رابط مخصص ورمز QR يمكن مشاركته مع الزبائن بسهولة.`,
+        icon: 'tabler:qrcode',
+      },
+    ]}
+  />
+
+  <!-- Use Cases *************** -->
+
+  <Content
+    title="استخدامات متعددة"
+    subtitle="طلباتك يخدم أي نشاط تجاري يريد نظام طلبات بسيط وفعّال"
+    isReversed
+    items={[
+      {
+        title: 'للمطاعم',
+        description:
+          'من داخل المطعم أو خارجه، يستطيع الزبائن تصفح المنيو والطلب بسهولة. يقلل وقت الانتظار ويزيد من رضا العملاء.',
+      },
+      {
+        title: 'للمتاجر والصيدليات',
+        description: `اعرض المنتجات أو الأدوية ليستطيع العملاء الطلب مباشرة عبر الإنترنت.`,
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1671&q=80',
+      alt: 'مطاعم ومتاجر',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+        لمطاعمك ومتجرك: <br /><span class="text-2xl">نظام طلبات حديث وسهل</span>
+      </h3>
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-amber-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Pricing ******************* -->
+
+  <Pricing
+    title="سعر بسيط وواضح"
+    prices={[
+      {
+        title: 'الخطة الكاملة',
+        subtitle: 'كل المزايا بسعر واحد فقط',
+        price: 25,
+        period: 'شهرياً أو 250$ سنوياً',
+        callToAction: {
+          target: '_blank',
+          text: 'اشترك الآن',
+          href: 'https://wa.me/+963954183399?text=talabatak-price-click',
+        },
+        hasRibbon: true,
+        ribbonTitle: 'الأكثر اختياراً',
+      },
+    ]}
+  />
+
+  <!-- FAQs ******************* -->
+
+  <FAQs
+    title="الأسئلة الشائعة"
+    items={[
+      {
+        title: 'هل يمكنني استخدام طلباتك لمطعم صغير؟',
+        description:
+          'نعم، طلباتك مصمم خصيصًا للمطاعم الصغيرة والكبيرة ليستقبل الطلبات بسهولة من داخل وخارج المطعم.',
+      },
+      {
+        title: 'هل يمكنني استخدامه كصيدلية أو متجر؟',
+        description: `بالتأكيد، طلباتك مناسب لأي متجر يريد عرض منتجاته واستقبال الطلبات من العملاء.`,
+      },
+      {
+        title: 'كم تكلفة الاشتراك؟',
+        description:
+          'الخطة الوحيدة المتوفرة هي 25$ شهريًا أو 250$ سنويًا. لا توجد رسوم خفية.',
+      },
+      {
+        title: 'هل أحتاج خبرة تقنية؟',
+        description: `لا، النظام بسيط وسهل الاستخدام ويمكنك البدء مباشرة.`,
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-amber-50 dark:bg-transparent"></div>
+    </Fragment>
+  </FAQs>
+
+  <!-- Contact ****************** -->
+
+  <Steps2
+    title="تواصل معنا"
+    subtitle="هل لديك استفسار؟ تواصل معنا وسنساعدك مباشرة."
+    callToAction={{
+      text: 'تواصل الآن',
+      href: 'https://wa.me/+963954183399?text=talabatak-contact-click', 
+      target: '_blank',
+    }}
+    items={[
+      {
+        title: 'راسلنا',
+        description: 'contact@rabeh.sy',
+        icon: 'tabler:mail',
+      },
+      {
+        title: 'اتصل بنا',
+        description: '0954183399',
+        icon: 'tabler:headset',
+      },
+    ]}
+  />
+</Layout>
