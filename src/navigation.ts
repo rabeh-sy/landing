@@ -19,6 +19,10 @@ export const headerData = {
         },
       ]
     },
+    {
+      text: 'خريطة الشركات الناشئة',
+      href: getPermalink('/startup-map'),
+    },
     // {
     //   text: 'خدماتنا',
     //   links: [

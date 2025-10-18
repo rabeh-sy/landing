@@ -1,0 +1,21 @@
+[
+  {
+    "id": "1",
+    "name": "يالله غو",
+    "category": "النقل الذكي",
+    "description": "تطبيق يالله غو هو تطبيق يساعدك على الوصول إلى المواقع المختلفة بسهولة",
+    "link": "https://yallago.net",
+    "logo": "https://play-lh.googleusercontent.com/IgMTHwa30kZ1EcgZ5tqXKfGfbai2Dl61nJSvYeCLcpaEwfOsM1zQjr4knd0YuF2vYQ=w480-h960-rw",
+    "size": "large"
+  },
+  {
+    "id": "2",
+    "name": "بي أوردر",
+    "category": "الطعام والتوصيل",
+    "description": "تطبيق بي أوردر هو تطبيق يساعدك على طلب الطعام بسهولة",
+    "link": "https://www.beeorder.com",
+    "logo": "https://play-lh.googleusercontent.com/JujhanRFKPMHtXuy8nSsdd-5GQdwotyW3dKMPCKIzIUMSfQ9DKXFQgYzFOWGtS2_k6E=w480-h960-rw",
+    "size": "large"
+  }
+]
+
