@@ -203,23 +203,38 @@ const categoryColors = {
     }
   </style>
 
-  <script is:inline>
-    document.addEventListener('DOMContentLoaded', function() {
+  <script>
+    function initStartupMap() {
       // Modal functionality
       const modal = document.getElementById('startup-modal');
       const closeModal = document.getElementById('close-modal');
       const bubbles = document.querySelectorAll('.bubble-item');
 
-      bubbles.forEach(bubble => {
+      if (!modal || !closeModal || bubbles.length === 0) {
+        return;
+      }
+
+      bubbles.forEach((bubble) => {
         bubble.addEventListener('click', () => {
-          const startup = JSON.parse(bubble.getAttribute('data-startup'));
+          const startupData = bubble.getAttribute('data-startup');
+          if (!startupData) return;
           
-          document.getElementById('modal-logo').src = startup.logo;
-          document.getElementById('modal-logo').alt = startup.name + ' logo';
-          document.getElementById('modal-title').textContent = startup.name;
-          document.getElementById('modal-category').textContent = startup.category;
-          document.getElementById('modal-description').textContent = startup.description;
-          document.getElementById('modal-link').setAttribute('href', startup.link);
+          const startup = JSON.parse(startupData);
+          
+          const modalLogo = document.getElementById('modal-logo');
+          const modalTitle = document.getElementById('modal-title');
+          const modalCategory = document.getElementById('modal-category');
+          const modalDescription = document.getElementById('modal-description');
+          const modalLink = document.getElementById('modal-link');
+          
+          if (modalLogo) {
+            modalLogo.src = startup.logo;
+            modalLogo.alt = startup.name + ' logo';
+          }
+          if (modalTitle) modalTitle.textContent = startup.name;
+          if (modalCategory) modalCategory.textContent = startup.category;
+          if (modalDescription) modalDescription.textContent = startup.description;
+          if (modalLink) modalLink.setAttribute('href', startup.link);
           
           modal.classList.remove('hidden');
         });
@@ -241,7 +256,14 @@ const categoryColors = {
           modal.classList.add('hidden');
         }
       });
-    });
+    }
+
+    // Run immediately if DOM is already loaded, otherwise wait
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initStartupMap);
+    } else {
+      initStartupMap();
+    }
   </script>
 </Layout>
 
