@@ -10,9 +10,9 @@ const metadata = {
 // Group startups by category
 const categories = [...new Set(startups.map(s => s.category))];
 const categoryColors = {
-  'النقل الذكي': '#10b981', // Green
+  'البرمجيات': '#10b981', // Green
   'الطعام والتوصيل': '#3b82f6', // Blue
-  'التعليم': '#f59e0b', // Orange
+  'النقل الذكي': '#f59e0b', // Orange
   'الصحة': '#ef4444', // Red
   'التجارة الإلكترونية': '#8b5cf6', // Purple
   'أخرى': '#6b7280' // Gray
@@ -126,6 +126,12 @@ const categoryColors = {
           </div>
           
           <p id="modal-description" class="text-gray-700 dark:text-gray-300 mb-6 text-lg"></p>
+          
+          <!-- Founders Section -->
+          <div id="modal-founders-section" class="mb-6">
+            <h4 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-3">المؤسسون:</h4>
+            <div id="modal-founders" class="flex flex-wrap gap-3"></div>
+          </div>
           
           <a 
             id="modal-link" 
@@ -278,6 +284,8 @@ const categoryColors = {
           const modalCategory = document.getElementById('modal-category');
           const modalDescription = document.getElementById('modal-description');
           const modalLink = document.getElementById('modal-link');
+          const modalFounders = document.getElementById('modal-founders');
+          const modalFoundersSection = document.getElementById('modal-founders-section');
           
           if (modalLogo) {
             modalLogo.src = startup.logo;
@@ -287,6 +295,31 @@ const categoryColors = {
           if (modalCategory) modalCategory.textContent = startup.category;
           if (modalDescription) modalDescription.textContent = startup.description;
           if (modalLink) modalLink.setAttribute('href', startup.link);
+          
+          // Handle founders
+          if (modalFounders && modalFoundersSection) {
+            if (startup.founders && startup.founders.length > 0) {
+              modalFoundersSection.style.display = 'block';
+              modalFounders.innerHTML = '';
+              
+              startup.founders.forEach((founder) => {
+                const founderElement = document.createElement('a');
+                founderElement.href = founder.linkedin;
+                founderElement.target = '_blank';
+                founderElement.rel = 'noopener noreferrer';
+                founderElement.className = 'inline-flex items-center gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors';
+                founderElement.innerHTML = `
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                  </svg>
+                  <span class="font-medium">${founder.name}</span>
+                `;
+                modalFounders.appendChild(founderElement);
+              });
+            } else {
+              modalFoundersSection.style.display = 'none';
+            }
+          }
           
           modal.classList.remove('hidden');
         });

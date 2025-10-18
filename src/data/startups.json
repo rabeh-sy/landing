@@ -6,7 +6,13 @@
     "description": "تطبيق يالله غو هو تطبيق يساعدك على الوصول إلى المواقع المختلفة بسهولة",
     "link": "https://yallago.net",
     "logo": "https://play-lh.googleusercontent.com/IgMTHwa30kZ1EcgZ5tqXKfGfbai2Dl61nJSvYeCLcpaEwfOsM1zQjr4knd0YuF2vYQ=w480-h960-rw",
-    "size": "large"
+    "size": "large",
+    "founders": [
+      {
+        "name": "خالد مصطفى",
+        "linkedin": "https://www.linkedin.com/in/khaled-moustafa-b7ab4b5b/"
+      }
+    ]
   },
   {
     "id": "2",
@@ -15,7 +21,28 @@
     "description": "تطبيق بي أوردر هو تطبيق يساعدك على طلب الطعام بسهولة",
     "link": "https://www.beeorder.com",
     "logo": "https://play-lh.googleusercontent.com/JujhanRFKPMHtXuy8nSsdd-5GQdwotyW3dKMPCKIzIUMSfQ9DKXFQgYzFOWGtS2_k6E=w480-h960-rw",
-    "size": "large"
+    "size": "large",
+    "founders": [
+      {
+        "name": "Hadi N",
+        "linkedin": "https://www.linkedin.com/in/hadi-n-83902517/"
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "name": "رابح",
+    "category": "البرمجيات",
+    "description": "مقدم خدمات برمجية",
+    "link": "https://rabeh.sy",
+    "logo": "https://rabeh.sy/_astro/logo-light.MFhT3jmX.png",
+    "size": "medium",
+    "founders": [
+      {
+        "name": "خالد بادنجكي",
+        "linkedin": "https://www.linkedin.com/in/m-khaled-badenjki-850860118/"
+      }
+    ]
   }
 ]
 
