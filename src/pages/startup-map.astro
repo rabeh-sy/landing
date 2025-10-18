@@ -34,14 +34,23 @@ const categoryColors = {
 
       <!-- Category Legend -->
       <div class="mb-8 flex flex-wrap justify-center gap-4">
+        <button 
+          class="category-filter active flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 rounded-lg shadow-sm hover:shadow-md transition-all cursor-pointer border-2 border-emerald-500"
+          data-category="all"
+        >
+          <span class="text-sm font-bold text-emerald-600 dark:text-emerald-400">الكل</span>
+        </button>
         {categories.map(category => (
-          <div class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 rounded-lg shadow-sm">
+          <button 
+            class="category-filter flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 rounded-lg shadow-sm hover:shadow-md transition-all cursor-pointer border-2 border-transparent hover:border-gray-300"
+            data-category={category}
+          >
             <div 
               class="w-4 h-4 rounded-full" 
               style={`background-color: ${categoryColors[category] || categoryColors['أخرى']}`}
             />
             <span class="text-sm font-medium text-gray-700 dark:text-gray-300">{category}</span>
-          </div>
+          </button>
         ))}
       </div>
 
@@ -73,6 +82,7 @@ const categoryColors = {
                 class={`bubble-item ${sizeClasses[size]} flex flex-col items-center justify-center rounded-full cursor-pointer transition-all duration-300 hover:scale-110 hover:shadow-2xl group relative`}
                 style={`background: linear-gradient(135deg, ${color}dd, ${color}aa); animation: float ${3 + index}s ease-in-out infinite;`}
                 data-startup={JSON.stringify(startup)}
+                data-category={startup.category}
               >
                 <div class="mb-2 transform group-hover:scale-110 transition-transform">
                   <img 
@@ -198,6 +208,24 @@ const categoryColors = {
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     }
 
+    .bubble-item.hidden-bubble {
+      display: none;
+    }
+
+    .category-filter.active {
+      border-color: rgb(16 185 129) !important;
+      background-color: rgb(16 185 129 / 0.1);
+    }
+
+    .category-filter.active span {
+      font-weight: 700;
+      color: rgb(16 185 129);
+    }
+
+    .dark .category-filter.active span {
+      color: rgb(52 211 153);
+    }
+
     #startup-modal {
       backdrop-filter: blur(8px);
     }
@@ -209,11 +237,35 @@ const categoryColors = {
       const modal = document.getElementById('startup-modal');
       const closeModal = document.getElementById('close-modal');
       const bubbles = document.querySelectorAll('.bubble-item');
+      const categoryFilters = document.querySelectorAll('.category-filter');
 
       if (!modal || !closeModal || bubbles.length === 0) {
         return;
       }
 
+      // Category filtering
+      categoryFilters.forEach((filter) => {
+        filter.addEventListener('click', () => {
+          const selectedCategory = filter.getAttribute('data-category');
+          
+          // Update active state
+          categoryFilters.forEach(f => f.classList.remove('active'));
+          filter.classList.add('active');
+          
+          // Filter bubbles
+          bubbles.forEach((bubble) => {
+            const bubbleCategory = bubble.getAttribute('data-category');
+            
+            if (selectedCategory === 'all' || bubbleCategory === selectedCategory) {
+              bubble.classList.remove('hidden-bubble');
+            } else {
+              bubble.classList.add('hidden-bubble');
+            }
+          });
+        });
+      });
+
+      // Modal functionality
       bubbles.forEach((bubble) => {
         bubble.addEventListener('click', () => {
           const startupData = bubble.getAttribute('data-startup');
