@@ -7,19 +7,6 @@ export const headerData = {
       href: getPermalink('/'),
     },
     {
-      text: 'منتجاتنا',
-      links: [
-        {
-          text: 'طلباتك',
-          href: getPermalink('/products/talabatak'),
-        },
-        {
-          text: 'منارة',
-          href: getPermalink('/products/manara'),
-        },
-      ]
-    },
-    {
       text: 'خريطة الشركات الناشئة',
       href: getPermalink('/startup-map'),
     },
@@ -41,7 +28,7 @@ export const headerData = {
       href: getBlogPermalink(),
     },
   ],
-  actions: [{ text: 'يالله نتكلّم', href: 'https://wa.me/+963954183399?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D9%88%D8%AF%20%D9%85%D8%B9%D8%B1%D9%81%D8%A9%20%D8%A7%D9%84%D9%85%D8%B2%D9%8A%D8%AF%20%D8%B9%D9%86%20%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC%D9%83%D9%85', target: '_blank', icon: 'tabler:brand-whatsapp' }],
+  actions: [{ text: 'حاكينا واتس', href: 'https://wa.me/+963954183399?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D9%88%D8%AF%20%D9%85%D8%B9%D8%B1%D9%81%D8%A9%20%D8%A7%D9%84%D9%85%D8%B2%D9%8A%D8%AF%20%D8%B9%D9%86%20%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC%D9%83%D9%85', target: '_blank', icon: 'tabler:brand-whatsapp' }],
 };
 
 export const footerData = {
@@ -53,14 +40,7 @@ export const footerData = {
         { text: 'المدونة', href: getBlogPermalink() },
         { text: 'من نحن', href: getPermalink('/about') },
       ],
-    },
-    {
-      title: 'منتجاتنا',
-      links: [
-        { text: 'طلباتك', href: getPermalink('/products/talabatak') },
-        { text: 'منارة', href: getPermalink('/products/manara') },
-      ],
-    },
+    }
   ],
   secondaryLinks: [
     { text: 'الشروط', href: getPermalink('/terms') },
@@ -74,6 +54,6 @@ export const footerData = {
     { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/onwidget/astrowind' },
   ],
   footNote: `
-    رابح للتقنية شركة سورية محدودة المسؤولية مسجلة في السجل التجاري تحت رقم 23888
+    شركة رابح للتقنية م م - س ت : 23888/2025
   `,
 };
