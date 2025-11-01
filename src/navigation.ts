@@ -38,7 +38,6 @@ export const footerData = {
       links: [
         { text: 'اتصل بنا', href: getPermalink('/contact') },
         { text: 'المدونة', href: getBlogPermalink() },
-        { text: 'من نحن', href: getPermalink('/about') },
       ],
     }
   ],

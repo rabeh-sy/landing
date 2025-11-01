@@ -36,32 +36,6 @@ const metadata = {
   <Content
     id="about"
     columns={3}
-    items={[
-      {
-        icon: 'tabler:brand-linkedin',
-        callToAction: {
-          target: '_blank',
-          text: 'LinkedIn',
-          href: 'https://www.linkedin.com/in/m-khaled-badenjki-850860118/',
-        },
-      },
-      {
-        icon: 'tabler:brand-github',
-        callToAction: {
-          target: '_blank',
-          text: 'Github',
-          href: 'https://github.com/khaled-badenjki',
-        },
-      },
-      {
-        icon: 'tabler:brand-x',
-        callToAction: {
-          target: '_blank',
-          text: 'X',
-          href: '#',
-        },
-      },
-    ]}
     image={{
       src: '~/assets/images/about-khaled.jpeg',
       alt: 'محمد خالد بادنجكي',
@@ -77,8 +51,6 @@ const metadata = {
       <p>
         بدأت رحلتي المهنية بالعمل في شركات تقنية إقليمية وعالمية، حيث اكتسبت خبرة في بناء الأنظمة الموثوقة، تحسين الأداء، وتصميم بنية تحتية قادرة على التوسع. اليوم، أركز على المشاريع التي تحدث أثراً اجتماعياً حقيقياً، أعمل على تطويرها وإدارتها.
       </p>
-      <br />
-      <p>يمكنك متابعتي والتواصل معي عبر الروابط التالية:</p>
     </Fragment>
 
     <Fragment slot="bg">
@@ -160,87 +132,6 @@ const metadata = {
       { title: 'تحليل الاحتياجات', description: 'فهم احتياجات العملاء وتحويلها إلى حلول تقنية عملية.' },
     ]}
   />
-
-  <!-- Content Widget **************** -->
-
-  <Content
-    id="porfolio"
-    title="مشاريعي"
-    subtitle="يوجد العديد من المشاريع قيد الإنشاء، ولكن هذه قائمة بالمشاريع الجاهزة أو التي تم إطلاقها"
-    isReversed
-    items={[
-      {
-        title: 'الوصف:',
-        description:
-          'منصة إلكترونية تمكّن المساجد من جمع التبرعات بسهولة عبر الإنترنت، مع لوحة تحكم لإدارة الحملات ومتابعة التبرعات بشفافية.',
-      },
-      {
-        title: 'دوري:',
-        description:
-          'تطوير المنصة من الصفر، تصميم البنية التحتية، برمجة الواجهة الخلفية، وإدارة النشر على الخوادم.',
-      },
-    ]}
-    image={{
-      src: '~/assets/images/mosque-donation.jpg',
-      height: 300,
-      alt: 'منارة - منصة التبرع للمساجد',
-    }}
-    callToAction={{
-      target: '_blank',
-      text: 'زيارة المشروع',
-      icon: 'tabler:chevron-left',
-      href: 'https://manara.rabeh.sy',
-    }}
-  >
-    <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
-        المشروع الأول: <br /><span class="text-2xl">منارة</span>
-      </h3>
-    </Fragment>
-
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
-
-  <!-- New Project **************** -->
-
-  <Content
-    id="qr-ordering"
-    items={[
-      {
-        title: 'الوصف:',
-        description:
-          'تطبيق يتيح للزبائن طلب الطعام والشراب داخل المطاعم والمقاهي عبر مسح رمز QR على الطاولة.',
-      },
-      {
-        title: 'دوري:',
-        description:
-          'بناء التطبيق من البداية، تطوير نظام إدارة الطلبات، برمجة لوحة تحكم للمطاعم، وإعداد النشر على الخوادم.',
-      },
-    ]}
-    image={{
-      src: '~/assets/images/talabatak.jpg',
-      height: 500,
-      alt: 'منصّة التبرع للمساجد',
-    }}
-    callToAction={{
-      target: '_blank',
-      text: 'زيارة المشروع',
-      icon: 'tabler:chevron-left',
-      href: 'https://qr.rabeh.sy',
-    }}
-  >
-    <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
-        المشروع الثاني: <br /><span class="text-2xl">طلباتك</span>
-      </h3>
-    </Fragment>
-
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
 
   <!-- CallToAction Widget *********** -->
 
