@@ -71,9 +71,14 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     ]}
   >
     <div class:list={[{ 'mr-auto rtl:mr-0 rtl:ml-auto': position === 'right' }, 'flex justify-between']}>
-      <a class="flex items-center" href={getHomePermalink()}>
-        <Logo />
-      </a>
+      <div class="flex flex-col items-start">
+        <a class="flex items-center" href={getHomePermalink()}>
+          <Logo />
+        </a>
+        <p class="text-[#A39672] dark:text-[#A39672] text-sm mr-1"
+          >س ت : 23888/2025</p
+        >
+      </div>
       <div class="flex items-center md:hidden">
         <ToggleMenu />
       </div>
