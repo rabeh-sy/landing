@@ -4,11 +4,13 @@ import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Note from '~/components/widgets/Note.astro';
 import Features from '~/components/widgets/Features.astro';
+import Features2 from '~/components/widgets/Features2.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Content from '~/components/widgets/Content.astro';
 import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import favicon from '~/assets/favicons/favicon.png';
 
 const metadata = {
   title: 'رابح للتقنية | شركة تقدم خدمات البرمجة - سوريا، حلب',
@@ -23,7 +25,7 @@ const metadata = {
     actions={[
       {
         variant: 'primary',
-        text: 'حاكينا واتس',
+        text: 'الاستشارة مجانية - تواصل معنا',
         href: 'https://wa.me/+963954183399?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D9%88%D8%AF%20%D9%85%D8%B9%D8%B1%D9%81%D8%A9%20%D8%A7%D9%84%D9%85%D8%B2%D9%8A%D8%AF%20%D8%B9%D9%86%20%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC%D9%83%D9%85',
         target: '_blank',
         icon: 'tabler:brand-whatsapp',
@@ -49,28 +51,24 @@ const metadata = {
     subtitle="حوّل فكرتك إلى واقع عبر تطبيق على الموبايل أو موقع على الإنترنت، للصناعيين والتجار وأصحاب المشاريع: عرّف عن عملك وعن شركتك وسوّق منتجك عبر الإنترنت، احصل على نظام متكامل لإدارة مشروعك، الاستشارة مجانية"
     items={[
       {
-        title: 'إنشاء مواقع على الانترنت',
-        description:
-          'أنشئ موقعك على الانترنت، وقدّم خدماتك أو تجارتك أو صناعتك. انقل عملك إلى مستوى آخر وسهّل عملية وصول العملاء الداخليين والخارجيين إليك',
-        icon: 'tabler:world-www',
+        title: 'انشاء مواقع على الويب',
+        image: { src: favicon.src, alt: 'رابح للتقنية' },
       },
       {
-        title: 'أنظمة لإدارة المؤسسات والمشاريع',
-        description:
-          'إنشاء نظام متكامل لإدارة مشروعك، سواء كان مصنع أو فندق أو مطعم أو جمعية خيرية أو محل تجاري أو صيدلية أو أماكن ترفيهية أو أي مشروع آخر',
-        icon: 'tabler:building-factory',
+        title: 'انشاء تطبيقات موبايل',
+        image: { src: favicon.src, alt: 'رابح للتقنية' },
       },
       {
-        title: 'تطبيقات موبايل ومواقع حسب الطلب',
-        description:
-          'لأصحاب الأفكار: حول فكرتك إلى مشروع حقيقي بتطبيق على الموبايل أو تطبيق انترنت وابدأ العمل',
-        icon: 'tabler:device-mobile-code',
+        title: 'انشاء متاجر الكترونية',
+        image: { src: favicon.src, alt: 'رابح للتقنية' },
       },
       {
-        title: 'متجر إلكتروني',
-        description:
-          'ابدأ الآن بيع بضاعتك. أنشى معرضك الخاص واعرض البضاعة بتفاصيلها وسهل وصول الزبائن واستلام الطلبات واتمام عملية البيع',
-        icon: 'tabler:shopping-cart',
+        title: 'انشاء منصات الكترونية',
+        image: { src: favicon.src, alt: 'رابح للتقنية' },
+      },
+      {
+        title: 'انشاء برامج حلول ادارية',
+        image: { src: favicon.src, alt: 'رابح للتقنية' },
       },
     ]}
   />
@@ -106,13 +104,45 @@ const metadata = {
     </Fragment>
   </Content>
 
+  <!-- In Progress Products ********* -->
+
+  <Features2
+    title="مشاريع قيد التنفيذ من رابح"
+    subtitle="نعمل حالياً على إطلاق منتجات جديدة تخدم السوق السوري باحتياجات عملية ومهمة."
+    columns={2}
+    classes={{
+      items: {
+        panel:
+          'rounded-lg border border-slate-200 bg-white p-6 shadow-sm dark:border-emerald-900 dark:bg-emerald-950',
+        icon: 'w-12 h-12 mb-6 text-primary dark:text-emerald-200',
+      },
+    }}
+    items={[
+      {
+        title: 'قريباً.. رابح لايت',
+        description:
+          'تطبيق محاسبة للمشاريع المتوسطة والصغيرة. تطبيق سهل الاستخدام فيه العديد من الميزات والخيارات المحاسبية مدعم بالذكاء الاصطناعي.',
+        icon: 'tabler:device-mobile',
+      },
+      {
+        title: 'قريباً.. عقار',
+        description: 'تطبيق احترافي للخدمات العقارية في سوريا.',
+        icon: 'tabler:building-estate',
+      },
+    ]}
+  />
+
   <!-- HighlightedPosts Widget ******* -->
 
   <BlogLatestPosts
     title="تعرّف على المزيد في مدونتنا"
     information={`نكتب مقالات تتعلق بالتقنيّة وريادة الأعمال والتحول الرقمي والسوق السوري.
                 `}
-  />
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-amber-50 dark:bg-transparent"></div>
+    </Fragment>
+  </BlogLatestPosts>
 
   <!-- CallToAction Widget *********** -->
 
@@ -120,7 +150,7 @@ const metadata = {
     actions={[
       {
         variant: 'primary',
-        text: 'حاكينا واتس',
+        text: 'الاستشارة مجانية - تواصل معنا',
         href: 'https://wa.me/+963954183399?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D9%88%D8%AF%20%D9%85%D8%B9%D8%B1%D9%81%D8%A9%20%D8%A7%D9%84%D9%85%D8%B2%D9%8A%D8%AF%20%D8%B9%D9%86%20%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC%D9%83%D9%85',
         target: '_blank',
         icon: 'tabler:brand-whatsapp',

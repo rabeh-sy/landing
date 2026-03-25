@@ -7,22 +7,22 @@ const metadata = {
   description: 'استكشف النظام البيئي للشركات الناشئة في سوريا',
 };
 
-// Group startups by category
-const categories = [...new Set(startups.map(s => s.category))];
+// Archived for later reuse. Keeping the implementation outside src/pages
+// removes the public route without losing the page code.
+const categories = [...new Set(startups.map((s) => s.category))];
 const categoryColors = {
-  'البرمجيات': '#10b981', // Green
-  'الطعام والتوصيل': '#3b82f6', // Blue
-  'النقل الذكي': '#f59e0b', // Orange
-  'الصحة': '#ef4444', // Red
-  'التجارة الإلكترونية': '#8b5cf6', // Purple
-  'أخرى': '#6b7280' // Gray
+  البرمجيات: '#10b981',
+  'الطعام والتوصيل': '#3b82f6',
+  'النقل الذكي': '#f59e0b',
+  الصحة: '#ef4444',
+  'التجارة الإلكترونية': '#8b5cf6',
+  أخرى: '#6b7280',
 };
 ---
 
 <Layout metadata={metadata}>
   <section class="py-16 md:py-20">
     <div class="container mx-auto px-4 sm:px-6 max-w-7xl">
-      <!-- Header -->
       <div class="text-center mb-12">
         <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4 text-gray-900 dark:text-white">
           خريطة الشركات الناشئة في سوريا
@@ -32,21 +32,20 @@ const categoryColors = {
         </p>
       </div>
 
-      <!-- Category Legend -->
       <div class="mb-8 flex flex-wrap justify-center gap-4">
-        <button 
+        <button
           class="category-filter active flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 rounded-lg shadow-sm hover:shadow-md transition-all cursor-pointer border-2 border-transparent hover:border-gray-300"
           data-category="all"
         >
           <span class="text-sm font-medium text-gray-700 dark:text-gray-300">الكل</span>
         </button>
-        {categories.map(category => (
-          <button 
+        {categories.map((category) => (
+          <button
             class="category-filter flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 rounded-lg shadow-sm hover:shadow-md transition-all cursor-pointer border-2 border-transparent hover:border-gray-300"
             data-category={category}
           >
-            <div 
-              class="w-4 h-4 rounded-full" 
+            <div
+              class="w-4 h-4 rounded-full"
               style={`background-color: ${categoryColors[category] || categoryColors['أخرى']}`}
             />
             <span class="text-sm font-medium text-gray-700 dark:text-gray-300">{category}</span>
@@ -54,9 +53,7 @@ const categoryColors = {
         ))}
       </div>
 
-      <!-- Bubble Map Container -->
       <div class="bg-gradient-to-br from-amber-50 to-green-50 dark:from-slate-900 dark:to-emerald-950 rounded-2xl p-8 md:p-12 shadow-xl min-h-[600px] relative overflow-hidden">
-        <!-- Background Pattern -->
         <div class="absolute inset-0 opacity-5">
           <svg width="100%" height="100%">
             <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -66,27 +63,26 @@ const categoryColors = {
           </svg>
         </div>
 
-        <!-- Bubbles Container -->
         <div id="bubble-container" class="relative z-10 flex flex-wrap justify-center items-center gap-6 min-h-[500px]">
           {startups.map((startup, index) => {
             const sizeClasses = {
               small: 'w-32 h-32 text-sm',
               medium: 'w-40 h-40 text-base',
-              large: 'w-48 h-48 text-lg'
+              large: 'w-48 h-48 text-lg',
             };
             const size = startup.size || 'medium';
             const color = categoryColors[startup.category] || categoryColors['أخرى'];
-            
+
             return (
-              <div 
+              <div
                 class={`bubble-item ${sizeClasses[size]} flex flex-col items-center justify-center rounded-full cursor-pointer transition-all duration-300 hover:scale-110 hover:shadow-2xl group relative`}
                 style={`background: linear-gradient(135deg, ${color}dd, ${color}aa); animation: float ${3 + index}s ease-in-out infinite;`}
                 data-startup={JSON.stringify(startup)}
                 data-category={startup.category}
               >
                 <div class="mb-2 transform group-hover:scale-110 transition-transform">
-                  <img 
-                    src={startup.logo} 
+                  <img
+                    src={startup.logo}
                     alt={`${startup.name} logo`}
                     class="w-16 h-16 object-contain rounded-lg bg-white/90 p-2"
                     loading="lazy"
@@ -104,7 +100,6 @@ const categoryColors = {
         </div>
       </div>
 
-      <!-- Startup Details Modal -->
       <div id="startup-modal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" style="direction: rtl;">
         <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-2xl w-full p-8 shadow-2xl transform transition-all">
           <div class="flex justify-between items-start mb-6">
@@ -117,25 +112,24 @@ const categoryColors = {
                 <p id="modal-category" class="text-gray-600 dark:text-gray-400"></p>
               </div>
             </div>
-            <button 
-              id="close-modal" 
+            <button
+              id="close-modal"
               class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 text-2xl leading-none"
             >
               ×
             </button>
           </div>
-          
+
           <p id="modal-description" class="text-gray-700 dark:text-gray-300 mb-6 text-lg"></p>
-          
-          <!-- Founders Section -->
+
           <div id="modal-founders-section" class="mb-6">
             <h4 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-3">المؤسسون:</h4>
             <div id="modal-founders" class="flex flex-wrap gap-3"></div>
           </div>
-          
-          <a 
-            id="modal-link" 
-            href="#" 
+
+          <a
+            id="modal-link"
+            href="#"
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-green-700 hover:from-emerald-700 hover:to-green-800 text-white px-6 py-3 rounded-lg font-medium transition-all hover:shadow-lg"
@@ -148,7 +142,6 @@ const categoryColors = {
         </div>
       </div>
 
-      <!-- Stats Section -->
       <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="bg-white dark:bg-slate-800 rounded-xl p-6 text-center shadow-lg">
           <div class="text-4xl font-bold text-emerald-600 dark:text-emerald-400 mb-2">
@@ -158,7 +151,7 @@ const categoryColors = {
             شركة ناشئة
           </div>
         </div>
-        
+
         <div class="bg-white dark:bg-slate-800 rounded-xl p-6 text-center shadow-lg">
           <div class="text-4xl font-bold text-green-600 dark:text-green-400 mb-2">
             {categories.length}
@@ -167,7 +160,7 @@ const categoryColors = {
             قطاع
           </div>
         </div>
-        
+
         <div class="bg-white dark:bg-slate-800 rounded-xl p-6 text-center shadow-lg">
           <div class="text-4xl font-bold text-amber-600 dark:text-amber-400 mb-2">
             🚀
@@ -178,7 +171,6 @@ const categoryColors = {
         </div>
       </div>
 
-      <!-- Call to Action -->
       <div class="mt-12 bg-gradient-to-r from-emerald-600 to-green-700 dark:from-emerald-700 dark:to-green-800 rounded-2xl p-8 text-center shadow-xl">
         <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">
           هل لديك شركة ناشئة سورية؟
@@ -186,8 +178,8 @@ const categoryColors = {
         <p class="text-emerald-100 text-lg mb-6 max-w-2xl mx-auto">
           نود إضافة شركتك إلى الخريطة. تواصل معنا لنضيفها ونساهم في دعم النظام البيئي للابتكار في سوريا
         </p>
-        <a 
-          href="/contact" 
+        <a
+          href="/contact"
           class="inline-block bg-white text-emerald-700 px-8 py-3 rounded-lg font-bold hover:bg-emerald-50 transition-colors shadow-lg hover:shadow-xl"
         >
           اتصل بنا
@@ -239,7 +231,6 @@ const categoryColors = {
 
   <script>
     function initStartupMap() {
-      // Modal functionality
       const modal = document.getElementById('startup-modal');
       const closeModal = document.getElementById('close-modal');
       const bubbles = document.querySelectorAll('.bubble-item');
@@ -249,19 +240,15 @@ const categoryColors = {
         return;
       }
 
-      // Category filtering
       categoryFilters.forEach((filter) => {
         filter.addEventListener('click', () => {
           const selectedCategory = filter.getAttribute('data-category');
-          
-          // Update active state
-          categoryFilters.forEach(f => f.classList.remove('active'));
+
+          categoryFilters.forEach((f) => f.classList.remove('active'));
           filter.classList.add('active');
-          
-          // Filter bubbles
+
           bubbles.forEach((bubble) => {
             const bubbleCategory = bubble.getAttribute('data-category');
-            
             if (selectedCategory === 'all' || bubbleCategory === selectedCategory) {
               bubble.classList.remove('hidden-bubble');
             } else {
@@ -271,23 +258,46 @@ const categoryColors = {
         });
       });
 
-      // Modal functionality
+      const modalLogo = document.getElementById('modal-logo');
+      const modalTitle = document.getElementById('modal-title');
+      const modalCategory = document.getElementById('modal-category');
+      const modalDescription = document.getElementById('modal-description');
+      const modalLink = document.getElementById('modal-link');
+      const modalFounders = document.getElementById('modal-founders');
+      const modalFoundersSection = document.getElementById('modal-founders-section');
+
+      const openModal = () => {
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      };
+
+      const hideModal = () => {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+      };
+
+      closeModal.addEventListener('click', hideModal);
+
+      modal.addEventListener('click', (event) => {
+        if (event.target === modal) {
+          hideModal();
+        }
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
+          hideModal();
+        }
+      });
+
       bubbles.forEach((bubble) => {
         bubble.addEventListener('click', () => {
           const startupData = bubble.getAttribute('data-startup');
           if (!startupData) return;
-          
+
           const startup = JSON.parse(startupData);
-          
-          const modalLogo = document.getElementById('modal-logo');
-          const modalTitle = document.getElementById('modal-title');
-          const modalCategory = document.getElementById('modal-category');
-          const modalDescription = document.getElementById('modal-description');
-          const modalLink = document.getElementById('modal-link');
-          const modalFounders = document.getElementById('modal-founders');
-          const modalFoundersSection = document.getElementById('modal-founders-section');
-          
-          if (modalLogo) {
+
+          if (modalLogo instanceof HTMLImageElement) {
             modalLogo.src = startup.logo;
             modalLogo.alt = startup.name + ' logo';
           }
@@ -295,60 +305,38 @@ const categoryColors = {
           if (modalCategory) modalCategory.textContent = startup.category;
           if (modalDescription) modalDescription.textContent = startup.description;
           if (modalLink) modalLink.setAttribute('href', startup.link);
-          
-          // Handle founders
+
           if (modalFounders && modalFoundersSection) {
+            modalFounders.innerHTML = '';
+
             if (startup.founders && startup.founders.length > 0) {
-              modalFoundersSection.style.display = 'block';
-              modalFounders.innerHTML = '';
-              
-              startup.founders.forEach((founder) => {
-                const founderElement = document.createElement('a');
-                founderElement.href = founder.linkedin;
-                founderElement.target = '_blank';
-                founderElement.rel = 'noopener noreferrer';
-                founderElement.className = 'inline-flex items-center gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors';
-                founderElement.innerHTML = `
-                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              modalFoundersSection.classList.remove('hidden');
+
+              startup.founders.forEach((founder: { name: string; linkedin: string }) => {
+                const founderLink = document.createElement('a');
+                founderLink.href = founder.linkedin;
+                founderLink.target = '_blank';
+                founderLink.rel = 'noopener noreferrer';
+                founderLink.className =
+                  'inline-flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-slate-700 dark:hover:bg-slate-600 rounded-lg transition-colors';
+                founderLink.innerHTML = `
+                  <span class="font-medium text-gray-800 dark:text-gray-200">${founder.name}</span>
+                  <svg class="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.762 2.239 5 5 5h14c2.762 0 5-2.238 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                   </svg>
-                  <span class="font-medium">${founder.name}</span>
                 `;
-                modalFounders.appendChild(founderElement);
+                modalFounders.appendChild(founderLink);
               });
             } else {
-              modalFoundersSection.style.display = 'none';
+              modalFoundersSection.classList.add('hidden');
             }
           }
-          
-          modal.classList.remove('hidden');
+
+          openModal();
         });
       });
-
-      closeModal.addEventListener('click', () => {
-        modal.classList.add('hidden');
-      });
-
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          modal.classList.add('hidden');
-        }
-      });
-
-      // Escape key to close modal
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          modal.classList.add('hidden');
-        }
-      });
     }
 
-    // Run immediately if DOM is already loaded, otherwise wait
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initStartupMap);
-    } else {
-      initStartupMap();
-    }
+    document.addEventListener('astro:page-load', initStartupMap);
   </script>
 </Layout>
-
