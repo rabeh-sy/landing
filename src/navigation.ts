@@ -20,6 +20,10 @@ export const headerData = {
       href: getPermalink('/contact'),
     },
     {
+      text: 'رابح لايت',
+      href: getPermalink('/rabeh-lite'),
+    },
+    {
       text: 'المدونة',
       href: getBlogPermalink(),
     },

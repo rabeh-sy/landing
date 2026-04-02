@@ -11,11 +11,14 @@ import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import favicon from '~/assets/favicons/favicon.png';
+import { getPermalink } from '~/utils/permalinks';
 
 const metadata = {
   title: 'رابح للتقنية | شركة تقدم خدمات البرمجة - سوريا، حلب',
   ignoreTitleTemplate: true,
 };
+
+const rabehLitePermalink = getPermalink('/rabeh-lite');
 ---
 
 <Layout metadata={metadata}>
@@ -29,7 +32,7 @@ const metadata = {
         href: 'https://wa.me/+963954183399?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D9%88%D8%AF%20%D9%85%D8%B9%D8%B1%D9%81%D8%A9%20%D8%A7%D9%84%D9%85%D8%B2%D9%8A%D8%AF%20%D8%B9%D9%86%20%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC%D9%83%D9%85',
         target: '_blank',
         icon: 'tabler:brand-whatsapp',
-      }
+      },
     ]}
     image={{ src: '~/assets/images/hero-image-2.png', alt: 'صورة رابح للتقنية' }}
   >
@@ -37,7 +40,6 @@ const metadata = {
       شركة رابح للتقنية والخدمات البرمجية
     </Fragment>
 
-    split this into three lines
     <Fragment slot="subtitle">
       خدمة برمجة عالية الجودة مع فريق متخصص يحوّل أفكارك إلى واقع
     </Fragment>
@@ -108,7 +110,7 @@ const metadata = {
 
   <Features2
     title="مشاريع قيد التنفيذ من رابح"
-    subtitle="نعمل حالياً على إطلاق منتجات جديدة تخدم السوق باحتياجات عملية ومهمة."
+    subtitle="نعمل على منتجات تخدم السوق باحتياجات عملية. رابح لايت أصبح له الآن صفحة تعريفية مستقلة يمكنك تصفحها مباشرة."
     columns={2}
     classes={{
       items: {
@@ -119,10 +121,16 @@ const metadata = {
     }}
     items={[
       {
-        title: 'قريباً.. رابح لايت',
+        title: 'رابح لايت',
         description:
-          'تطبيق محاسبة للمشاريع المتوسطة والصغيرة. تطبيق سهل الاستخدام فيه العديد من الميزات والخيارات المحاسبية مدعم بالذكاء الاصطناعي.',
+          'تطبيق محاسبة وإدارة أعمال للأعمال الصغيرة يعمل من الجوال، مع متابعة للمبيعات والمشتريات والمخزون والعملاء وصفحة مستقلة توضّح المزايا وطريقة البدء.',
         icon: 'tabler:device-mobile',
+        callToAction: {
+          variant: 'primary',
+          text: 'عرض صفحة رابح لايت',
+          href: rabehLitePermalink,
+          icon: 'tabler:arrow-left',
+        },
       },
       {
         title: 'قريباً.. عقار',
