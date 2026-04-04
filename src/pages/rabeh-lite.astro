@@ -9,6 +9,7 @@ import Testimonials from '~/components/widgets/Testimonials.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 
 const androidApkDownloadLink = 'https://expo.dev/artifacts/eas/anzrGcPxKYUipL6mQagAbJ.apk';
+const appVersion = '0.0.2';
 
 const metadata = {
   title: 'رابح لايت | محاسبة وإدارة أعمال من الجوال',
@@ -46,6 +47,12 @@ const metadata = {
       تطبيق محاسبة وإدارة أعمال بسيط للأعمال الصغيرة يعمل من الجوال، ويساعدك على متابعة المبيعات والمشتريات
       والمخزون والعملاء والمدفوعات حتى عند ضعف الاتصال.
     </Fragment>
+
+    <div slot="content" class="mt-4">
+      <span class="inline-flex items-center rounded-full border border-slate-200 bg-white/80 px-4 py-1.5 text-sm font-medium text-slate-700 shadow-sm dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-200">
+        الإصدار الحالي: {appVersion}
+      </span>
+    </div>
   </Hero2>
 
   <Features3
@@ -222,7 +229,7 @@ const metadata = {
   <CallToAction
     id="download"
     title="حمّل رابح لايت على أندرويد"
-    subtitle="زر واحد مباشر لتنزيل ملف APK. حدّث الرابط لاحقًا عند إضافة ملف التثبيت النهائي."
+    subtitle={`زر واحد مباشر لتنزيل ملف APK. الإصدار الحالي: ${appVersion}`}
     actions={[
       {
         variant: 'primary',
