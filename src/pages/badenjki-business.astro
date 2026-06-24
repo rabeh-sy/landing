@@ -1,0 +1,208 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Hero2 from '~/components/widgets/Hero2.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Features3 from '~/components/widgets/Features3.astro';
+import Content from '~/components/widgets/Content.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+
+const androidApkDownloadLink = 'https://expo.dev/artifacts/eas/uMNobnzQsaiJqSCjNBVLwj.apk';
+const appVersion = '0.4.0';
+
+const metadata = {
+  title: 'Badenjki Business | بادنجكي الإداري',
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero2
+    actions={[
+      {
+        variant: 'primary',
+        text: 'تحميل نسخة أندرويد',
+        href: androidApkDownloadLink,
+        icon: 'tabler:download',
+        download: true,
+      },
+      {
+        text: 'تعرّف على المميزات',
+        href: '#features',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=987&q=80',
+      alt: 'Badenjki Business - بادنجكي الإداري',
+    }}
+  >
+    <Fragment slot="title">
+      <span class="text-accent dark:text-white">بادنجكي الإداري</span>
+      <br />
+      <span class="text-accent dark:text-white">Badenjki Business</span>
+      <br />
+      تطبيق محاسبة سهل الاستخدام للأعمال الصغيرة والمتوسطة يعمل حتى بدون إنترنت
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      تطبيق محاسبة وإدارة أعمال سهل الاستخدام للأعمال الصغيرة والمتوسطة يعمل من الجوال، ويساعدك على متابعة المبيعات
+      والمشتريات والمخزون والعملاء والمدفوعات حتى عند ضعف الاتصال.
+    </Fragment>
+
+    <div slot="content" class="mt-4">
+      <span
+        class="inline-flex items-center rounded-full border border-slate-200 bg-white/80 px-4 py-1.5 text-sm font-medium text-slate-700 shadow-sm dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-200"
+      >
+        الإصدار الحالي: {appVersion}
+      </span>
+    </div>
+  </Hero2>
+
+  <Features3
+    id="features"
+    title="ابدأ العمل على بادنجكي الإداري خلال دقائق"
+    subtitle="التجهيز سريع وواضح: ثبّت التطبيق، أضف بيانات نشاطك، ثم ابدأ أول عملية بيع أو شراء بدون خطوات معقدة."
+    tagline="البدء خطوة بخطوة"
+    columns={2}
+    items={[
+      {
+        title: 'حمّل التطبيق وفعّل جهازك',
+        description: 'ثبّت بادنجكي الإداري على جهازك ثم أدخل رمز التفعيل لفتح كامل إمكانيات التطبيق.',
+        icon: 'tabler:square-number-1',
+      },
+      {
+        title: 'أنشئ ملف نشاطك',
+        description: 'أدخل اسم النشاط ورقم الهاتف والعنوان والعملة الافتراضية لبدء العمل على قاعدة صحيحة.',
+        icon: 'tabler:square-number-2',
+      },
+      {
+        title: 'أضف المواد والعملاء والموردين',
+        description: 'جهّز بياناتك الأساسية محليًا، ويمكنك أيضًا البدء ببيانات تجريبية إذا أردت تجربة التطبيق أولًا.',
+        icon: 'tabler:square-number-3',
+      },
+      {
+        title: 'ابدأ البيع والشراء والمتابعة',
+        description: 'أنشئ الفواتير وسندات التسليم وفواتير الشراء والمدفوعات، ثم راقب الحركة من خلال التقارير.',
+        icon: 'tabler:square-number-4',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=2069&q=80',
+      alt: 'إدارة الأعمال من الهاتف',
+    }}
+  />
+
+  <Content
+    id="about"
+    title="كل ما تحتاجه لإدارة النشاط من هاتف واحد"
+    subtitle="واجهة عملية للمهام اليومية، مع تركيز على السرعة والوضوح بدل التعقيد."
+    isReversed
+    items={[
+      {
+        title: 'يعمل بدون إنترنت',
+        description: 'أنشئ الفواتير والزبائن والمواد وسجلات العمل اليومية حتى عند عدم توفر الاتصال.',
+        icon: 'tabler:wifi-off',
+      },
+      {
+        title: 'إدارة شاملة من الجوال',
+        description: 'المبيعات والمشتريات والمخزون والعملاء والموردون والمدفوعات ضمن تجربة واحدة واضحة.',
+        icon: 'tabler:briefcase',
+      },
+      {
+        title: 'تقارير عملية',
+        description: 'تابع كشف الحساب وملخص الأرصدة وحركة المواد والمخزون المتاح لاتخاذ قرارات أسرع.',
+        icon: 'tabler:chart-bar',
+      },
+      {
+        title: 'واجهة مناسبة للعمل اليومي',
+        description: 'تنقل سريع بين الوحدات الأساسية مع نماذج إدخال مختصرة وشاشات مهيأة للاستخدام المتكرر.',
+        icon: 'tabler:device-mobile',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1674&q=80',
+      alt: 'مميزات بادنجكي الإداري',
+    }}
+  />
+
+  <Content
+    title="مزايا إضافية عند الحاجة"
+    subtitle="ابدأ محليًا، ثم فعّل مزايا إضافية حسب طريقة عملك وتوسع نشاطك."
+    isAfterContent
+    items={[
+      {
+        title: 'نسخ احتياطي واستعادة',
+        description: 'يمكنك تصدير نسخة احتياطية من بياناتك المحلية واستعادتها عند الحاجة.',
+        icon: 'tabler:database-export',
+      },
+      {
+        title: 'مزامنة مع Badenjki Business',
+        description: 'عند الترقية، يمكن ربط الأجهزة بنفس النشاط لمزامنة العمل ومتابعة الأدوار والصلاحيات.',
+        icon: 'tabler:refresh',
+      },
+      {
+        title: 'المساعد الذكي',
+        description: 'اسأل عن الفواتير والعملاء والمواد بعد التفعيل، مع إرسال السياق المطلوب فقط للإجابة.',
+        icon: 'tabler:sparkles',
+      },
+      {
+        title: 'دعم الباركود وجهات الاتصال',
+        description: 'يدعم ميزات مساعدة مثل قراءة الباركود واستيراد بيانات العملاء عند تفعيل الأذونات المناسبة.',
+        icon: 'tabler:barcode',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=2070&q=80',
+      alt: 'ميزات إضافية',
+    }}
+  />
+
+  <FAQs
+    id="faqs"
+    title="أسئلة شائعة"
+    items={[
+      {
+        title: 'ما هو بادنجكي الإداري؟',
+        description:
+          'بادنجكي الإداري هو تطبيق أعمال ومحاسبة مبسط للأعمال الصغيرة والمتوسطة، يساعدك على إدارة البيع والشراء والمخزون والعملاء والموردين والمدفوعات من الهاتف.',
+      },
+      {
+        title: 'هل يعمل بدون إنترنت؟',
+        description:
+          'نعم. التطبيق مصمم بأسلوب offline-first، لذلك تبقى البيانات الأساسية محلية على الجهاز ويمكنك تنفيذ كثير من العمليات اليومية بدون اتصال.',
+      },
+      {
+        title: 'ما الفرق بين بادنجكي الإداري وخدمة المزامنة؟',
+        description:
+          'بادنجكي الإداري مناسب للعمل المحلي على الجهاز، بينما تفتح الترقية مزايا إضافية مثل مزامنة النشاط بين الأجهزة وإدارة الأدوار والصلاحيات.',
+      },
+      {
+        title: 'هل يدعم النسخ الاحتياطي؟',
+        description: 'نعم، يوفر التطبيق تصدير نسخة احتياطية من البيانات المحلية واستيرادها لاحقًا عند الحاجة.',
+      },
+      {
+        title: 'هل توجد ميزات ذكاء اصطناعي؟',
+        description:
+          'نعم، يوجد مساعد ذكي يمكنه الإجابة عن أسئلة متعلقة ببيانات النشاط بعد التفعيل، ويتطلب ذلك اتصالًا بالإنترنت.',
+      },
+    ]}
+  />
+
+  <CallToAction
+    id="download"
+    title="حمّل بادنجكي الإداري على أندرويد"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'تنزيل APK للأندرويد',
+        href: androidApkDownloadLink,
+        icon: 'tabler:download',
+        download: true,
+      },
+      {
+        text: 'سياسة الخصوصية',
+        href: '/badenjki-business/privacy',
+        icon: 'tabler:shield-lock',
+      },
+    ]}
+  />
+</Layout>
