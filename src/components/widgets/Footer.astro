@@ -1,19 +1,10 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { SITE } from 'astrowind:config';
+import Logo from '~/components/Logo.astro';
 import { getHomePermalink } from '~/utils/permalinks';
 
-interface Link {
-  text?: string;
-  href?: string;
-  ariaLabel?: string;
-  icon?: string;
-}
-
-interface Links {
-  title?: string;
-  links: Array<Link>;
-}
+type Link = { text?: string; href?: string; ariaLabel?: string; icon?: string };
+type Links = { title?: string; links: Array<Link> };
 
 export interface Props {
   links: Array<Links>;
@@ -23,82 +14,29 @@ export interface Props {
   theme?: string;
 }
 
-const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme = 'light' } = Astro.props;
+const { socialLinks = [], secondaryLinks = [], links = [], footNote = '' } = Astro.props;
 ---
 
-<footer class:list={[{ dark: theme === 'dark' }, 'relative border-t border-gray-300 dark:border-slate-800 not-prose']}>
-  <div class="dark:bg-dark absolute inset-0 pointer-events-none" aria-hidden="true"></div>
-  <div
-    class="relative max-w-7xl mx-auto px-4 sm:px-6 dark:text-slate-300 intersect-once intersect-quarter intercept-no-queue motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
-  >
-    <div class="grid grid-cols-12 gap-4 gap-y-8 sm:gap-8 py-8 md:py-12">
-      <div class="col-span-12 lg:col-span-4">
-        <div class="mb-2">
-          <a class="inline-block font-bold text-xl" href={getHomePermalink()}>{SITE?.name}</a>
-        </div>
-        <div class="text-sm text-muted flex gap-1">
-          {
-            secondaryLinks.map(({ text, href }, index) => (
-              <>
-                {index !== 0 ? ' · ' : ''}
-                <a
-                  class="text-muted hover:text-gray-700 dark:text-gray-400 hover:underline transition duration-150 ease-in-out"
-                  href={href}
-                  set:html={text}
-                />
-              </>
-            ))
-          }
-        </div>
+<footer class="border-t border-white/10 bg-[#0a0c0a] text-[#f3f0e8]">
+  <div class="mx-auto max-w-[1480px] px-5 py-12 sm:px-8 lg:px-12 lg:py-16">
+    <div class="grid gap-12 lg:grid-cols-[1.5fr_0.5fr]">
+      <div>
+        <a href={getHomePermalink()} class="inline-flex"><Logo /></a>
+        <p class="mt-7 max-w-lg text-base leading-8 text-white/48">استوديو برمجيات مستقل من حلب. نصمم ونبني منتجات رقمية وأنظمة أعمال واضحة وقابلة للاستمرار.</p>
+        <p class="mt-8 text-xs font-bold tracking-wide text-white/28">س.ت 23888/2025 · حلب، سوريا</p>
       </div>
-      {
-        links.map(({ title, links }) => (
-          <div class="col-span-6 md:col-span-3 lg:col-span-2">
-            <div class="dark:text-gray-300 font-medium mb-2">{title}</div>
-            {links && Array.isArray(links) && links.length > 0 && (
-              <ul class="text-sm">
-                {links.map(({ text, href, ariaLabel }) => (
-                  <li class="mb-2">
-                    <a
-                      class="text-muted hover:text-gray-700 hover:underline dark:text-gray-400 transition duration-150 ease-in-out"
-                      href={href}
-                      aria-label={ariaLabel}
-                    >
-                      <Fragment set:html={text} />
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        ))
-      }
-    </div>
-    <div class="md:flex md:items-center md:justify-between py-6 md:py-8">
-      {
-        socialLinks?.length ? (
-          <ul class="flex mb-4 md:order-1 -ml-2 md:ml-4 md:mb-0 rtl:ml-0 rtl:-mr-2 rtl:md:ml-0 rtl:md:mr-4">
-            {socialLinks.map(({ ariaLabel, href, text, icon }) => (
-              <li>
-                <a
-                  class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
-                  aria-label={ariaLabel}
-                  href={href}
-                >
-                  {icon && <Icon name={icon} class="w-5 h-5" />}
-                  <Fragment set:html={text} />
-                </a>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          ''
-        )
-      }
 
-      <div class="text-sm ml-4 dark:text-muted">
-        <Fragment set:html={footNote} />
+      <div class="grid grid-cols-2 gap-8">
+        {links.map(({ title, links: groupLinks }) => (
+          <div><p class="mb-4 text-xs font-bold text-white/30">{title}</p><ul class="space-y-3 text-sm font-bold">{groupLinks.map(({ text, href }) => <li><a href={href} class="text-white/66 transition hover:text-[#9cff7e]">{text}</a></li>)}</ul></div>
+        ))}
+        <div><p class="mb-4 text-xs font-bold text-white/30">تابعنا</p><div class="flex gap-2">{socialLinks.map(({ ariaLabel, href, icon }) => <a aria-label={ariaLabel} href={href} target="_blank" rel="noopener noreferrer" class="flex h-10 w-10 items-center justify-center border border-white/15 text-white/60 transition hover:border-[#9cff7e] hover:text-[#9cff7e]">{icon && <Icon name={icon} class="h-4 w-4" />}</a>)}</div></div>
       </div>
+    </div>
+
+    <div class="mt-14 flex flex-col gap-5 border-t border-white/10 pt-7 text-xs text-white/32 sm:flex-row sm:items-center sm:justify-between">
+      <div class="flex flex-wrap gap-x-5 gap-y-2">{secondaryLinks.map(({ text, href }) => <a href={href} class="transition hover:text-white"><Fragment set:html={text} /></a>)}</div>
+      <div><Fragment set:html={footNote} /></div>
     </div>
   </div>
 </footer>

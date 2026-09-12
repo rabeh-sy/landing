@@ -1,38 +1,50 @@
 ---
+import { Icon } from 'astro-icon/components';
 import Layout from '~/layouts/PageLayout.astro';
-import HeroText from '~/components/widgets/HeroText.astro';
-import Features2 from '~/components/widgets/Features2.astro';
 
 const metadata = {
-  title: 'اتصل بنا',
+  title: 'تواصل مع رابح للتقنية',
+  description: 'تحدث معنا عن موقعك، تطبيقك، نظام أعمالك، أو بادنجكي الإداري.',
 };
+
+const whatsappHref =
+  'https://wa.me/+963954183399?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D9%88%D8%AF%20%D9%85%D9%86%D8%A7%D9%82%D8%B4%D8%A9%20%D9%85%D8%B4%D8%B1%D9%88%D8%B9%20%D8%AA%D9%82%D9%86%D9%8A';
+
+const channels = [
+  { number: '01', label: 'واتساب المكتب', value: '+963 954 183 399', href: whatsappHref, icon: 'tabler:brand-whatsapp' },
+  { number: '02', label: 'المبيعات — محي الدين بادنجكي', value: '+963 944 924 119', href: 'https://wa.me/+963944924119', icon: 'tabler:phone' },
+  { number: '03', label: 'البريد الإلكتروني', value: 'contact@rabeh.sy', href: 'mailto:contact@rabeh.sy', icon: 'tabler:mail' },
+];
 ---
 
 <Layout metadata={metadata}>
-  <!-- HeroText Widget ******************* -->
+  <section class="min-h-[calc(100svh-84px)] bg-[#f1efe7] px-5 py-20 text-[#111511] sm:px-8 lg:py-28">
+    <div class="mx-auto max-w-[1360px]">
+      <div class="grid gap-12 border-b border-[#111511] pb-16 lg:grid-cols-[0.72fr_1.28fr] lg:pb-24">
+        <p class="text-xs font-bold tracking-wide text-[#111511]/42">[ تواصل ]</p>
+        <div>
+          <h1 class="max-w-5xl text-5xl font-black leading-[1.42] tracking-[-0.03em] sm:text-7xl sm:leading-[1.36] lg:text-8xl">فكرة جيدة تبدأ<br />بحديث واضح.</h1>
+          <p class="mt-8 max-w-2xl text-lg leading-9 text-[#111511]/60">أخبرنا عن المشكلة التي تريد حلها، أو المرحلة التي وصل إليها مشروعك. سنساعدك على ترتيب الخطوة التالية بدون عرض مبيعات طويل.</p>
+        </div>
+      </div>
 
-  <HeroText tagline="اتصل بنا" title="لإجابة اسئلتك وتقديم استشارة مجانية" />
+      <div class="grid gap-10 py-12 lg:grid-cols-[0.72fr_1.28fr] lg:py-16">
+        <div><p class="text-sm font-black">حلب، سوريا</p><p class="mt-2 text-sm text-[#111511]/48">الجميلية · نعمل محليًا وعن بعد</p></div>
+        <div class="border-t border-[#111511]/20">
+          {channels.map((channel) => (
+            <a href={channel.href} target={channel.href.startsWith('http') ? '_blank' : undefined} rel={channel.href.startsWith('http') ? 'noopener noreferrer' : undefined} class="group grid gap-4 border-b border-[#111511]/20 py-7 sm:grid-cols-[55px_1fr_auto] sm:items-center">
+              <span class="text-xs font-bold text-[#111511]/35">{channel.number}</span>
+              <div><p class="text-sm font-bold text-[#111511]/45">{channel.label}</p><p class="mt-2 text-xl font-black" dir="ltr">{channel.value}</p></div>
+              <span class="flex h-11 w-11 items-center justify-center border border-[#111511]/20 transition group-hover:border-[#111511] group-hover:bg-[#111511] group-hover:text-[#9cff7e]"><Icon name={channel.icon} class="h-5 w-5" /></span>
+            </a>
+          ))}
+        </div>
+      </div>
 
-  <!-- Features2 Widget ************** -->
-
-  <Features2
-    items={[
-      {
-        title: 'موبايل',
-        description:
-          'المكتب: <span dir="ltr" class="inline-block">+963 954 183 399</span><br /><span class="block mt-1">محي الدين بادنجكي (المبيعات): <span dir="ltr" class="inline-block">+963 944 924 119</span></span>',
-        icon: 'tabler:brand-whatsapp',
-      },
-      {
-        title: 'بريد الكتروني',
-        description: 'contact@rabeh.sy',
-        icon: 'tabler:mail',
-      },
-      {
-        title: 'العنوان',
-        description: 'الجميلية - حلب - سوريا',
-        icon: 'tabler:map-pin',
-      },
-    ]}
-  />
+      <div class="mt-6 bg-[#9cff7e] p-7 sm:p-10 lg:flex lg:items-center lg:justify-between">
+        <div><p class="text-2xl font-black">لديك مشروع في ذهنك؟</p><p class="mt-2 text-[#111511]/62">رسالة قصيرة تكفي لبدء النقاش.</p></div>
+        <a href={whatsappHref} target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex h-12 items-center gap-2 bg-[#111511] px-6 text-sm font-black text-white transition hover:-translate-y-0.5 lg:mt-0">اكتب لنا الآن <Icon name="tabler:arrow-up-left" class="h-4 w-4" /></a>
+      </div>
+    </div>
+  </section>
 </Layout>

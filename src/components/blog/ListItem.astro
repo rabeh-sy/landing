@@ -2,119 +2,35 @@
 import type { ImageMetadata } from 'astro';
 import { Icon } from 'astro-icon/components';
 import Image from '~/components/common/Image.astro';
-import PostTags from '~/components/blog/Tags.astro';
-
 import { APP_BLOG } from 'astrowind:config';
 import type { Post } from '~/types';
-
 import { getPermalink } from '~/utils/permalinks';
 import { findImage } from '~/utils/images';
 import { getFormattedDate } from '~/utils/utils';
 
-export interface Props {
-  post: Post;
-}
+export interface Props { post: Post; }
 
 const { post } = Astro.props;
-const image = (await findImage(post.image)) as ImageMetadata | undefined;
-
+const image = (await findImage(post.image)) as ImageMetadata | string | undefined;
 const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : '';
 ---
 
-<article
-  class={`max-w-md mx-auto md:max-w-none grid gap-6 md:gap-8 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade ${image ? 'md:grid-cols-2' : ''}`}
->
-  {
-    image &&
-      (link ? (
-        <a class="relative block group" href={link ?? 'javascript:void(0)'}>
-          <div class="relative h-0 pb-[56.25%] md:pb-[75%] md:h-72 lg:pb-[56.25%] overflow-hidden bg-gray-400 dark:bg-slate-700 rounded shadow-lg">
-            {image && (
-              <Image
-                src={image}
-                class="absolute inset-0 object-cover w-full h-full mb-6 rounded shadow-lg bg-gray-400 dark:bg-slate-700"
-                widths={[400, 900]}
-                width={900}
-                sizes="(max-width: 900px) 400px, 900px"
-                alt={post.title}
-                aspectRatio="16:9"
-                loading="lazy"
-                decoding="async"
-              />
-            )}
-          </div>
-        </a>
-      ) : (
-        <div class="relative h-0 pb-[56.25%] md:pb-[75%] md:h-72 lg:pb-[56.25%] overflow-hidden bg-gray-400 dark:bg-slate-700 rounded shadow-lg">
-          {image && (
-            <Image
-              src={image}
-              class="absolute inset-0 object-cover w-full h-full mb-6 rounded shadow-lg bg-gray-400 dark:bg-slate-700"
-              widths={[400, 900]}
-              width={900}
-              sizes="(max-width: 900px) 400px, 900px"
-              alt={post.title}
-              aspectRatio="16:9"
-              loading="lazy"
-              decoding="async"
-            />
-          )}
-        </div>
-      ))
-  }
-  <div class="mt-2">
-    <header>
-      <div class="mb-1">
-        <span class="text-sm">
-          <Icon name="tabler:clock" class="w-3.5 h-3.5 inline-block -mt-0.5 dark:text-gray-400" />
-          <time datetime={String(post.publishDate)} class="inline-block">{getFormattedDate(post.publishDate)}</time>
-          {
-            post.author && (
-              <>
-                {' '}
-                · <Icon name="tabler:user" class="w-3.5 h-3.5 inline-block -mt-0.5 dark:text-gray-400" />
-                <span>{post.author.replaceAll('-', ' ')}</span>
-              </>
-            )
-          }
-          {
-            post.category && (
-              <>
-                {' '}
-                ·{' '}
-                <a class="hover:underline" href={getPermalink(post.category.slug, 'category')}>
-                  {post.category.title}
-                </a>
-              </>
-            )
-          }
-        </span>
-      </div>
-      <h2 class="text-xl sm:text-2xl font-bold leading-tight mb-2 font-heading dark:text-slate-300">
-        {
-          link ? (
-            <a
-              class="inline-block hover:text-primary dark:hover:text-green-700 transition ease-in duration-200"
-              href={link}
-            >
-              {post.title}
-            </a>
-          ) : (
-            post.title
-          )
-        }
-      </h2>
-    </header>
-
-    {post.excerpt && <p class="flex-grow text-muted dark:text-slate-400 text-lg">{post.excerpt}</p>}
-    {
-      post.tags && Array.isArray(post.tags) ? (
-        <footer class="mt-5">
-          <PostTags tags={post.tags} />
-        </footer>
-      ) : (
-        <Fragment />
-      )
-    }
+<article class="group grid gap-7 border-t border-[#111511]/20 py-8 md:grid-cols-[1fr_260px] md:items-start md:py-10 lg:grid-cols-[1fr_340px]">
+  <div>
+    <div class="flex flex-wrap items-center gap-3 text-[11px] font-bold text-[#111511]/40">
+      <time datetime={String(post.publishDate)}>{getFormattedDate(post.publishDate)}</time>
+      {post.category && <><span>—</span><span>{post.category.title}</span></>}
+    </div>
+    <h2 class="mt-5 max-w-3xl text-2xl font-black leading-[1.35] tracking-[-0.025em] text-[#111511] sm:text-3xl lg:text-4xl">
+      <a href={link} class="transition group-hover:text-[#08713b]">{post.title}</a>
+    </h2>
+    {post.excerpt && <p class="mt-5 max-w-2xl text-base leading-8 text-[#111511]/58">{post.excerpt}</p>}
+    <a href={link} class="mt-7 inline-flex items-center gap-2 text-sm font-black text-[#111511]">اقرأ المقال <Icon name="tabler:arrow-left" class="h-4 w-4 transition group-hover:-translate-x-1" /></a>
   </div>
+
+  {image && (
+    <a href={link} class="order-first block aspect-[16/10] overflow-hidden bg-[#d8ddd5] md:order-none">
+      <Image src={image} class="h-full w-full object-cover grayscale transition duration-500 group-hover:scale-[1.025] group-hover:grayscale-0" widths={[420, 700]} width={700} sizes="(max-width: 767px) 100vw, 340px" alt={post.title} aspectRatio="16:10" loading="lazy" decoding="async" />
+    </a>
+  )}
 </article>
