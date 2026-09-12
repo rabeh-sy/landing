@@ -20,7 +20,8 @@ const { page, tag } = Astro.props as Props;
 const currentPage = page.currentPage ?? 1;
 
 const metadata = {
-  title: `Posts by tag '${tag.title}'${currentPage > 1 ? ` — Page ${currentPage} ` : ''}`,
+  title: `وسم «${tag.title}»${currentPage > 1 ? ` — صفحة ${currentPage}` : ''}`,
+  description: `مقالات رابح المرتبطة بوسم ${tag.title}.`,
   robots: {
     index: blogTagRobots?.index,
     follow: blogTagRobots?.follow,

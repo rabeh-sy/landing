@@ -1,5 +1,6 @@
 ---
 title: 'الشروط والأحكام'
+description: 'الشروط المنظمة لاستخدام موقع وخدمات رابح للتقنية.'
 layout: '~/layouts/MarkdownLayout.astro'
 ---
 

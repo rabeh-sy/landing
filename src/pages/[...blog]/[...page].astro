@@ -25,6 +25,7 @@ const currentPage = page.currentPage ?? 1;
 
 const metadata = {
   title: `المدونة${currentPage > 1 ? ` — صفحة ${currentPage}` : ''}`,
+  description: 'مقالات رابح حول بناء المنتجات الرقمية، أنظمة الأعمال، التقنية، وريادة الأعمال في سوريا.',
   robots: {
     index: blogListRobots?.index && currentPage === 1,
     follow: blogListRobots?.follow,

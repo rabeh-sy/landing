@@ -1,5 +1,6 @@
 ---
 title: 'سياسة الخصوصية'
+description: 'تعرف على كيفية تعامل رابح للتقنية مع بيانات المستخدمين وحمايتها.'
 layout: '~/layouts/MarkdownLayout.astro'
 ---
 

@@ -21,6 +21,7 @@ const currentPage = page.currentPage ?? 1;
 
 const metadata = {
   title: `تصنيف '${category.title}' ${currentPage > 1 ? ` — صفحة ${currentPage}` : ''}`,
+  description: `مقالات رابح ضمن تصنيف ${category.title}.`,
   robots: {
     index: blogCategoryRobots?.index,
     follow: blogCategoryRobots?.follow,
