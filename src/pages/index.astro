@@ -6,8 +6,9 @@ import appMark from '~/assets/images/badenjki-business-mark.png';
 import { getBlogPermalink, getPermalink } from '~/utils/permalinks';
 
 const metadata = {
-  title: 'رابح للتقنية | برمجيات ومنتجات رقمية من سوريا',
-  description: 'نصمم ونبني مواقع وتطبيقات وأنظمة أعمال واضحة، سريعة، ومهيأة للنمو.',
+  title: 'شركة تطوير برمجيات في حلب، سوريا | رابح',
+  description:
+    'رابح شركة برمجيات في حلب تطور مواقع وتطبيقات وأنظمة أعمال مخصصة للشركات في سوريا والمنطقة، من الاستراتيجية والتصميم إلى الإطلاق والدعم.',
   ignoreTitleTemplate: true,
   openGraph: {
     images: [{ url: '~/assets/images/social-home.jpg', width: 1200, height: 630 }],
@@ -45,28 +46,48 @@ const services = [
 ];
 
 const journal = [
-  { title: 'إدارة الأعمال بكفاءة في سوريا باستخدام أنظمة ERP', href: '/efficient-business-management-in-syria-with-erp', tag: 'أنظمة أعمال' },
+  {
+    title: 'إدارة الأعمال بكفاءة في سوريا باستخدام أنظمة ERP',
+    href: '/efficient-business-management-in-syria-with-erp',
+    tag: 'أنظمة أعمال',
+  },
   { title: 'إطلاق خريطة الشركات الناشئة السورية', href: '/syrian-startup-map-launch', tag: 'ريادة أعمال' },
   { title: 'عودة GitHub إلى سوريا وما الذي تعنيه للمطورين', href: '/github-is-back-in-syria', tag: 'تقنية' },
 ];
 ---
 
 <Layout metadata={metadata}>
-  <section class="studio-hero relative isolate overflow-hidden bg-[#0a0c0a] text-[#f3f0e8] lg:min-h-[calc(100svh-84px)]">
+  <section
+    class="studio-hero relative isolate overflow-hidden bg-[#0a0c0a] text-[#f3f0e8] lg:min-h-[calc(100svh-84px)]"
+  >
     <div class="absolute inset-y-0 left-0 w-[53%] overflow-hidden border-r border-white/10" aria-hidden="true">
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_48%_44%,rgba(152,255,126,0.14),transparent_47%)]"></div>
-      <img src={studioIllustration.src} alt="" class="absolute -bottom-[22%] -left-[9%] h-[116%] w-auto max-w-none opacity-80 mix-blend-screen" />
-      <p class="absolute bottom-8 left-8 text-[10px] font-bold tracking-[0.12em] text-white/30">رابح / منتجات رقمية / 2026</p>
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_48%_44%,rgba(152,255,126,0.14),transparent_47%)]">
+      </div>
+      <img
+        src={studioIllustration.src}
+        alt=""
+        class="absolute -bottom-[22%] -left-[9%] h-[116%] w-auto max-w-none opacity-80 mix-blend-screen"
+      />
+      <p class="absolute bottom-8 left-8 text-[10px] font-bold tracking-[0.12em] text-white/30">
+        رابح / منتجات رقمية / 2026
+      </p>
     </div>
 
-    <div class="relative mx-auto grid max-w-[1480px] items-start px-5 pb-16 pt-14 sm:px-8 sm:pt-16 lg:min-h-[calc(100svh-84px)] lg:grid-cols-2 lg:items-end lg:px-12 lg:pb-16 lg:pt-28" dir="ltr">
+    <div
+      class="relative mx-auto grid max-w-[1480px] items-start px-5 pb-16 pt-14 sm:px-8 sm:pt-16 lg:min-h-[calc(100svh-84px)] lg:grid-cols-2 lg:items-end lg:px-12 lg:pb-16 lg:pt-28"
+      dir="ltr"
+    >
       <div class="relative z-10 hidden lg:block"></div>
       <div class="relative z-10 lg:pr-10" dir="rtl">
-        <div class="mb-10 flex items-center justify-between border-b border-white/15 pb-4 text-[11px] font-bold tracking-wide text-white/45">
+        <div
+          class="mb-10 flex items-center justify-between border-b border-white/15 pb-4 text-[11px] font-bold tracking-wide text-white/45"
+        >
           <span>شركة برمجيات مستقلة</span>
           <span>حلب، سوريا · 36.20°N</span>
         </div>
-        <h1 class="hero-title text-[3.55rem] font-black leading-[1.22] tracking-[-0.04em] text-[#f3f0e8] sm:text-7xl sm:leading-[1.18] lg:text-[4.6rem] xl:text-[5.5rem]">
+        <h1
+          class="hero-title text-[3.55rem] font-black leading-[1.22] tracking-[-0.04em] text-[#f3f0e8] sm:text-7xl sm:leading-[1.18] lg:text-[4.6rem] xl:text-[5.5rem]"
+        >
           <span class="block lg:whitespace-nowrap">نبني برمجيات</span>
           <span class="block text-[#9cff7e] lg:whitespace-nowrap">تعمل بوضوح.</span>
         </h1>
@@ -77,7 +98,11 @@ const journal = [
           <a class="studio-button studio-button-light" href={whatsappHref} target="_blank" rel="noopener noreferrer">
             ابدأ مشروعًا <Icon name="tabler:arrow-up-left" class="h-4 w-4" />
           </a>
-          <a href="#selected-work" class="inline-flex items-center gap-2 border-b border-white/25 pb-1 text-sm font-bold text-white/70 transition hover:border-[#9cff7e] hover:text-[#9cff7e]">شاهد ما نبنيه <Icon name="tabler:arrow-down" class="h-4 w-4" /></a>
+          <a
+            href="#selected-work"
+            class="inline-flex items-center gap-2 border-b border-white/25 pb-1 text-sm font-bold text-white/70 transition hover:border-[#9cff7e] hover:text-[#9cff7e]"
+            >شاهد ما نبنيه <Icon name="tabler:arrow-down" class="h-4 w-4" /></a
+          >
         </div>
         <div class="mt-14 grid grid-cols-3 border-t border-white/15 pt-5 text-xs text-white/38">
           <span>الاستراتيجية</span><span class="text-center">التصميم</span><span class="text-left">الهندسة</span>
@@ -91,12 +116,19 @@ const journal = [
       <div class="grid gap-10 lg:grid-cols-[0.72fr_1.28fr]">
         <p class="section-index">[ 01 — الاستوديو ]</p>
         <div>
-          <p class="max-w-5xl text-4xl font-black leading-[1.5] tracking-[-0.025em] sm:text-5xl sm:leading-[1.46] lg:text-6xl lg:leading-[1.42]">
+          <p
+            class="max-w-5xl text-4xl font-black leading-[1.5] tracking-[-0.025em] sm:text-5xl sm:leading-[1.46] lg:text-6xl lg:leading-[1.42]"
+          >
             نفهم العمل قبل أن نرسم الشاشة. ثم نبني أقل قدر من البرمجيات اللازمة لصناعة أكبر أثر ممكن.
           </p>
           <div class="mt-12 grid gap-8 border-t border-[#111511]/20 pt-7 md:grid-cols-2">
-            <p class="text-lg leading-8 text-[#111511]/62">رابح استوديو صغير يجمع القرار التصميمي بالقرار الهندسي. لا توجد طبقات تسليم بين من يفهم المشكلة ومن يبني الحل.</p>
-            <p class="text-lg leading-8 text-[#111511]/62">نعمل من سوريا للسوق المحلي وخارجه، ونصمم التجربة العربية من بدايتها بدل إضافتها في نهاية المشروع.</p>
+            <p class="text-lg leading-8 text-[#111511]/62">
+              رابح شركة تطوير برمجيات في حلب تجمع القرار التصميمي بالقرار الهندسي. لا توجد طبقات تسليم بين من يفهم
+              المشكلة ومن يبني الحل.
+            </p>
+            <p class="text-lg leading-8 text-[#111511]/62">
+              نعمل من سوريا للسوق المحلي وخارجه، ونصمم التجربة العربية من بدايتها بدل إضافتها في نهاية المشروع.
+            </p>
           </div>
         </div>
       </div>
@@ -110,14 +142,21 @@ const journal = [
         <h2 class="text-4xl font-black tracking-[-0.04em] sm:text-6xl">ما نقوم به</h2>
       </div>
       <div class="border-t border-[#111511]/20">
-        {services.map((service) => (
-          <article class="service-row group grid gap-5 border-b border-[#111511]/20 py-8 transition-colors md:grid-cols-[80px_1fr_1.15fr_auto] md:items-start md:py-10">
-            <span class="text-xs font-bold text-[#111511]/40">{service.number}</span>
-            <h3 class="text-2xl font-black tracking-[-0.025em] sm:text-3xl">{service.title}</h3>
-            <p class="max-w-xl leading-8 text-[#111511]/60">{service.description}</p>
-            <span class="whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.14em] text-[#111511]/38" dir="ltr">{service.meta}</span>
-          </article>
-        ))}
+        {
+          services.map((service) => (
+            <article class="service-row group grid gap-5 border-b border-[#111511]/20 py-8 transition-colors md:grid-cols-[80px_1fr_1.15fr_auto] md:items-start md:py-10">
+              <span class="text-xs font-bold text-[#111511]/40">{service.number}</span>
+              <h3 class="text-2xl font-black tracking-[-0.025em] sm:text-3xl">{service.title}</h3>
+              <p class="max-w-xl leading-8 text-[#111511]/60">{service.description}</p>
+              <span
+                class="whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.14em] text-[#111511]/38"
+                dir="ltr"
+              >
+                {service.meta}
+              </span>
+            </article>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -125,26 +164,97 @@ const journal = [
   <section id="selected-work" class="relative overflow-hidden bg-[#111511] px-5 py-24 text-[#f3f0e8] sm:px-8 lg:py-36">
     <div class="mx-auto max-w-[1360px]">
       <div class="flex flex-col gap-8 border-b border-white/18 pb-8 sm:flex-row sm:items-end sm:justify-between">
-        <div><p class="section-index text-white/38">[ 03 — منتجنا ]</p><h2 class="mt-6 text-4xl font-black tracking-[-0.04em] sm:text-6xl">بادنجكي الإداري</h2></div>
-        <a href={getPermalink('/badenjki-business')} class="studio-button studio-button-dark">استكشف المنتج <Icon name="tabler:arrow-left" class="h-4 w-4" /></a>
+        <div>
+          <p class="section-index text-white/38">[ 03 — منتجنا ]</p><h2
+            class="mt-6 text-4xl font-black tracking-[-0.04em] sm:text-6xl"
+          >
+            بادنجكي الإداري
+          </h2>
+        </div>
+        <a href={getPermalink('/badenjki-business')} class="studio-button studio-button-dark"
+          >استكشف المنتج <Icon name="tabler:arrow-left" class="h-4 w-4" /></a
+        >
       </div>
 
-      <a href={getPermalink('/badenjki-business')} class="group grid gap-10 py-12 lg:grid-cols-[0.72fr_1.28fr] lg:items-center lg:py-20">
+      <a
+        href={getPermalink('/badenjki-business')}
+        class="group grid gap-10 py-12 lg:grid-cols-[0.72fr_1.28fr] lg:items-center lg:py-20"
+      >
         <div>
-          <div class="mb-10 flex h-20 w-20 items-center justify-center overflow-hidden rounded-[22px] bg-[#0c6c3a]"><img src={appMark.src} alt="شعار بادنجكي الإداري" class="h-full w-full" /></div>
-          <p class="max-w-xl text-3xl font-black leading-[1.62] tracking-[-0.015em] sm:text-4xl sm:leading-[1.55]">نظام إدارة أعمال متعدد اللغات يعيش على الجوال وسطح المكتب، ويستمر حتى عندما ينقطع الإنترنت.</p>
-          <div class="mt-10 grid grid-cols-2 gap-y-4 border-t border-white/15 pt-6 text-sm text-white/45"><span>الجوال — iOS وAndroid</span><span>سطح المكتب — Windows</span><span>يعمل دون إنترنت</span><span>العربية والإنجليزية</span></div>
+          <div class="mb-10 flex h-20 w-20 items-center justify-center overflow-hidden rounded-[22px] bg-[#0c6c3a]">
+            <img src={appMark.src} alt="شعار بادنجكي الإداري" class="h-full w-full" />
+          </div>
+          <p class="max-w-xl text-3xl font-black leading-[1.62] tracking-[-0.015em] sm:text-4xl sm:leading-[1.55]">
+            نظام إدارة أعمال متعدد اللغات يعيش على الجوال وسطح المكتب، ويستمر حتى عندما ينقطع الإنترنت.
+          </p>
+          <div class="mt-10 grid grid-cols-2 gap-y-4 border-t border-white/15 pt-6 text-sm text-white/45">
+            <span>الجوال — iOS وAndroid</span><span>سطح المكتب — Windows</span><span>يعمل دون إنترنت</span><span
+              >العربية والإنجليزية</span
+            >
+          </div>
         </div>
         <div class="product-canvas relative aspect-[1.35] overflow-hidden bg-[#d9eedc] p-7 text-[#112218] sm:p-12">
           <div class="absolute inset-0 product-lines"></div>
-          <div class="relative ml-auto w-[82%] overflow-hidden border-[7px] border-[#112218] bg-[#f8faf7] shadow-[20px_28px_0_0_rgba(17,34,24,0.14)]">
-            <div class="flex h-9 items-center gap-1.5 border-b border-black/10 bg-[#edf2ed] px-3" dir="ltr"><span class="h-2 w-2 rounded-full bg-[#ed6b63]"></span><span class="h-2 w-2 rounded-full bg-[#eebd57]"></span><span class="h-2 w-2 rounded-full bg-[#4ebf72]"></span></div>
+          <div
+            class="relative ml-auto w-[82%] overflow-hidden border-[7px] border-[#112218] bg-[#f8faf7] shadow-[20px_28px_0_0_rgba(17,34,24,0.14)]"
+          >
+            <div class="flex h-9 items-center gap-1.5 border-b border-black/10 bg-[#edf2ed] px-3" dir="ltr">
+              <span class="h-2 w-2 rounded-full bg-[#ed6b63]"></span><span class="h-2 w-2 rounded-full bg-[#eebd57]"
+              ></span><span class="h-2 w-2 rounded-full bg-[#4ebf72]"></span>
+            </div>
             <div class="grid min-h-[260px] grid-cols-[28%_1fr]">
-              <div class="border-l border-black/10 bg-[#eaf0ea] p-4"><p class="text-[9px] font-black">بادنجكي الإداري</p><div class="mt-8 space-y-4 text-[8px] font-bold text-[#53665a]"><p class="text-[#08713b]">لوحة المعلومات</p><p>المبيعات</p><p>المشتريات</p><p>المخزون</p><p>التقارير</p></div></div>
-              <div class="p-5"><div class="flex justify-between"><div><p class="text-base font-black">صباح الخير</p><p class="text-[8px] text-[#647468]">ملخص العمل اليوم</p></div><span class="h-7 bg-[#08713b] px-3 py-2 text-[7px] font-black text-white">فاتورة جديدة +</span></div><div class="mt-5 grid grid-cols-3 gap-2">{['المبيعات', 'المقبوضات', 'المخزون'].map((label, index) => <div class="border border-black/10 bg-white p-3"><p class="text-[7px] text-[#647468]">{label}</p><p class="mt-2 text-[10px] font-black">{['2.4M', '1.7M', '6'][index]}</p></div>)}</div><div class="mt-3 h-28 border border-black/10 bg-white p-3"><p class="text-[8px] font-black">حركة المبيعات</p><div class="mt-4 flex h-16 items-end gap-2">{[38, 62, 48, 76, 55, 88, 67].map(height => <span class="flex-1 bg-[#88c99c]" style={`height:${height}%`}></span>)}</div></div></div>
+              <div class="border-l border-black/10 bg-[#eaf0ea] p-4">
+                <p class="text-[9px] font-black">بادنجكي الإداري</p><div
+                  class="mt-8 space-y-4 text-[8px] font-bold text-[#53665a]"
+                >
+                  <p class="text-[#08713b]">لوحة المعلومات</p><p>المبيعات</p><p>المشتريات</p><p>المخزون</p><p>
+                    التقارير
+                  </p>
+                </div>
+              </div>
+              <div class="p-5">
+                <div class="flex justify-between">
+                  <div>
+                    <p class="text-base font-black">صباح الخير</p><p class="text-[8px] text-[#647468]">
+                      ملخص العمل اليوم
+                    </p>
+                  </div><span class="h-7 bg-[#08713b] px-3 py-2 text-[7px] font-black text-white">فاتورة جديدة +</span>
+                </div><div class="mt-5 grid grid-cols-3 gap-2">
+                  {
+                    ['المبيعات', 'المقبوضات', 'المخزون'].map((label, index) => (
+                      <div class="border border-black/10 bg-white p-3">
+                        <>
+                          <p class="text-[7px] text-[#647468]">{label}</p>
+                          <p class="mt-2 text-[10px] font-black">{['2.4M', '1.7M', '6'][index]}</p>
+                        </>
+                      </div>
+                    ))
+                  }
+                </div><div class="mt-3 h-28 border border-black/10 bg-white p-3">
+                  <p class="text-[8px] font-black">حركة المبيعات</p><div class="mt-4 flex h-16 items-end gap-2">
+                    {
+                      [38, 62, 48, 76, 55, 88, 67].map((height) => (
+                        <span class="flex-1 bg-[#88c99c]" style={`height:${height}%`} />
+                      ))
+                    }
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="absolute bottom-5 left-5 w-[28%] border-[6px] border-[#112218] bg-[#f8faf7] p-3 shadow-[12px_16px_0_0_rgba(17,34,24,0.18)] sm:bottom-9 sm:left-9"><div class="mx-auto h-2 w-10 rounded-full bg-[#112218]"></div><p class="mt-5 text-[8px] text-[#647468]">الرصيد الإجمالي</p><p class="mt-1 text-sm font-black">3,240,000</p><div class="mt-4 grid grid-cols-2 gap-1">{['بيع', 'شراء', 'مخزون', 'خزينة'].map(label => <span class="border border-black/10 bg-white p-2 text-center text-[7px] font-bold">{label}</span>)}</div></div>
+          <div
+            class="absolute bottom-5 left-5 w-[28%] border-[6px] border-[#112218] bg-[#f8faf7] p-3 shadow-[12px_16px_0_0_rgba(17,34,24,0.18)] sm:bottom-9 sm:left-9"
+          >
+            <div class="mx-auto h-2 w-10 rounded-full bg-[#112218]"></div><p class="mt-5 text-[8px] text-[#647468]">
+              الرصيد الإجمالي
+            </p><p class="mt-1 text-sm font-black">3,240,000</p><div class="mt-4 grid grid-cols-2 gap-1">
+              {
+                ['بيع', 'شراء', 'مخزون', 'خزينة'].map((label) => (
+                  <span class="border border-black/10 bg-white p-2 text-center text-[7px] font-bold">{label}</span>
+                ))
+              }
+            </div>
+          </div>
         </div>
       </a>
     </div>
@@ -154,11 +264,31 @@ const journal = [
     <div class="mx-auto grid max-w-[1360px] gap-12 lg:grid-cols-[0.72fr_1.28fr]">
       <p class="section-index">[ 04 — طريقتنا ]</p>
       <div>
-        <h2 class="max-w-4xl text-4xl font-black leading-[1.58] tracking-[-0.02em] sm:text-6xl sm:leading-[1.5]">قرارات واضحة.<br />نسخ تعمل مبكرًا.<br />تطوير بلا ضجيج.</h2>
+        <h2 class="max-w-4xl text-4xl font-black leading-[1.58] tracking-[-0.02em] sm:text-6xl sm:leading-[1.5]">
+          قرارات واضحة.<br />نسخ تعمل مبكرًا.<br />تطوير بلا ضجيج.
+        </h2>
         <div class="mt-14 grid gap-8 border-t border-[#111511]/30 pt-8 md:grid-cols-3">
-          <div><span class="text-xs font-bold">01</span><h3 class="mt-5 text-xl font-black">نفهم</h3><p class="mt-3 leading-7 text-[#111511]/65">نحدد المشكلة، الجمهور، والنتيجة التي تستحق البناء.</p></div>
-          <div><span class="text-xs font-bold">02</span><h3 class="mt-5 text-xl font-black">نختبر</h3><p class="mt-3 leading-7 text-[#111511]/65">نحوّل الفكرة إلى تجربة ملموسة قبل تضخيم الاستثمار.</p></div>
-          <div><span class="text-xs font-bold">03</span><h3 class="mt-5 text-xl font-black">نبني</h3><p class="mt-3 leading-7 text-[#111511]/65">نطلق على مراحل قصيرة مع جودة هندسية قابلة للاستمرار.</p></div>
+          <div>
+            <span class="text-xs font-bold">01</span><h3 class="mt-5 text-xl font-black">نفهم</h3><p
+              class="mt-3 leading-7 text-[#111511]/65"
+            >
+              نحدد المشكلة، الجمهور، والنتيجة التي تستحق البناء.
+            </p>
+          </div>
+          <div>
+            <span class="text-xs font-bold">02</span><h3 class="mt-5 text-xl font-black">نختبر</h3><p
+              class="mt-3 leading-7 text-[#111511]/65"
+            >
+              نحوّل الفكرة إلى تجربة ملموسة قبل تضخيم الاستثمار.
+            </p>
+          </div>
+          <div>
+            <span class="text-xs font-bold">03</span><h3 class="mt-5 text-xl font-black">نبني</h3><p
+              class="mt-3 leading-7 text-[#111511]/65"
+            >
+              نطلق على مراحل قصيرة مع جودة هندسية قابلة للاستمرار.
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -166,8 +296,33 @@ const journal = [
 
   <section class="bg-[#f1efe7] px-5 py-24 text-[#111511] sm:px-8 lg:py-36">
     <div class="mx-auto max-w-[1360px]">
-      <div class="flex items-end justify-between border-b border-[#111511] pb-7"><div><p class="section-index">[ 05 — من دفترنا ]</p><h2 class="mt-6 text-4xl font-black tracking-[-0.04em] sm:text-6xl">أفكار وسياق</h2></div><a href={getBlogPermalink()} class="hidden items-center gap-2 text-sm font-black sm:inline-flex">كل المقالات <Icon name="tabler:arrow-left" class="h-4 w-4" /></a></div>
-      <div>{journal.map((entry, index) => <a href={entry.href} class="group grid gap-4 border-b border-[#111511]/20 py-7 md:grid-cols-[70px_1fr_auto] md:items-center"><span class="text-xs font-bold text-[#111511]/38">0{index + 1}</span><h3 class="text-xl font-black transition group-hover:translate-x-[-5px] sm:text-2xl">{entry.title}</h3><span class="text-xs font-bold text-[#111511]/42">{entry.tag}</span></a>)}</div>
+      <div class="flex items-end justify-between border-b border-[#111511] pb-7">
+        <div>
+          <p class="section-index">[ 05 — من دفترنا ]</p><h2
+            class="mt-6 text-4xl font-black tracking-[-0.04em] sm:text-6xl"
+          >
+            أفكار وسياق
+          </h2>
+        </div><a href={getBlogPermalink()} class="hidden items-center gap-2 text-sm font-black sm:inline-flex"
+          >كل المقالات <Icon name="tabler:arrow-left" class="h-4 w-4" /></a
+        >
+      </div>
+      <div>
+        {
+          journal.map((entry, index) => (
+            <a
+              href={entry.href}
+              class="group grid gap-4 border-b border-[#111511]/20 py-7 md:grid-cols-[70px_1fr_auto] md:items-center"
+            >
+              <>
+                <span class="text-xs font-bold text-[#111511]/38">0{index + 1}</span>
+                <h3 class="text-xl font-black transition group-hover:translate-x-[-5px] sm:text-2xl">{entry.title}</h3>
+                <span class="text-xs font-bold text-[#111511]/42">{entry.tag}</span>
+              </>
+            </a>
+          ))
+        }
+      </div>
     </div>
   </section>
 
@@ -175,28 +330,91 @@ const journal = [
     <div class="mx-auto max-w-[1360px]">
       <p class="section-index text-white/35">[ مشروع جديد؟ ]</p>
       <div class="mt-8 grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
-        <h2 class="max-w-5xl text-5xl font-black leading-[1.42] tracking-[-0.03em] sm:text-7xl sm:leading-[1.36] lg:text-8xl">لنبدأ من المشكلة<br />التي تستحق الحل.</h2>
-        <a class="studio-button studio-button-light mb-2" href={whatsappHref} target="_blank" rel="noopener noreferrer">تحدث معنا <Icon name="tabler:arrow-up-left" class="h-4 w-4" /></a>
+        <h2
+          class="max-w-5xl text-5xl font-black leading-[1.42] tracking-[-0.03em] sm:text-7xl sm:leading-[1.36] lg:text-8xl"
+        >
+          لنبدأ من المشكلة<br />التي تستحق الحل.
+        </h2>
+        <a class="studio-button studio-button-light mb-2" href={whatsappHref} target="_blank" rel="noopener noreferrer"
+          >تحدث معنا <Icon name="tabler:arrow-up-left" class="h-4 w-4" /></a
+        >
       </div>
     </div>
   </section>
 
   <style>
-    .studio-hero, section { font-family: 'Rubik Variable', sans-serif; }
-    .hero-title { text-wrap: balance; }
-    .section-index { font-size: .72rem; font-weight: 700; letter-spacing: .08em; color: rgb(17 21 17 / .45); }
-    .studio-button { display: inline-flex; min-height: 3.25rem; align-items: center; justify-content: center; gap: .65rem; padding: 0 1.5rem; border: 1px solid transparent; font-size: .875rem; font-weight: 800; transition: transform .2s ease, background-color .2s ease, color .2s ease; }
-    .studio-button:hover { transform: translateY(-2px); }
-    .studio-button-light { background: #f3f0e8; color: #111511; }
-    .studio-button-light:hover { background: #9cff7e; }
-    .studio-button-dark { border-color: rgb(255 255 255 / .25); color: #f3f0e8; }
-    .studio-button-dark:hover { border-color: #9cff7e; color: #9cff7e; }
-    .service-row:hover { background: rgb(17 21 17 / .035); }
-    .product-lines { background-image: linear-gradient(rgb(17 34 24 / .08) 1px, transparent 1px), linear-gradient(90deg, rgb(17 34 24 / .08) 1px, transparent 1px); background-size: 44px 44px; }
+    .studio-hero,
+    section {
+      font-family: 'Rubik Variable', sans-serif;
+    }
+    .hero-title {
+      text-wrap: balance;
+    }
+    .section-index {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: rgb(17 21 17 / 0.45);
+    }
+    .studio-button {
+      display: inline-flex;
+      min-height: 3.25rem;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      padding: 0 1.5rem;
+      border: 1px solid transparent;
+      font-size: 0.875rem;
+      font-weight: 800;
+      transition:
+        transform 0.2s ease,
+        background-color 0.2s ease,
+        color 0.2s ease;
+    }
+    .studio-button:hover {
+      transform: translateY(-2px);
+    }
+    .studio-button-light {
+      background: #f3f0e8;
+      color: #111511;
+    }
+    .studio-button-light:hover {
+      background: #9cff7e;
+    }
+    .studio-button-dark {
+      border-color: rgb(255 255 255 / 0.25);
+      color: #f3f0e8;
+    }
+    .studio-button-dark:hover {
+      border-color: #9cff7e;
+      color: #9cff7e;
+    }
+    .service-row:hover {
+      background: rgb(17 21 17 / 0.035);
+    }
+    .product-lines {
+      background-image:
+        linear-gradient(rgb(17 34 24 / 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgb(17 34 24 / 0.08) 1px, transparent 1px);
+      background-size: 44px 44px;
+    }
     @media (max-width: 1023px) {
-      .studio-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 30% 25%, rgba(156,255,126,.1), transparent 45%); }
-      .studio-hero > div:first-child { width: 100%; opacity: .25; border: 0; }
-      .studio-hero > div:first-child img { left: -55%; height: 88%; bottom: -12%; }
+      .studio-hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 30% 25%, rgba(156, 255, 126, 0.1), transparent 45%);
+      }
+      .studio-hero > div:first-child {
+        width: 100%;
+        opacity: 0.25;
+        border: 0;
+      }
+      .studio-hero > div:first-child img {
+        left: -55%;
+        height: 88%;
+        bottom: -12%;
+      }
     }
   </style>
 </Layout>

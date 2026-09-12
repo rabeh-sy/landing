@@ -11,6 +11,9 @@ import Metadata from '~/components/common/Metadata.astro';
 import SiteVerification from '~/components/common/SiteVerification.astro';
 import Analytics from '~/components/common/Analytics.astro';
 import BasicScripts from '~/components/common/BasicScripts.astro';
+import StructuredData from '~/components/common/StructuredData.astro';
+import logoLight from '~/assets/images/logo-light.png';
+import socialHome from '~/assets/images/social-home.jpg';
 
 // Comment the line below to disable View Transitions
 import { ClientRouter } from 'astro:transitions';
@@ -19,10 +22,71 @@ import type { MetaData as MetaDataType } from '~/types';
 
 export interface Props {
   metadata?: MetaDataType;
+  structuredData?: Array<Record<string, unknown>>;
 }
 
-const { metadata = {} } = Astro.props;
+const { metadata = {}, structuredData = [] } = Astro.props;
 const { language, textDirection } = I18N;
+const canonical = metadata.canonical || new URL(Astro.url.pathname, Astro.site).toString();
+const isHomePage = Astro.url.pathname === '/';
+
+const organizationSchema = {
+  '@type': ['Organization', 'LocalBusiness'],
+  '@id': 'https://rabeh.sy/#organization',
+  name: 'رابح للتقنية',
+  alternateName: ['رابح', 'Rabeh Technology'],
+  url: 'https://rabeh.sy/',
+  logo: new URL(logoLight.src, Astro.site).toString(),
+  image: new URL(socialHome.src, Astro.site).toString(),
+  description: 'شركة تطوير برمجيات في حلب، سوريا، متخصصة في المواقع والتطبيقات وأنظمة الأعمال والمنتجات الرقمية.',
+  email: 'contact@rabeh.sy',
+  telephone: '+963954183399',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'حلب',
+    addressCountry: 'SY',
+  },
+  areaServed: [
+    { '@type': 'Country', name: 'سوريا' },
+    { '@type': 'Place', name: 'الشرق الأوسط' },
+  ],
+  sameAs: ['https://www.facebook.com/rabeh.tech.sy'],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: '+963954183399',
+    contactType: 'sales and customer support',
+    availableLanguage: ['ar', 'en'],
+  },
+};
+
+const baseSchema = [
+  {
+    '@type': 'WebPage',
+    '@id': `${canonical}#webpage`,
+    url: canonical,
+    name: metadata.title,
+    description: metadata.description,
+    inLanguage: language,
+    isPartOf: { '@id': 'https://rabeh.sy/#website' },
+    about: { '@id': 'https://rabeh.sy/#organization' },
+  },
+  ...(isHomePage
+    ? [
+        organizationSchema,
+        {
+          '@type': 'WebSite',
+          '@id': 'https://rabeh.sy/#website',
+          url: 'https://rabeh.sy/',
+          name: 'رابح للتقنية',
+          alternateName: 'Rabeh Technology',
+          inLanguage: language,
+          publisher: { '@id': 'https://rabeh.sy/#organization' },
+        },
+      ]
+    : []),
+];
+
+const schemaGraph = [...baseSchema, ...structuredData];
 ---
 
 <!doctype html>
@@ -33,6 +97,7 @@ const { language, textDirection } = I18N;
     <CustomStyles />
     <ApplyColorMode />
     <Metadata {...metadata} />
+    <StructuredData data={{ '@context': 'https://schema.org', '@graph': schemaGraph }} />
     <SiteVerification />
     <Analytics />
 

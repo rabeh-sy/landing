@@ -28,7 +28,17 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
-    sitemap(),
+    sitemap({
+      filter: (page) => {
+        const pathname = new URL(page).pathname;
+        return (
+          pathname !== '/rabeh-lite' &&
+          pathname !== '/services/custom-software-development' &&
+          pathname !== '/blog/2' &&
+          !pathname.startsWith('/tag/')
+        );
+      },
+    }),
     mdx(),
     icon({
       include: {

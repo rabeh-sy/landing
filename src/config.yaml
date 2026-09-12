@@ -9,9 +9,9 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: رابح للتقنية
+    default: شركة رابح لتطوير البرمجيات في حلب
     template: '%s — رابح للتقنية'
-  description: 'نصمم ونبني مواقع وتطبيقات وأنظمة أعمال واضحة، سريعة، ومهيأة للنمو.'
+  description: 'شركة برمجيات في حلب، سوريا. نصمم ونطور مواقع وتطبيقات وأنظمة أعمال مخصصة سريعة، آمنة، وقابلة للنمو.'
   robots:
     index: true
     follow: true
@@ -64,7 +64,7 @@ apps:
 analytics:
   vendors:
     googleAnalytics:
-      id: "G-Y40B7NYV2Z"
+      id: 'G-Y40B7NYV2Z'
       partytown: false
 
 ui:

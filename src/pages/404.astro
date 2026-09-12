@@ -2,22 +2,22 @@
 import Layout from '~/layouts/Layout.astro';
 import { getHomePermalink } from '~/utils/permalinks';
 
-const title = `Error 404`;
+const title = `الصفحة غير موجودة`;
 ---
 
-<Layout metadata={{ title }}>
+<Layout metadata={{ title, robots: { index: false, follow: true } }}>
   <section class="flex items-center h-full p-16">
     <div class="container flex flex-col items-center justify-center px-5 mx-auto my-8">
       <div class="max-w-md text-center">
-        <h2 class="mb-8 font-bold text-9xl">
-          <span class="sr-only">Error</span>
+        <h1 class="mb-8 font-bold text-9xl">
+          <span class="sr-only">خطأ</span>
           <span class="text-primary">404</span>
-        </h2>
-        <p class="text-3xl font-semibold md:text-3xl">Sorry, we couldn't find this page.</p>
+        </h1>
+        <p class="text-3xl font-semibold md:text-3xl">عذرًا، لم نجد هذه الصفحة.</p>
         <p class="mt-4 mb-8 text-lg text-muted dark:text-slate-400">
-          But dont worry, you can find plenty of other things on our homepage.
+          ربما تغيّر الرابط أو نُقلت الصفحة. يمكنك العودة إلى الصفحة الرئيسية ومتابعة التصفح.
         </p>
-        <a rel="noopener noreferrer" href={getHomePermalink()} class="btn ml-4">Back to homepage</a>
+        <a rel="noopener noreferrer" href={getHomePermalink()} class="btn ml-4">العودة إلى الرئيسية</a>
       </div>
     </div>
   </section>

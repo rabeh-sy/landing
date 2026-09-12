@@ -10,26 +10,59 @@ const appStoreLink = 'https://apps.apple.com/us/app/badenjki-business/id67851017
 const desktopDownloadLink = 'https://drive.google.com/uc?export=download&id=1EpreyZlvTL4cw__Uo1srZZuduNpr2BL1';
 
 const modules = [
-  { title: 'المبيعات', description: 'فواتير، مردودات، سندات تسليم، ومتابعة أرصدة الزبائن.', icon: 'tabler:receipt-2', tone: 'lime' },
-  { title: 'المشتريات', description: 'فواتير شراء، موردون، مردودات، واستحقاقات واضحة.', icon: 'tabler:shopping-bag', tone: 'amber' },
-  { title: 'المخزون', description: 'مواد، مستودعات، تحويلات، جرد، وتنبيهات نقص المخزون.', icon: 'tabler:box', tone: 'blue' },
-  { title: 'الخزينة', description: 'قبض ودفع، صناديق وحسابات مالية، وحركة يومية منظمة.', icon: 'tabler:wallet', tone: 'violet' },
-  { title: 'المحاسبة', description: 'قيود وتقارير تساعدك على رؤية الأرقام خلف كل حركة.', icon: 'tabler:calculator', tone: 'rose' },
-  { title: 'التقارير', description: 'كشف حساب، حركة مواد، مبيعات، مشتريات، وأرصدة قابلة للطباعة.', icon: 'tabler:chart-bar', tone: 'teal' },
+  {
+    title: 'المبيعات',
+    description: 'فواتير، مردودات، سندات تسليم، ومتابعة أرصدة الزبائن.',
+    icon: 'tabler:receipt-2',
+    tone: 'lime',
+  },
+  {
+    title: 'المشتريات',
+    description: 'فواتير شراء، موردون، مردودات، واستحقاقات واضحة.',
+    icon: 'tabler:shopping-bag',
+    tone: 'amber',
+  },
+  {
+    title: 'المخزون',
+    description: 'مواد، مستودعات، تحويلات، جرد، وتنبيهات نقص المخزون.',
+    icon: 'tabler:box',
+    tone: 'blue',
+  },
+  {
+    title: 'الخزينة',
+    description: 'قبض ودفع، صناديق وحسابات مالية، وحركة يومية منظمة.',
+    icon: 'tabler:wallet',
+    tone: 'violet',
+  },
+  {
+    title: 'المحاسبة',
+    description: 'قيود وتقارير تساعدك على رؤية الأرقام خلف كل حركة.',
+    icon: 'tabler:calculator',
+    tone: 'rose',
+  },
+  {
+    title: 'التقارير',
+    description: 'كشف حساب، حركة مواد، مبيعات، مشتريات، وأرصدة قابلة للطباعة.',
+    icon: 'tabler:chart-bar',
+    tone: 'teal',
+  },
 ];
 
 const faqs = [
   {
     question: 'هل يحتاج بادنجكي الإداري إلى اتصال دائم بالإنترنت؟',
-    answer: 'لا. صُمم التطبيق بأسلوب offline-first، لذلك تبقى بيانات العمل الأساسية على جهازك وتستمر العمليات اليومية عند ضعف الاتصال أو انقطاعه. المزامنة والمساعد الذكي فقط يحتاجان إلى اتصال عند استخدامهما.',
+    answer:
+      'لا. صُمم التطبيق بأسلوب offline-first، لذلك تبقى بيانات العمل الأساسية على جهازك وتستمر العمليات اليومية عند ضعف الاتصال أو انقطاعه. المزامنة والمساعد الذكي فقط يحتاجان إلى اتصال عند استخدامهما.',
   },
   {
     question: 'هل نسخة سطح المكتب تطبيق مستقل؟',
-    answer: 'هي واجهة سطح مكتب لبادنجكي الإداري نفسه، وتستخدم نفس منطق الأعمال والبيانات والميزات. صُممت للشاشات الكبيرة والعمل المكثف، بينما تبقى نسخة الجوال أسرع للمهام أثناء الحركة.',
+    answer:
+      'هي واجهة سطح مكتب لبادنجكي الإداري نفسه، وتستخدم نفس منطق الأعمال والبيانات والميزات. صُممت للشاشات الكبيرة والعمل المكثف، بينما تبقى نسخة الجوال أسرع للمهام أثناء الحركة.',
   },
   {
     question: 'ما الأنظمة المدعومة حاليًا؟',
-    answer: 'يتوفر التطبيق على Android وiPhone وiPad، إضافة إلى نسخة سطح مكتب مخصصة لنظام Windows. يمكنك تحميل كل نسخة مباشرة من رابط المنصة المناسبة.',
+    answer:
+      'يتوفر التطبيق على Android وiPhone وiPad، إضافة إلى نسخة سطح مكتب مخصصة لنظام Windows. يمكنك تحميل كل نسخة مباشرة من رابط المنصة المناسبة.',
   },
   {
     question: 'هل يمكن أخذ نسخة احتياطية من البيانات؟',
@@ -37,123 +70,403 @@ const faqs = [
   },
   {
     question: 'ماذا يقدم المساعد الذكي؟',
-    answer: 'يمكنك سؤاله عن الفواتير والعملاء والمواد والتقارير المتاحة ضمن صلاحياتك. هذه ميزة متصلة بالإنترنت وتُرسل فقط السياق المطلوب للإجابة.',
+    answer:
+      'يمكنك سؤاله عن الفواتير والعملاء والمواد والتقارير المتاحة ضمن صلاحياتك. هذه ميزة متصلة بالإنترنت وتُرسل فقط السياق المطلوب للإجابة.',
   },
 ];
 
 const metadata = {
   title: 'بادنجكي الإداري | برنامج إدارة أعمال للجوال وسطح المكتب',
-  description: 'برنامج متعدد اللغات لإدارة المبيعات والمشتريات والمخزون والحسابات، متوفر على iOS وAndroid وWindows ويعمل بدون إنترنت.',
+  description:
+    'برنامج متعدد اللغات لإدارة المبيعات والمشتريات والمخزون والحسابات، متوفر على iOS وAndroid وWindows ويعمل بدون إنترنت.',
   ignoreTitleTemplate: true,
   openGraph: {
     images: [{ url: '~/assets/images/social-badenjki-business.jpg', width: 1200, height: 630 }],
   },
 };
+
+const structuredData = [
+  {
+    '@type': 'SoftwareApplication',
+    '@id': 'https://rabeh.sy/badenjki-business#app',
+    name: 'بادنجكي الإداري',
+    alternateName: 'Badenjki Business',
+    url: 'https://rabeh.sy/badenjki-business',
+    description: metadata.description,
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: ['Android', 'iOS', 'iPadOS', 'Windows'],
+    inLanguage: ['ar', 'en'],
+    image: new URL(appMark.src, Astro.site).toString(),
+    author: { '@id': 'https://rabeh.sy/#organization' },
+    downloadUrl: [googlePlayLink, appStoreLink, desktopDownloadLink],
+    featureList: modules.map((module) => module.title),
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'الرئيسية', item: 'https://rabeh.sy/' },
+      { '@type': 'ListItem', position: 2, name: 'بادنجكي الإداري', item: 'https://rabeh.sy/badenjki-business' },
+    ],
+  },
+  {
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+    })),
+  },
+];
 ---
 
-<Layout metadata={metadata}>
+<Layout metadata={metadata} structuredData={structuredData}>
   <div class="product-page overflow-hidden bg-[#f5f6f0] text-[#102219]">
     <section class="relative isolate overflow-hidden border-b border-[#173f2b]/10 lg:min-h-[780px]">
       <div class="hero-grid absolute inset-0 -z-20"></div>
       <div class="absolute -right-32 top-20 -z-10 h-[520px] w-[520px] rounded-full bg-[#9ee6b8]/35 blur-3xl"></div>
       <div class="absolute -left-40 bottom-0 -z-10 h-[420px] w-[420px] rounded-full bg-[#f0cf69]/25 blur-3xl"></div>
 
-      <div class="mx-auto grid max-w-[1440px] items-center gap-14 px-5 pb-20 pt-28 sm:px-8 lg:grid-cols-[0.88fr_1.12fr] lg:px-12 lg:pb-28 lg:pt-36">
+      <div
+        class="mx-auto grid max-w-[1440px] items-center gap-14 px-5 pb-20 pt-28 sm:px-8 lg:grid-cols-[0.88fr_1.12fr] lg:px-12 lg:pb-28 lg:pt-36"
+      >
         <div class="relative z-10 max-w-2xl">
-          <div class="mb-8 inline-flex items-center gap-3 rounded-full border border-[#173f2b]/15 bg-white/70 px-4 py-2 text-sm font-semibold shadow-sm backdrop-blur">
-            <span class="relative flex h-2.5 w-2.5"><span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#2f9c5b] opacity-50"></span><span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#168342]"></span></span>
+          <div
+            class="mb-8 inline-flex items-center gap-3 rounded-full border border-[#173f2b]/15 bg-white/70 px-4 py-2 text-sm font-semibold shadow-sm backdrop-blur"
+          >
+            <span class="relative flex h-2.5 w-2.5"
+              ><span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#2f9c5b] opacity-50"
+              ></span><span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#168342]"></span></span
+            >
             على الجوال وسطح المكتب
           </div>
 
           <div class="mb-7 flex items-center gap-4">
-            <img src={appMark.src} alt="شعار بادنجكي الإداري" class="h-14 w-14 rounded-2xl shadow-lg shadow-[#0d6d38]/20" />
-            <div><p class="text-lg font-black leading-tight">بادنجكي الإداري</p><p class="mt-1 text-xs font-bold uppercase tracking-[0.16em] text-[#4d6859]" dir="ltr">Badenjki Business</p></div>
+            <img
+              src={appMark.src}
+              alt="شعار بادنجكي الإداري"
+              class="h-14 w-14 rounded-2xl shadow-lg shadow-[#0d6d38]/20"
+            />
+            <div>
+              <p class="text-lg font-black leading-tight">بادنجكي الإداري</p><p
+                class="mt-1 text-xs font-bold uppercase tracking-[0.16em] text-[#4d6859]"
+                dir="ltr"
+              >
+                Badenjki Business
+              </p>
+            </div>
           </div>
 
-          <h1 class="max-w-[780px] text-[3.25rem] font-black leading-[1.4] tracking-[-0.025em] text-[#102219] sm:text-6xl sm:leading-[1.34] lg:text-[4.6rem]">
+          <h1
+            class="max-w-[780px] text-[3.25rem] font-black leading-[1.4] tracking-[-0.025em] text-[#102219] sm:text-6xl sm:leading-[1.34] lg:text-[4.6rem]"
+          >
             شغلك مرتب.<br />
-            <span class="relative inline-block text-[#13743b]">أينما كنت.<svg class="absolute -bottom-3 right-0 h-4 w-full" viewBox="0 0 330 18" fill="none" aria-hidden="true"><path d="M5 12.5C84 2.5 177 2 325 9" stroke="#8fd5a8" stroke-width="9" stroke-linecap="round"></path></svg></span>
+            <span class="relative inline-block text-[#13743b]"
+              >أينما كنت.<svg
+                class="absolute -bottom-3 right-0 h-4 w-full"
+                viewBox="0 0 330 18"
+                fill="none"
+                aria-hidden="true"
+                ><path d="M5 12.5C84 2.5 177 2 325 9" stroke="#8fd5a8" stroke-width="9" stroke-linecap="round"
+                ></path></svg
+              ></span
+            >
           </h1>
 
-          <p class="mt-9 max-w-xl text-lg font-medium leading-9 text-[#445a4d] sm:text-xl">برنامج واضح ومرن لإدارة المبيعات والمشتريات والمخزون والحسابات. على الجوال للسرعة، وعلى سطح المكتب للمساحة والتركيز—وبياناتك معك حتى بدون إنترنت.</p>
+          <p class="mt-9 max-w-xl text-lg font-medium leading-9 text-[#445a4d] sm:text-xl">
+            برنامج واضح ومرن لإدارة المبيعات والمشتريات والمخزون والحسابات. على الجوال للسرعة، وعلى سطح المكتب للمساحة
+            والتركيز—وبياناتك معك حتى بدون إنترنت.
+          </p>
 
           <div class="mt-10 flex flex-wrap items-center gap-3">
-            <a href={appStoreLink} target="_blank" rel="noopener noreferrer" aria-label="تحميل بادنجكي الإداري من App Store" class="store-link"><img src={appStoreBadge.src} alt="Download on the App Store" class="h-[50px] w-auto" /></a>
-            <a href={googlePlayLink} target="_blank" rel="noopener noreferrer" aria-label="تحميل بادنجكي الإداري من Google Play" class="store-link"><img src={googlePlayBadge.src} alt="Get it on Google Play" class="h-[50px] w-auto" /></a>
-            <a href={desktopDownloadLink} target="_blank" rel="noopener noreferrer" class="windows-badge" aria-label="تحميل بادنجكي الإداري لنظام Windows"><Icon name="tabler:brand-windows" class="h-6 w-6" /><span class="text-right leading-tight"><small class="block text-[9px] font-medium text-white/70">تحميل لنظام</small><strong class="block text-[17px] font-semibold" dir="ltr">Windows</strong></span></a>
+            <a
+              href={appStoreLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="تحميل بادنجكي الإداري من App Store"
+              class="store-link"
+              ><img src={appStoreBadge.src} alt="Download on the App Store" class="h-[50px] w-auto" /></a
+            >
+            <a
+              href={googlePlayLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="تحميل بادنجكي الإداري من Google Play"
+              class="store-link"
+              ><img src={googlePlayBadge.src} alt="Get it on Google Play" class="h-[50px] w-auto" /></a
+            >
+            <a
+              href={desktopDownloadLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="windows-badge"
+              aria-label="تحميل بادنجكي الإداري لنظام Windows"
+              ><Icon name="tabler:brand-windows" class="h-6 w-6" /><span class="text-right leading-tight"
+                ><small class="block text-[9px] font-medium text-white/70">تحميل لنظام</small><strong
+                  class="block text-[17px] font-semibold"
+                  dir="ltr">Windows</strong
+                ></span
+              ></a
+            >
           </div>
 
           <div class="mt-9 flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-[#567064]">
-            <span class="inline-flex items-center gap-2"><Icon name="tabler:wifi-off" class="h-4 w-4 text-[#168342]" /> يعمل بدون إنترنت</span>
-            <span class="inline-flex items-center gap-2"><Icon name="tabler:language" class="h-4 w-4 text-[#168342]" /> العربية والإنجليزية</span>
-            <span class="inline-flex items-center gap-2"><Icon name="tabler:database" class="h-4 w-4 text-[#168342]" /> بيانات محلية</span>
+            <span class="inline-flex items-center gap-2"
+              ><Icon name="tabler:wifi-off" class="h-4 w-4 text-[#168342]" /> يعمل بدون إنترنت</span
+            >
+            <span class="inline-flex items-center gap-2"
+              ><Icon name="tabler:language" class="h-4 w-4 text-[#168342]" /> العربية والإنجليزية</span
+            >
+            <span class="inline-flex items-center gap-2"
+              ><Icon name="tabler:database" class="h-4 w-4 text-[#168342]" /> بيانات محلية</span
+            >
           </div>
         </div>
 
         <div class="relative mx-auto hidden w-full max-w-[760px] pb-12 pt-6 lg:block lg:pb-0 lg:pt-0" dir="rtl">
-          <div class="desktop-frame relative overflow-hidden rounded-[26px] border-[8px] border-[#183227] bg-[#e8eee8] shadow-[0_45px_100px_-35px_rgba(13,48,30,0.55)]">
+          <div
+            class="desktop-frame relative overflow-hidden rounded-[26px] border-[8px] border-[#183227] bg-[#e8eee8] shadow-[0_45px_100px_-35px_rgba(13,48,30,0.55)]"
+          >
             <div class="flex h-10 items-center justify-between border-b border-black/10 bg-[#f6f8f4] px-4" dir="ltr">
-              <div class="flex gap-1.5"><span class="h-2.5 w-2.5 rounded-full bg-[#ff655e]"></span><span class="h-2.5 w-2.5 rounded-full bg-[#ffbd44]"></span><span class="h-2.5 w-2.5 rounded-full bg-[#00ca4e]"></span></div>
-              <span class="text-[10px] font-bold tracking-wide text-[#5d6f64]">BADENJKI BUSINESS</span><span class="w-10"></span>
+              <div class="flex gap-1.5">
+                <span class="h-2.5 w-2.5 rounded-full bg-[#ff655e]"></span><span
+                  class="h-2.5 w-2.5 rounded-full bg-[#ffbd44]"></span><span
+                  class="h-2.5 w-2.5 rounded-full bg-[#00ca4e]"></span>
+              </div>
+              <span class="text-[10px] font-bold tracking-wide text-[#5d6f64]">BADENJKI BUSINESS</span><span
+                class="w-10"></span>
             </div>
             <div class="grid min-h-[430px] grid-cols-[150px_1fr] bg-[#f8faf7]">
               <aside class="border-l border-[#d8e0d9] bg-[#edf2ed] p-4">
-                <div class="mb-7 flex items-center gap-2"><img src={appMark.src} alt="" class="h-8 w-8 rounded-lg" /><div><p class="text-[10px] font-black">بادنجكي الإداري</p><p class="text-[7px] text-[#718076]">شركة البشائر</p></div></div>
+                <div class="mb-7 flex items-center gap-2">
+                  <img src={appMark.src} alt="" class="h-8 w-8 rounded-lg" /><div>
+                    <p class="text-[10px] font-black">بادنجكي الإداري</p><p class="text-[7px] text-[#718076]">
+                      شركة البشائر
+                    </p>
+                  </div>
+                </div>
                 <div class="space-y-1.5 text-[9px] font-bold text-[#607065]">
-                  <div class="flex items-center gap-2 rounded-lg bg-[#dce9df] px-2.5 py-2.5 text-[#126c38]"><Icon name="tabler:layout-dashboard" class="h-3.5 w-3.5" /> لوحة المعلومات</div>
-                  <div class="flex items-center gap-2 px-2.5 py-2"><Icon name="tabler:receipt-2" class="h-3.5 w-3.5" /> المبيعات</div>
-                  <div class="flex items-center gap-2 px-2.5 py-2"><Icon name="tabler:shopping-bag" class="h-3.5 w-3.5" /> المشتريات</div>
-                  <div class="flex items-center gap-2 px-2.5 py-2"><Icon name="tabler:box" class="h-3.5 w-3.5" /> المخزون</div>
-                  <div class="flex items-center gap-2 px-2.5 py-2"><Icon name="tabler:wallet" class="h-3.5 w-3.5" /> الخزينة</div>
-                  <div class="flex items-center gap-2 px-2.5 py-2"><Icon name="tabler:chart-bar" class="h-3.5 w-3.5" /> التقارير</div>
+                  <div class="flex items-center gap-2 rounded-lg bg-[#dce9df] px-2.5 py-2.5 text-[#126c38]">
+                    <Icon name="tabler:layout-dashboard" class="h-3.5 w-3.5" /> لوحة المعلومات
+                  </div>
+                  <div class="flex items-center gap-2 px-2.5 py-2">
+                    <Icon name="tabler:receipt-2" class="h-3.5 w-3.5" /> المبيعات
+                  </div>
+                  <div class="flex items-center gap-2 px-2.5 py-2">
+                    <Icon name="tabler:shopping-bag" class="h-3.5 w-3.5" /> المشتريات
+                  </div>
+                  <div class="flex items-center gap-2 px-2.5 py-2">
+                    <Icon name="tabler:box" class="h-3.5 w-3.5" /> المخزون
+                  </div>
+                  <div class="flex items-center gap-2 px-2.5 py-2">
+                    <Icon name="tabler:wallet" class="h-3.5 w-3.5" /> الخزينة
+                  </div>
+                  <div class="flex items-center gap-2 px-2.5 py-2">
+                    <Icon name="tabler:chart-bar" class="h-3.5 w-3.5" /> التقارير
+                  </div>
                 </div>
               </aside>
               <div class="p-5">
-                <div class="mb-5 flex items-center justify-between"><div><p class="text-lg font-black">صباح الخير 👋</p><p class="mt-1 text-[9px] text-[#718076]">إليك ملخص أعمالك اليوم</p></div><button class="rounded-lg bg-[#126c38] px-3 py-2 text-[9px] font-bold text-white">فاتورة جديدة +</button></div>
+                <div class="mb-5 flex items-center justify-between">
+                  <div>
+                    <p class="text-lg font-black">صباح الخير 👋</p><p class="mt-1 text-[9px] text-[#718076]">
+                      إليك ملخص أعمالك اليوم
+                    </p>
+                  </div><button class="rounded-lg bg-[#126c38] px-3 py-2 text-[9px] font-bold text-white"
+                    >فاتورة جديدة +</button
+                  >
+                </div>
                 <div class="grid grid-cols-3 gap-3">
-                  <div class="rounded-xl border border-[#dfe6df] bg-white p-3"><p class="text-[8px] text-[#718076]">مبيعات اليوم</p><p class="mt-2 text-sm font-black">2,480,000 <small class="text-[7px]">ل.س</small></p><span class="mt-2 inline-block rounded-full bg-[#e2f4e8] px-2 py-1 text-[7px] font-bold text-[#168342]">+ 12.5%</span></div>
-                  <div class="rounded-xl border border-[#dfe6df] bg-white p-3"><p class="text-[8px] text-[#718076]">المقبوضات</p><p class="mt-2 text-sm font-black">1,760,000 <small class="text-[7px]">ل.س</small></p><span class="mt-2 inline-block rounded-full bg-[#fff0d6] px-2 py-1 text-[7px] font-bold text-[#a76d10]">8 عمليات</span></div>
-                  <div class="rounded-xl border border-[#dfe6df] bg-white p-3"><p class="text-[8px] text-[#718076]">تنبيهات المخزون</p><p class="mt-2 text-sm font-black">6 <small class="text-[7px]">مواد</small></p><span class="mt-2 inline-block rounded-full bg-[#fee5e3] px-2 py-1 text-[7px] font-bold text-[#b54b42]">تحتاج مراجعة</span></div>
+                  <div class="rounded-xl border border-[#dfe6df] bg-white p-3">
+                    <p class="text-[8px] text-[#718076]">مبيعات اليوم</p><p class="mt-2 text-sm font-black">
+                      2,480,000 <small class="text-[7px]">ل.س</small>
+                    </p><span
+                      class="mt-2 inline-block rounded-full bg-[#e2f4e8] px-2 py-1 text-[7px] font-bold text-[#168342]"
+                      >+ 12.5%</span
+                    >
+                  </div>
+                  <div class="rounded-xl border border-[#dfe6df] bg-white p-3">
+                    <p class="text-[8px] text-[#718076]">المقبوضات</p><p class="mt-2 text-sm font-black">
+                      1,760,000 <small class="text-[7px]">ل.س</small>
+                    </p><span
+                      class="mt-2 inline-block rounded-full bg-[#fff0d6] px-2 py-1 text-[7px] font-bold text-[#a76d10]"
+                      >8 عمليات</span
+                    >
+                  </div>
+                  <div class="rounded-xl border border-[#dfe6df] bg-white p-3">
+                    <p class="text-[8px] text-[#718076]">تنبيهات المخزون</p><p class="mt-2 text-sm font-black">
+                      6 <small class="text-[7px]">مواد</small>
+                    </p><span
+                      class="mt-2 inline-block rounded-full bg-[#fee5e3] px-2 py-1 text-[7px] font-bold text-[#b54b42]"
+                      >تحتاج مراجعة</span
+                    >
+                  </div>
                 </div>
                 <div class="mt-3 grid grid-cols-[1.4fr_1fr] gap-3">
-                  <div class="rounded-xl border border-[#dfe6df] bg-white p-4"><div class="flex items-center justify-between"><p class="text-[9px] font-black">حركة المبيعات</p><span class="text-[7px] text-[#718076]">آخر 7 أيام</span></div><div class="mt-4 flex h-28 items-end gap-2" dir="ltr">{[38, 58, 42, 76, 54, 88, 69].map((height, index) => <div class="flex flex-1 flex-col items-center gap-1"><div class:list={['w-full rounded-t-sm', index === 5 ? 'bg-[#168342]' : 'bg-[#b9ddc5]']} style={`height:${height}%`}></div><span class="text-[6px] text-[#819086]">{index + 1}</span></div>)}</div></div>
-                  <div class="rounded-xl border border-[#dfe6df] bg-white p-4"><p class="text-[9px] font-black">أحدث الفواتير</p><div class="mt-4 space-y-3">{[['شركة النور', '480,000'], ['مؤسسة الهدى', '325,000'], ['متجر الشام', '210,000']].map(([name, amount], index) => <div class="flex items-center justify-between border-b border-[#edf1ed] pb-2"><div class="flex items-center gap-2"><span class="flex h-6 w-6 items-center justify-center rounded-lg bg-[#eef4ef] text-[7px] font-black text-[#126c38]">{index + 1}</span><span class="text-[7px] font-bold">{name}</span></div><span class="text-[7px] font-black">{amount}</span></div>)}</div></div>
+                  <div class="rounded-xl border border-[#dfe6df] bg-white p-4">
+                    <div class="flex items-center justify-between">
+                      <p class="text-[9px] font-black">حركة المبيعات</p><span class="text-[7px] text-[#718076]"
+                        >آخر 7 أيام</span
+                      >
+                    </div><div class="mt-4 flex h-28 items-end gap-2" dir="ltr">
+                      {
+                        [38, 58, 42, 76, 54, 88, 69].map((height, index) => (
+                          <div class="flex flex-1 flex-col items-center gap-1">
+                            <>
+                              <div
+                                class:list={['w-full rounded-t-sm', index === 5 ? 'bg-[#168342]' : 'bg-[#b9ddc5]']}
+                                style={`height:${height}%`}
+                              />
+                              <span class="text-[6px] text-[#819086]">{index + 1}</span>
+                            </>
+                          </div>
+                        ))
+                      }
+                    </div>
+                  </div>
+                  <div class="rounded-xl border border-[#dfe6df] bg-white p-4">
+                    <p class="text-[9px] font-black">أحدث الفواتير</p><div class="mt-4 space-y-3">
+                      {
+                        [
+                          ['شركة النور', '480,000'],
+                          ['مؤسسة الهدى', '325,000'],
+                          ['متجر الشام', '210,000'],
+                        ].map(([name, amount], index) => (
+                          <div class="flex items-center justify-between border-b border-[#edf1ed] pb-2">
+                            <>
+                              <div class="flex items-center gap-2">
+                                <>
+                                  <span class="flex h-6 w-6 items-center justify-center rounded-lg bg-[#eef4ef] text-[7px] font-black text-[#126c38]">
+                                    {index + 1}
+                                  </span>
+                                  <span class="text-[7px] font-bold">{name}</span>
+                                </>
+                              </div>
+                              <span class="text-[7px] font-black">{amount}</span>
+                            </>
+                          </div>
+                        ))
+                      }
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="phone-frame absolute -bottom-2 -left-2 w-[180px] overflow-hidden rounded-[28px] border-[7px] border-[#163025] bg-[#f8faf7] shadow-[0_35px_70px_-20px_rgba(13,48,30,0.55)] sm:-left-5 sm:w-[210px]">
+          <div
+            class="phone-frame absolute -bottom-2 -left-2 w-[180px] overflow-hidden rounded-[28px] border-[7px] border-[#163025] bg-[#f8faf7] shadow-[0_35px_70px_-20px_rgba(13,48,30,0.55)] sm:-left-5 sm:w-[210px]"
+          >
             <div class="mx-auto mt-2 h-4 w-16 rounded-full bg-[#163025]"></div><div class="p-4 pt-3">
-              <div class="mb-4 flex items-center justify-between"><div><p class="text-[11px] font-black">مرحبًا خالد</p><p class="text-[7px] text-[#718076]">ملخص اليوم</p></div><img src={appMark.src} alt="" class="h-7 w-7 rounded-lg" /></div>
-              <div class="rounded-2xl bg-[#126c38] p-4 text-white"><p class="text-[7px] text-white/70">الرصيد الإجمالي</p><p class="mt-2 text-base font-black">3,240,000 <small class="text-[7px]">ل.س</small></p></div>
-              <p class="mb-2 mt-4 text-[9px] font-black">الوحدات</p><div class="grid grid-cols-2 gap-2">{[['tabler:receipt-2', 'المبيعات'], ['tabler:shopping-bag', 'المشتريات'], ['tabler:box', 'المخزون'], ['tabler:wallet', 'الخزينة']].map(([icon, label]) => <div class="rounded-xl border border-[#e0e6e0] bg-white p-2.5"><Icon name={icon} class="h-4 w-4 text-[#168342]" /><p class="mt-2 text-[7px] font-bold">{label}</p></div>)}</div>
-              <div class="mt-4 flex justify-around border-t border-[#e0e6e0] pt-3 text-[#77877d]"><Icon name="tabler:home" class="h-4 w-4 text-[#168342]" /><Icon name="tabler:sparkles" class="h-4 w-4" /><Icon name="tabler:user" class="h-4 w-4" /></div>
+              <div class="mb-4 flex items-center justify-between">
+                <div>
+                  <p class="text-[11px] font-black">مرحبًا خالد</p><p class="text-[7px] text-[#718076]">ملخص اليوم</p>
+                </div><img src={appMark.src} alt="" class="h-7 w-7 rounded-lg" />
+              </div>
+              <div class="rounded-2xl bg-[#126c38] p-4 text-white">
+                <p class="text-[7px] text-white/70">الرصيد الإجمالي</p><p class="mt-2 text-base font-black">
+                  3,240,000 <small class="text-[7px]">ل.س</small>
+                </p>
+              </div>
+              <p class="mb-2 mt-4 text-[9px] font-black">الوحدات</p><div class="grid grid-cols-2 gap-2">
+                {
+                  [
+                    ['tabler:receipt-2', 'المبيعات'],
+                    ['tabler:shopping-bag', 'المشتريات'],
+                    ['tabler:box', 'المخزون'],
+                    ['tabler:wallet', 'الخزينة'],
+                  ].map(([icon, label]) => (
+                    <div class="rounded-xl border border-[#e0e6e0] bg-white p-2.5">
+                      <>
+                        <Icon name={icon} class="h-4 w-4 text-[#168342]" />
+                        <p class="mt-2 text-[7px] font-bold">{label}</p>
+                      </>
+                    </div>
+                  ))
+                }
+              </div>
+              <div class="mt-4 flex justify-around border-t border-[#e0e6e0] pt-3 text-[#77877d]">
+                <Icon name="tabler:home" class="h-4 w-4 text-[#168342]" /><Icon
+                  name="tabler:sparkles"
+                  class="h-4 w-4"
+                /><Icon name="tabler:user" class="h-4 w-4" />
+              </div>
             </div>
           </div>
-          <div class="device-note absolute -right-3 -top-5 flex items-center gap-2 rounded-2xl border border-white/70 bg-white/90 px-4 py-3 text-xs font-black text-[#173f2b] shadow-xl backdrop-blur sm:right-8"><span class="flex h-8 w-8 items-center justify-center rounded-xl bg-[#dff2e5] text-[#168342]"><Icon name="tabler:cloud-check" class="h-4 w-4" /></span>نظام واحد، على جهازين</div>
+          <div
+            class="device-note absolute -right-3 -top-5 flex items-center gap-2 rounded-2xl border border-white/70 bg-white/90 px-4 py-3 text-xs font-black text-[#173f2b] shadow-xl backdrop-blur sm:right-8"
+          >
+            <span class="flex h-8 w-8 items-center justify-center rounded-xl bg-[#dff2e5] text-[#168342]"
+              ><Icon name="tabler:cloud-check" class="h-4 w-4" /></span
+            >نظام واحد، على جهازين
+          </div>
         </div>
       </div>
     </section>
 
     <section class="border-b border-[#173f2b]/10 bg-[#102219] text-white">
-      <div class="mx-auto grid max-w-[1200px] grid-cols-2 divide-x divide-x-reverse divide-white/10 px-5 py-8 sm:grid-cols-4 sm:px-8">
-        <div class="px-4 py-3 text-center"><p class="text-xl font-black text-[#a6e4b9]">يعمل دون إنترنت</p><p class="mt-1 text-xs text-white/55">العمل لا يتوقف</p></div>
-        <div class="px-4 py-3 text-center"><p class="text-xl font-black text-[#a6e4b9]">تطبيق الجوال</p><p class="mt-1 text-xs text-white/55">على iOS وAndroid</p></div>
-        <div class="px-4 py-3 text-center"><p class="text-xl font-black text-[#a6e4b9]">سطح المكتب</p><p class="mt-1 text-xs text-white/55">متوفر على Windows</p></div>
-        <div class="px-4 py-3 text-center"><p class="text-xl font-black text-[#a6e4b9]">متعدد اللغات</p><p class="mt-1 text-xs text-white/55">العربية والإنجليزية</p></div>
+      <div
+        class="mx-auto grid max-w-[1200px] grid-cols-2 divide-x divide-x-reverse divide-white/10 px-5 py-8 sm:grid-cols-4 sm:px-8"
+      >
+        <div class="px-4 py-3 text-center">
+          <p class="text-xl font-black text-[#a6e4b9]">يعمل دون إنترنت</p><p class="mt-1 text-xs text-white/55">
+            العمل لا يتوقف
+          </p>
+        </div>
+        <div class="px-4 py-3 text-center">
+          <p class="text-xl font-black text-[#a6e4b9]">تطبيق الجوال</p><p class="mt-1 text-xs text-white/55">
+            على iOS وAndroid
+          </p>
+        </div>
+        <div class="px-4 py-3 text-center">
+          <p class="text-xl font-black text-[#a6e4b9]">سطح المكتب</p><p class="mt-1 text-xs text-white/55">
+            متوفر على Windows
+          </p>
+        </div>
+        <div class="px-4 py-3 text-center">
+          <p class="text-xl font-black text-[#a6e4b9]">متعدد اللغات</p><p class="mt-1 text-xs text-white/55">
+            العربية والإنجليزية
+          </p>
+        </div>
       </div>
     </section>
 
     <section id="features" class="px-5 py-24 sm:px-8 lg:py-32">
       <div class="mx-auto max-w-[1240px]">
-        <div class="mx-auto max-w-3xl text-center"><p class="text-sm font-black text-[#168342]">كل يوم عمل، من مكان واحد</p><h2 class="mt-4 text-4xl font-black tracking-[-0.035em] text-[#102219] sm:text-5xl">بدل الدفاتر المتفرقة، صورة واحدة واضحة</h2><p class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-[#586d61]">وحدات مترابطة تنقل الحركة من الفاتورة إلى المخزون والحساب، وتترك لك وقتًا أكبر لإدارة العمل نفسه.</p></div>
+        <div class="mx-auto max-w-3xl text-center">
+          <p class="text-sm font-black text-[#168342]">كل يوم عمل، من مكان واحد</p><h2
+            class="mt-4 text-4xl font-black tracking-[-0.035em] text-[#102219] sm:text-5xl"
+          >
+            بدل الدفاتر المتفرقة، صورة واحدة واضحة
+          </h2><p class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-[#586d61]">
+            وحدات مترابطة تنقل الحركة من الفاتورة إلى المخزون والحساب، وتترك لك وقتًا أكبر لإدارة العمل نفسه.
+          </p>
+        </div>
         <div class="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {modules.map((module, index) => (
-            <article class:list={['module-card group relative overflow-hidden rounded-[28px] border border-[#173f2b]/10 bg-white p-7 shadow-[0_20px_60px_-45px_rgba(13,48,30,0.45)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_28px_70px_-40px_rgba(13,48,30,0.4)]', `tone-${module.tone}`]}>
-              <span class="absolute left-6 top-5 text-6xl font-black leading-none text-[#102219]/[0.035]">0{index + 1}</span><div class="module-icon flex h-12 w-12 items-center justify-center rounded-2xl"><Icon name={module.icon} class="h-6 w-6" /></div><h3 class="mt-8 text-2xl font-black text-[#102219]">{module.title}</h3><p class="mt-3 leading-7 text-[#607268]">{module.description}</p><div class="mt-7 flex items-center gap-2 text-sm font-black text-[#168342]">ضمن نفس النظام <Icon name="tabler:arrow-left" class="h-4 w-4 transition group-hover:-translate-x-1" /></div>
-            </article>
-          ))}
+          {
+            modules.map((module, index) => (
+              <article
+                class:list={[
+                  'module-card group relative overflow-hidden rounded-[28px] border border-[#173f2b]/10 bg-white p-7 shadow-[0_20px_60px_-45px_rgba(13,48,30,0.45)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_28px_70px_-40px_rgba(13,48,30,0.4)]',
+                  `tone-${module.tone}`,
+                ]}
+              >
+                <>
+                  <span class="absolute left-6 top-5 text-6xl font-black leading-none text-[#102219]/[0.035]">
+                    0{index + 1}
+                  </span>
+                  <div class="module-icon flex h-12 w-12 items-center justify-center rounded-2xl">
+                    <Icon name={module.icon} class="h-6 w-6" />
+                  </div>
+                  <h3 class="mt-8 text-2xl font-black text-[#102219]">{module.title}</h3>
+                  <p class="mt-3 leading-7 text-[#607268]">{module.description}</p>
+                  <div class="mt-7 flex items-center gap-2 text-sm font-black text-[#168342]">
+                    ضمن نفس النظام{' '}
+                    <Icon name="tabler:arrow-left" class="h-4 w-4 transition group-hover:-translate-x-1" />
+                  </div>
+                </>
+              </article>
+            ))
+          }
         </div>
       </div>
     </section>
@@ -161,50 +474,348 @@ const metadata = {
     <section class="px-5 pb-24 sm:px-8 lg:pb-32">
       <div class="mx-auto max-w-[1240px] overflow-hidden rounded-[38px] bg-[#dfeee2]">
         <div class="grid lg:grid-cols-2">
-          <div class="p-8 sm:p-12 lg:p-16"><span class="inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-2 text-xs font-black text-[#126c38]"><Icon name="tabler:device-mobile" class="h-4 w-4" /> على الجوال</span><h2 class="mt-7 text-4xl font-black tracking-[-0.035em] text-[#102219]">كل ما تحتاجه، في جيبك</h2><p class="mt-5 text-lg leading-8 text-[#52685b]">أنشئ فاتورة عند الزبون، راجع رصيد مادة في المستودع، أو سجّل دفعة فور حدوثها. تجربة سريعة مصممة للاستخدام اليومي بيد واحدة.</p><ul class="mt-8 space-y-4 text-sm font-bold text-[#30493b]"><li class="flex items-center gap-3"><span class="check"><Icon name="tabler:check" class="h-4 w-4" /></span> وصول سريع إلى العمليات المتكررة</li><li class="flex items-center gap-3"><span class="check"><Icon name="tabler:check" class="h-4 w-4" /></span> عمل محلي حتى عند انقطاع الإنترنت</li><li class="flex items-center gap-3"><span class="check"><Icon name="tabler:check" class="h-4 w-4" /></span> باركود، جهات اتصال، وإشعارات مخزون</li></ul></div>
-          <div class="relative min-h-[470px] overflow-hidden bg-[#c9e5d0] p-8"><div class="absolute inset-0 opacity-40 hero-grid"></div><div class="relative mx-auto mt-8 w-[260px] rotate-[-4deg] rounded-[42px] border-[9px] border-[#102219] bg-[#f9fbf8] p-4 shadow-2xl"><div class="mx-auto mb-5 h-5 w-20 rounded-full bg-[#102219]"></div><p class="text-xs text-[#718076]">فاتورة مبيعات جديدة</p><p class="mt-1 text-lg font-black">شركة الهدى</p><div class="mt-5 space-y-3">{['سكر 1 كغ', 'زيت نباتي', 'شاي سيلاني'].map((item, index) => <div class="flex items-center justify-between rounded-xl border border-[#dce5dc] bg-white p-3"><div><p class="text-[10px] font-black">{item}</p><p class="mt-1 text-[8px] text-[#718076]">الكمية {index + 1}</p></div><span class="text-[10px] font-black">{[8500, 32000, 14500][index]}</span></div>)}</div><div class="mt-5 flex items-center justify-between border-t border-[#dce5dc] pt-4"><span class="text-xs font-black">الإجمالي</span><span class="text-base font-black text-[#126c38]">55,000 ل.س</span></div><button class="mt-5 w-full rounded-xl bg-[#126c38] py-3 text-xs font-black text-white">حفظ الفاتورة</button></div></div>
+          <div class="p-8 sm:p-12 lg:p-16">
+            <span
+              class="inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-2 text-xs font-black text-[#126c38]"
+              ><Icon name="tabler:device-mobile" class="h-4 w-4" /> على الجوال</span
+            ><h2 class="mt-7 text-4xl font-black tracking-[-0.035em] text-[#102219]">كل ما تحتاجه، في جيبك</h2><p
+              class="mt-5 text-lg leading-8 text-[#52685b]"
+            >
+              أنشئ فاتورة عند الزبون، راجع رصيد مادة في المستودع، أو سجّل دفعة فور حدوثها. تجربة سريعة مصممة للاستخدام
+              اليومي بيد واحدة.
+            </p><ul class="mt-8 space-y-4 text-sm font-bold text-[#30493b]">
+              <li class="flex items-center gap-3">
+                <span class="check"><Icon name="tabler:check" class="h-4 w-4" /></span> وصول سريع إلى العمليات المتكررة
+              </li><li class="flex items-center gap-3">
+                <span class="check"><Icon name="tabler:check" class="h-4 w-4" /></span> عمل محلي حتى عند انقطاع الإنترنت
+              </li><li class="flex items-center gap-3">
+                <span class="check"><Icon name="tabler:check" class="h-4 w-4" /></span> باركود، جهات اتصال، وإشعارات مخزون
+              </li>
+            </ul>
+          </div>
+          <div class="relative min-h-[470px] overflow-hidden bg-[#c9e5d0] p-8">
+            <div class="absolute inset-0 opacity-40 hero-grid"></div><div
+              class="relative mx-auto mt-8 w-[260px] rotate-[-4deg] rounded-[42px] border-[9px] border-[#102219] bg-[#f9fbf8] p-4 shadow-2xl"
+            >
+              <div class="mx-auto mb-5 h-5 w-20 rounded-full bg-[#102219]"></div><p class="text-xs text-[#718076]">
+                فاتورة مبيعات جديدة
+              </p><p class="mt-1 text-lg font-black">شركة الهدى</p><div class="mt-5 space-y-3">
+                {
+                  ['سكر 1 كغ', 'زيت نباتي', 'شاي سيلاني'].map((item, index) => (
+                    <div class="flex items-center justify-between rounded-xl border border-[#dce5dc] bg-white p-3">
+                      <>
+                        <div>
+                          <>
+                            <p class="text-[10px] font-black">{item}</p>
+                            <p class="mt-1 text-[8px] text-[#718076]">الكمية {index + 1}</p>
+                          </>
+                        </div>
+                        <span class="text-[10px] font-black">{[8500, 32000, 14500][index]}</span>
+                      </>
+                    </div>
+                  ))
+                }
+              </div><div class="mt-5 flex items-center justify-between border-t border-[#dce5dc] pt-4">
+                <span class="text-xs font-black">الإجمالي</span><span class="text-base font-black text-[#126c38]"
+                  >55,000 ل.س</span
+                >
+              </div><button class="mt-5 w-full rounded-xl bg-[#126c38] py-3 text-xs font-black text-white"
+                >حفظ الفاتورة</button
+              >
+            </div>
+          </div>
         </div>
         <div class="grid border-t border-[#173f2b]/10 lg:grid-cols-2">
-          <div class="relative order-2 hidden min-h-[470px] overflow-hidden bg-[#183227] p-7 lg:order-1 lg:block" dir="rtl"><div class="absolute inset-0 opacity-10 hero-grid"></div><div class="relative mx-auto mt-10 max-w-xl overflow-hidden rounded-2xl border border-white/10 bg-[#f7f9f6] shadow-2xl"><div class="flex h-8 items-center gap-1.5 bg-[#e9eee9] px-3" dir="ltr"><span class="h-2 w-2 rounded-full bg-[#ff655e]"></span><span class="h-2 w-2 rounded-full bg-[#ffbd44]"></span><span class="h-2 w-2 rounded-full bg-[#00ca4e]"></span></div><div class="grid grid-cols-[110px_1fr]"><div class="bg-[#edf2ed] p-3 text-[8px] font-bold text-[#5c6e62]"><p class="mb-5 text-[9px] font-black text-[#102219]">المبيعات</p>{['نظرة عامة', 'الفواتير', 'الزبائن', 'سندات التسليم', 'مردودات المبيعات'].map((item, index) => <p class:list={['mb-1 rounded-md px-2 py-2', index === 1 && 'bg-[#dce9df] text-[#126c38]']}>{item}</p>)}</div><div class="p-4"><div class="flex items-center justify-between"><p class="text-xs font-black">فواتير المبيعات</p><button class="rounded-md bg-[#126c38] px-2.5 py-1.5 text-[7px] font-bold text-white">فاتورة جديدة +</button></div><div class="mt-4 overflow-hidden rounded-lg border border-[#dce5dc]"><div class="grid grid-cols-4 bg-[#eef2ee] px-2 py-2 text-[7px] font-black"><span>الرقم</span><span>الزبون</span><span>التاريخ</span><span>الإجمالي</span></div>{[['INV-0128', 'متجر الشام', '12 أيلول', '480,000'], ['INV-0127', 'شركة الهدى', '12 أيلول', '325,000'], ['INV-0126', 'أسواق النور', '11 أيلول', '210,000'], ['INV-0125', 'مؤسسة الوفاء', '11 أيلول', '185,000']].map(row => <div class="grid grid-cols-4 border-t border-[#e8ece8] px-2 py-2.5 text-[7px]">{row.map(cell => <span>{cell}</span>)}</div>)}</div></div></div></div></div>
-          <div class="order-1 p-8 sm:p-12 lg:order-2 lg:p-16"><span class="inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-2 text-xs font-black text-[#126c38]"><Icon name="tabler:device-desktop" class="h-4 w-4" /> على سطح المكتب</span><h2 class="mt-7 text-4xl font-black tracking-[-0.035em] text-[#102219]">تفاصيل أكثر، بدون ازدحام</h2><p class="mt-5 text-lg leading-8 text-[#52685b]">واجهة Windows تستفيد من الشاشة الكبيرة: جداول أكثف، نماذج أسرع، اختصارات لوحة مفاتيح، وطباعة التقارير والمستندات من مكان العمل نفسه.</p><ul class="mt-8 space-y-4 text-sm font-bold text-[#30493b]"><li class="flex items-center gap-3"><span class="check"><Icon name="tabler:check" class="h-4 w-4" /></span> جداول وفلاتر مهيأة للعمل المكتبي</li><li class="flex items-center gap-3"><span class="check"><Icon name="tabler:check" class="h-4 w-4" /></span> اختصارات للحفظ والتنقل بين الوحدات</li><li class="flex items-center gap-3"><span class="check"><Icon name="tabler:check" class="h-4 w-4" /></span> طباعة وحفظ التقارير والمستندات PDF</li></ul></div>
+          <div
+            class="relative order-2 hidden min-h-[470px] overflow-hidden bg-[#183227] p-7 lg:order-1 lg:block"
+            dir="rtl"
+          >
+            <div class="absolute inset-0 opacity-10 hero-grid"></div><div
+              class="relative mx-auto mt-10 max-w-xl overflow-hidden rounded-2xl border border-white/10 bg-[#f7f9f6] shadow-2xl"
+            >
+              <div class="flex h-8 items-center gap-1.5 bg-[#e9eee9] px-3" dir="ltr">
+                <span class="h-2 w-2 rounded-full bg-[#ff655e]"></span><span class="h-2 w-2 rounded-full bg-[#ffbd44]"
+                ></span><span class="h-2 w-2 rounded-full bg-[#00ca4e]"></span>
+              </div><div class="grid grid-cols-[110px_1fr]">
+                <div class="bg-[#edf2ed] p-3 text-[8px] font-bold text-[#5c6e62]">
+                  <p class="mb-5 text-[9px] font-black text-[#102219]">المبيعات</p>{
+                    ['نظرة عامة', 'الفواتير', 'الزبائن', 'سندات التسليم', 'مردودات المبيعات'].map((item, index) => (
+                      <p class:list={['mb-1 rounded-md px-2 py-2', index === 1 && 'bg-[#dce9df] text-[#126c38]']}>
+                        {item}
+                      </p>
+                    ))
+                  }
+                </div><div class="p-4">
+                  <div class="flex items-center justify-between">
+                    <p class="text-xs font-black">فواتير المبيعات</p><button
+                      class="rounded-md bg-[#126c38] px-2.5 py-1.5 text-[7px] font-bold text-white"
+                      >فاتورة جديدة +</button
+                    >
+                  </div><div class="mt-4 overflow-hidden rounded-lg border border-[#dce5dc]">
+                    <div class="grid grid-cols-4 bg-[#eef2ee] px-2 py-2 text-[7px] font-black">
+                      <span>الرقم</span><span>الزبون</span><span>التاريخ</span><span>الإجمالي</span>
+                    </div>{
+                      [
+                        ['INV-0128', 'متجر الشام', '12 أيلول', '480,000'],
+                        ['INV-0127', 'شركة الهدى', '12 أيلول', '325,000'],
+                        ['INV-0126', 'أسواق النور', '11 أيلول', '210,000'],
+                        ['INV-0125', 'مؤسسة الوفاء', '11 أيلول', '185,000'],
+                      ].map((row) => (
+                        <div class="grid grid-cols-4 border-t border-[#e8ece8] px-2 py-2.5 text-[7px]">
+                          {row.map((cell) => (
+                            <span>{cell}</span>
+                          ))}
+                        </div>
+                      ))
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="order-1 p-8 sm:p-12 lg:order-2 lg:p-16">
+            <span
+              class="inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-2 text-xs font-black text-[#126c38]"
+              ><Icon name="tabler:device-desktop" class="h-4 w-4" /> على سطح المكتب</span
+            ><h2 class="mt-7 text-4xl font-black tracking-[-0.035em] text-[#102219]">تفاصيل أكثر، بدون ازدحام</h2><p
+              class="mt-5 text-lg leading-8 text-[#52685b]"
+            >
+              واجهة Windows تستفيد من الشاشة الكبيرة: جداول أكثف، نماذج أسرع، اختصارات لوحة مفاتيح، وطباعة التقارير
+              والمستندات من مكان العمل نفسه.
+            </p><ul class="mt-8 space-y-4 text-sm font-bold text-[#30493b]">
+              <li class="flex items-center gap-3">
+                <span class="check"><Icon name="tabler:check" class="h-4 w-4" /></span> جداول وفلاتر مهيأة للعمل المكتبي
+              </li><li class="flex items-center gap-3">
+                <span class="check"><Icon name="tabler:check" class="h-4 w-4" /></span> اختصارات للحفظ والتنقل بين الوحدات
+              </li><li class="flex items-center gap-3">
+                <span class="check"><Icon name="tabler:check" class="h-4 w-4" /></span> طباعة وحفظ التقارير والمستندات PDF
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="relative overflow-hidden bg-[#102219] px-5 py-24 text-white sm:px-8 lg:py-32">
-      <div class="hero-grid absolute inset-0 opacity-20"></div><div class="absolute -left-32 top-0 h-96 w-96 rounded-full bg-[#4bb978]/20 blur-3xl"></div>
+      <div class="hero-grid absolute inset-0 opacity-20"></div><div
+        class="absolute -left-32 top-0 h-96 w-96 rounded-full bg-[#4bb978]/20 blur-3xl"
+      >
+      </div>
       <div class="relative mx-auto grid max-w-[1240px] items-center gap-14 lg:grid-cols-[0.9fr_1.1fr]">
-        <div><span class="inline-flex items-center gap-2 rounded-full border border-[#9ee6b8]/20 bg-[#9ee6b8]/10 px-3 py-2 text-xs font-black text-[#a6e4b9]"><Icon name="tabler:sparkles" class="h-4 w-4" /> المساعد الذكي</span><h2 class="mt-7 text-4xl font-black tracking-[-0.035em] sm:text-5xl">اسأل عن عملك<br />بلغة بسيطة</h2><p class="mt-6 max-w-xl text-lg leading-9 text-white/60">بدل البحث بين القوائم، اسأل عن أحدث الفواتير أو مبيعات فترة أو أرصدة العملاء. يحصل المساعد على السياق المسموح فقط، ويترك القرار لك.</p><div class="mt-8 flex flex-wrap gap-2 text-xs font-bold text-white/65"><span class="rounded-full border border-white/10 px-3 py-2">تقارير المبيعات</span><span class="rounded-full border border-white/10 px-3 py-2">العملاء والمواد</span><span class="rounded-full border border-white/10 px-3 py-2">صلاحيات واضحة</span></div></div>
-        <div class="rounded-[30px] border border-white/10 bg-white/[0.06] p-4 shadow-2xl backdrop-blur sm:p-7"><div class="mb-6 flex items-center gap-3 border-b border-white/10 pb-5"><span class="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#a6e4b9] text-[#102219]"><Icon name="tabler:sparkles" class="h-5 w-5" /></span><div><p class="text-sm font-black">مساعد بادنجكي</p><p class="text-[11px] text-white/40">متصل الآن</p></div></div><div class="space-y-4"><div class="mr-auto max-w-[80%] rounded-2xl rounded-bl-md bg-white/10 px-4 py-3 text-sm leading-7 text-white/80">ما هي أحدث فواتير المبيعات؟</div><div class="ml-auto max-w-[88%] rounded-2xl rounded-br-md bg-[#e7f5e9] px-4 py-4 text-sm leading-7 text-[#173f2b] shadow-lg"><p class="font-black">أحدث 3 فواتير مبيعات:</p><div class="mt-3 space-y-2 text-xs"><p class="flex justify-between gap-5"><span>#128 · متجر الشام</span><strong>480,000 ل.س</strong></p><p class="flex justify-between gap-5"><span>#127 · شركة الهدى</span><strong>325,000 ل.س</strong></p><p class="flex justify-between gap-5"><span>#126 · أسواق النور</span><strong>210,000 ل.س</strong></p></div></div><div class="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/10 px-4 py-3 text-sm text-white/35"><span class="flex-1">اسأل عن مبيعاتك، مخزونك، أو عملائك...</span><Icon name="tabler:send" class="h-5 w-5 text-[#a6e4b9]" /></div></div></div>
+        <div>
+          <span
+            class="inline-flex items-center gap-2 rounded-full border border-[#9ee6b8]/20 bg-[#9ee6b8]/10 px-3 py-2 text-xs font-black text-[#a6e4b9]"
+            ><Icon name="tabler:sparkles" class="h-4 w-4" /> المساعد الذكي</span
+          ><h2 class="mt-7 text-4xl font-black tracking-[-0.035em] sm:text-5xl">اسأل عن عملك<br />بلغة بسيطة</h2><p
+            class="mt-6 max-w-xl text-lg leading-9 text-white/60"
+          >
+            بدل البحث بين القوائم، اسأل عن أحدث الفواتير أو مبيعات فترة أو أرصدة العملاء. يحصل المساعد على السياق
+            المسموح فقط، ويترك القرار لك.
+          </p><div class="mt-8 flex flex-wrap gap-2 text-xs font-bold text-white/65">
+            <span class="rounded-full border border-white/10 px-3 py-2">تقارير المبيعات</span><span
+              class="rounded-full border border-white/10 px-3 py-2">العملاء والمواد</span
+            ><span class="rounded-full border border-white/10 px-3 py-2">صلاحيات واضحة</span>
+          </div>
+        </div>
+        <div class="rounded-[30px] border border-white/10 bg-white/[0.06] p-4 shadow-2xl backdrop-blur sm:p-7">
+          <div class="mb-6 flex items-center gap-3 border-b border-white/10 pb-5">
+            <span class="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#a6e4b9] text-[#102219]"
+              ><Icon name="tabler:sparkles" class="h-5 w-5" /></span
+            ><div>
+              <p class="text-sm font-black">مساعد بادنجكي</p><p class="text-[11px] text-white/40">متصل الآن</p>
+            </div>
+          </div><div class="space-y-4">
+            <div
+              class="mr-auto max-w-[80%] rounded-2xl rounded-bl-md bg-white/10 px-4 py-3 text-sm leading-7 text-white/80"
+            >
+              ما هي أحدث فواتير المبيعات؟
+            </div><div
+              class="ml-auto max-w-[88%] rounded-2xl rounded-br-md bg-[#e7f5e9] px-4 py-4 text-sm leading-7 text-[#173f2b] shadow-lg"
+            >
+              <p class="font-black">أحدث 3 فواتير مبيعات:</p><div class="mt-3 space-y-2 text-xs">
+                <p class="flex justify-between gap-5"><span>#128 · متجر الشام</span><strong>480,000 ل.س</strong></p><p
+                  class="flex justify-between gap-5"
+                >
+                  <span>#127 · شركة الهدى</span><strong>325,000 ل.س</strong>
+                </p><p class="flex justify-between gap-5">
+                  <span>#126 · أسواق النور</span><strong>210,000 ل.س</strong>
+                </p>
+              </div>
+            </div><div
+              class="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/10 px-4 py-3 text-sm text-white/35"
+            >
+              <span class="flex-1">اسأل عن مبيعاتك، مخزونك، أو عملائك...</span><Icon
+                name="tabler:send"
+                class="h-5 w-5 text-[#a6e4b9]"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="px-5 py-24 sm:px-8 lg:py-32">
       <div class="mx-auto grid max-w-[1240px] gap-14 lg:grid-cols-[0.72fr_1.28fr]">
-        <div><p class="text-sm font-black text-[#168342]">أسئلة شائعة</p><h2 class="mt-4 text-4xl font-black tracking-[-0.035em] text-[#102219] sm:text-5xl">قبل أن تبدأ</h2><p class="mt-6 max-w-md text-lg leading-8 text-[#5a6e62]">إذا كان لديك سؤال آخر عن التفعيل أو نقل بياناتك، فريقنا جاهز لمساعدتك.</p><a href="/contact" class="mt-8 inline-flex items-center gap-2 text-sm font-black text-[#126c38]">تواصل معنا <Icon name="tabler:arrow-left" class="h-4 w-4" /></a></div>
-        <div class="divide-y divide-[#173f2b]/10 border-y border-[#173f2b]/10">{faqs.map((faq, index) => <details class="faq group py-1" open={index === 0}><summary class="flex cursor-pointer list-none items-center justify-between gap-5 py-6 text-lg font-black text-[#173f2b] marker:hidden"><span>{faq.question}</span><span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#173f2b]/15 transition group-open:rotate-45 group-open:bg-[#173f2b] group-open:text-white"><Icon name="tabler:plus" class="h-4 w-4" /></span></summary><p class="max-w-2xl pb-7 pl-12 leading-8 text-[#5a6e62]">{faq.answer}</p></details>)}</div>
+        <div>
+          <p class="text-sm font-black text-[#168342]">أسئلة شائعة</p><h2
+            class="mt-4 text-4xl font-black tracking-[-0.035em] text-[#102219] sm:text-5xl"
+          >
+            قبل أن تبدأ
+          </h2><p class="mt-6 max-w-md text-lg leading-8 text-[#5a6e62]">
+            إذا كان لديك سؤال آخر عن التفعيل أو نقل بياناتك، فريقنا جاهز لمساعدتك.
+          </p><a href="/contact" class="mt-8 inline-flex items-center gap-2 text-sm font-black text-[#126c38]"
+            >تواصل معنا <Icon name="tabler:arrow-left" class="h-4 w-4" /></a
+          >
+        </div>
+        <div class="divide-y divide-[#173f2b]/10 border-y border-[#173f2b]/10">
+          {
+            faqs.map((faq, index) => (
+              <details class="faq group py-1" open={index === 0}>
+                <>
+                  <summary class="flex cursor-pointer list-none items-center justify-between gap-5 py-6 text-lg font-black text-[#173f2b] marker:hidden">
+                    <>
+                      <span>{faq.question}</span>
+                      <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#173f2b]/15 transition group-open:rotate-45 group-open:bg-[#173f2b] group-open:text-white">
+                        <Icon name="tabler:plus" class="h-4 w-4" />
+                      </span>
+                    </>
+                  </summary>
+                  <p class="max-w-2xl pb-7 pl-12 leading-8 text-[#5a6e62]">{faq.answer}</p>
+                </>
+              </details>
+            ))
+          }
+        </div>
       </div>
     </section>
 
     <section id="download" class="px-5 pb-8 sm:px-8">
-      <div class="relative mx-auto max-w-[1240px] overflow-hidden rounded-[38px] bg-[#a6e4b9] px-7 py-14 text-center sm:px-12 sm:py-20"><div class="hero-grid absolute inset-0 opacity-25"></div><div class="relative mx-auto max-w-3xl"><img src={appMark.src} alt="" class="mx-auto h-16 w-16 rounded-2xl shadow-lg" /><h2 class="mt-7 text-4xl font-black leading-[1.2] tracking-[-0.04em] text-[#102219] sm:text-5xl">ابدأ من الجهاز الذي يناسب يومك</h2><p class="mx-auto mt-5 max-w-xl text-lg leading-8 text-[#31503e]">حمّل التطبيق مباشرة من App Store أو Google Play أو Windows، واختر الجهاز الذي يناسب يوم عملك.</p><div class="mt-9 flex flex-wrap items-center justify-center gap-3"><a href={appStoreLink} target="_blank" rel="noopener noreferrer" aria-label="تحميل بادنجكي الإداري من App Store" class="store-link"><img src={appStoreBadge.src} alt="Download on the App Store" class="h-[50px] w-auto" /></a><a href={googlePlayLink} target="_blank" rel="noopener noreferrer" aria-label="تحميل بادنجكي الإداري من Google Play" class="store-link"><img src={googlePlayBadge.src} alt="Get it on Google Play" class="h-[50px] w-auto" /></a><a href={desktopDownloadLink} target="_blank" rel="noopener noreferrer" class="windows-badge" aria-label="تحميل بادنجكي الإداري لنظام Windows"><Icon name="tabler:brand-windows" class="h-6 w-6" /><span class="text-right leading-tight"><small class="block text-[9px] font-medium text-white/70">تحميل لنظام</small><strong class="block text-[17px] font-semibold" dir="ltr">Windows</strong></span></a></div><a href="/badenjki-business/privacy" class="mt-7 inline-flex items-center gap-2 text-xs font-bold text-[#31503e] hover:text-[#102219]"><Icon name="tabler:shield-lock" class="h-4 w-4" /> سياسة خصوصية بادنجكي الإداري</a></div></div>
+      <div
+        class="relative mx-auto max-w-[1240px] overflow-hidden rounded-[38px] bg-[#a6e4b9] px-7 py-14 text-center sm:px-12 sm:py-20"
+      >
+        <div class="hero-grid absolute inset-0 opacity-25"></div><div class="relative mx-auto max-w-3xl">
+          <img src={appMark.src} alt="" class="mx-auto h-16 w-16 rounded-2xl shadow-lg" /><h2
+            class="mt-7 text-4xl font-black leading-[1.2] tracking-[-0.04em] text-[#102219] sm:text-5xl"
+          >
+            ابدأ من الجهاز الذي يناسب يومك
+          </h2><p class="mx-auto mt-5 max-w-xl text-lg leading-8 text-[#31503e]">
+            حمّل التطبيق مباشرة من App Store أو Google Play أو Windows، واختر الجهاز الذي يناسب يوم عملك.
+          </p><div class="mt-9 flex flex-wrap items-center justify-center gap-3">
+            <a
+              href={appStoreLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="تحميل بادنجكي الإداري من App Store"
+              class="store-link"
+              ><img src={appStoreBadge.src} alt="Download on the App Store" class="h-[50px] w-auto" /></a
+            ><a
+              href={googlePlayLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="تحميل بادنجكي الإداري من Google Play"
+              class="store-link"
+              ><img src={googlePlayBadge.src} alt="Get it on Google Play" class="h-[50px] w-auto" /></a
+            ><a
+              href={desktopDownloadLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="windows-badge"
+              aria-label="تحميل بادنجكي الإداري لنظام Windows"
+              ><Icon name="tabler:brand-windows" class="h-6 w-6" /><span class="text-right leading-tight"
+                ><small class="block text-[9px] font-medium text-white/70">تحميل لنظام</small><strong
+                  class="block text-[17px] font-semibold"
+                  dir="ltr">Windows</strong
+                ></span
+              ></a
+            >
+          </div><a
+            href="/badenjki-business/privacy"
+            class="mt-7 inline-flex items-center gap-2 text-xs font-bold text-[#31503e] hover:text-[#102219]"
+            ><Icon name="tabler:shield-lock" class="h-4 w-4" /> سياسة خصوصية بادنجكي الإداري</a
+          >
+        </div>
+      </div>
     </section>
   </div>
 
   <style>
-    .product-page { font-family: 'Rubik Variable', 'Cairo Variable', sans-serif; }
-    .hero-grid { background-image: linear-gradient(rgba(16, 34, 25, 0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(16, 34, 25, 0.055) 1px, transparent 1px); background-size: 48px 48px; mask-image: linear-gradient(to bottom, black 20%, transparent 92%); }
-    .module-card .module-icon { background: #e2f3e7; color: #168342; }
-    .module-card.tone-amber .module-icon { background: #fff0d4; color: #a76d10; }
-    .module-card.tone-blue .module-icon { background: #e3eefb; color: #3977b8; }
-    .module-card.tone-violet .module-icon { background: #eee8fb; color: #7958b4; }
-    .module-card.tone-rose .module-icon { background: #f9e5e3; color: #b55750; }
-    .module-card.tone-teal .module-icon { background: #dff2ef; color: #187c70; }
-    .check { display: flex; height: 1.75rem; width: 1.75rem; flex-shrink: 0; align-items: center; justify-content: center; border-radius: 9999px; background: white; color: #168342; }
-    .store-link { display: inline-flex; transition: transform .2s ease, opacity .2s ease; }
-    .store-link:hover { transform: translateY(-2px); opacity: .88; }
-    .windows-badge { display: inline-flex; height: 50px; min-width: 164px; align-items: center; justify-content: center; gap: .65rem; border: 1px solid rgb(255 255 255 / .28); border-radius: 7px; background: #050505; padding: 0 .9rem; color: white; transition: transform .2s ease, opacity .2s ease; }
-    .windows-badge:hover { transform: translateY(-2px); opacity: .88; }
-    .faq summary::-webkit-details-marker { display: none; }
+    .product-page {
+      font-family: 'Rubik Variable', 'Cairo Variable', sans-serif;
+    }
+    .hero-grid {
+      background-image:
+        linear-gradient(rgba(16, 34, 25, 0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(16, 34, 25, 0.055) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(to bottom, black 20%, transparent 92%);
+    }
+    .module-card .module-icon {
+      background: #e2f3e7;
+      color: #168342;
+    }
+    .module-card.tone-amber .module-icon {
+      background: #fff0d4;
+      color: #a76d10;
+    }
+    .module-card.tone-blue .module-icon {
+      background: #e3eefb;
+      color: #3977b8;
+    }
+    .module-card.tone-violet .module-icon {
+      background: #eee8fb;
+      color: #7958b4;
+    }
+    .module-card.tone-rose .module-icon {
+      background: #f9e5e3;
+      color: #b55750;
+    }
+    .module-card.tone-teal .module-icon {
+      background: #dff2ef;
+      color: #187c70;
+    }
+    .check {
+      display: flex;
+      height: 1.75rem;
+      width: 1.75rem;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9999px;
+      background: white;
+      color: #168342;
+    }
+    .store-link {
+      display: inline-flex;
+      transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+    }
+    .store-link:hover {
+      transform: translateY(-2px);
+      opacity: 0.88;
+    }
+    .windows-badge {
+      display: inline-flex;
+      height: 50px;
+      min-width: 164px;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      border: 1px solid rgb(255 255 255 / 0.28);
+      border-radius: 7px;
+      background: #050505;
+      padding: 0 0.9rem;
+      color: white;
+      transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+    }
+    .windows-badge:hover {
+      transform: translateY(-2px);
+      opacity: 0.88;
+    }
+    .faq summary::-webkit-details-marker {
+      display: none;
+    }
   </style>
 </Layout>

@@ -33,58 +33,88 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
   {...id ? { id } : {}}
 >
   <div class="mx-auto flex h-[84px] max-w-[1480px] items-center justify-between px-5 sm:px-8 lg:px-12">
-    <a class="flex shrink-0 items-center focus:outline-none focus:ring-2 focus:ring-[#9cff7e]" href={getHomePermalink()} aria-label="الرئيسية">
+    <a
+      class="flex shrink-0 items-center focus:outline-none focus:ring-2 focus:ring-[#9cff7e]"
+      href={getHomePermalink()}
+      aria-label="الرئيسية"
+    >
       <Logo />
     </a>
 
-    <nav class="hidden items-center gap-8 md:flex" aria-label="Main navigation">
-      {links.map(({ text, href }) => (
-        <a
-          class:list={[
-            'relative py-2 text-sm font-bold text-white/58 transition hover:text-white',
-            { 'text-white after:absolute after:inset-x-0 after:-bottom-1 after:h-px after:bg-[#9cff7e]': href === currentPath },
-          ]}
-          href={href}
-        >
-          {text}
-        </a>
-      ))}
+    <nav class="hidden items-center gap-8 md:flex" aria-label="التنقل الرئيسي">
+      {
+        links.map(({ text, href }) => (
+          <a
+            class:list={[
+              'relative py-2 text-sm font-bold text-white/58 transition hover:text-white',
+              {
+                'text-white after:absolute after:inset-x-0 after:-bottom-1 after:h-px after:bg-[#9cff7e]':
+                  href === currentPath,
+              },
+            ]}
+            href={href}
+          >
+            {text}
+          </a>
+        ))
+      }
     </nav>
 
     <div class="hidden items-center md:flex">
-      {actions.slice(0, 1).map((action) => (
-        <a
-          href={action.href}
-          target={action.target}
-          rel={action.target === '_blank' ? 'noopener noreferrer' : undefined}
-          class="inline-flex h-11 items-center gap-2 border border-white/20 px-5 text-sm font-black text-white transition hover:border-[#9cff7e] hover:bg-[#9cff7e] hover:text-[#111511]"
-        >
-          {action.text}
-          <Icon name="tabler:arrow-up-left" class="h-4 w-4" />
-        </a>
-      ))}
+      {
+        actions.slice(0, 1).map((action) => (
+          <a
+            href={action.href}
+            target={action.target}
+            rel={action.target === '_blank' ? 'noopener noreferrer' : undefined}
+            class="inline-flex h-11 items-center gap-2 border border-white/20 px-5 text-sm font-black text-white transition hover:border-[#9cff7e] hover:bg-[#9cff7e] hover:text-[#111511]"
+          >
+            {action.text}
+            <Icon name="tabler:arrow-up-left" class="h-4 w-4" />
+          </a>
+        ))
+      }
     </div>
 
     <div class="flex items-center md:hidden">
-      <ToggleMenu class="group flex h-11 w-11 cursor-pointer flex-col items-center justify-center border border-white/20 text-white" />
+      <ToggleMenu
+        class="group flex h-11 w-11 cursor-pointer flex-col items-center justify-center border border-white/20 text-white"
+      />
     </div>
   </div>
 
-  <nav data-aw-mobile-nav class="hidden h-[calc(100svh-84px)] border-t border-white/10 bg-[#0a0c0a] px-5 py-8 md:hidden" aria-label="Mobile navigation">
+  <nav
+    data-aw-mobile-nav
+    class="hidden h-[calc(100svh-84px)] border-t border-white/10 bg-[#0a0c0a] px-5 py-8 md:hidden"
+    aria-label="التنقل على الجوال"
+  >
     <div class="flex h-full flex-col">
       <div class="divide-y divide-white/10 border-t border-white/10">
-        {links.map(({ text, href }, index) => (
-          <a class="flex items-center justify-between py-5 text-2xl font-black text-white" href={href}>
-            <span>{text}</span><span class="text-xs font-bold text-white/25">0{index + 1}</span>
-          </a>
-        ))}
+        {
+          links.map(({ text, href }, index) => (
+            <a class="flex items-center justify-between py-5 text-2xl font-black text-white" href={href}>
+              <>
+                <span>{text}</span>
+                <span class="text-xs font-bold text-white/25">0{index + 1}</span>
+              </>
+            </a>
+          ))
+        }
       </div>
       <div class="mt-auto">
-        {actions.slice(0, 1).map((action) => (
-          <a href={action.href} target={action.target} rel={action.target === '_blank' ? 'noopener noreferrer' : undefined} class="flex h-14 items-center justify-center gap-2 bg-[#9cff7e] px-6 font-black text-[#111511]">
-            {action.text}<Icon name="tabler:arrow-up-left" class="h-4 w-4" />
-          </a>
-        ))}
+        {
+          actions.slice(0, 1).map((action) => (
+            <a
+              href={action.href}
+              target={action.target}
+              rel={action.target === '_blank' ? 'noopener noreferrer' : undefined}
+              class="flex h-14 items-center justify-center gap-2 bg-[#9cff7e] px-6 font-black text-[#111511]"
+            >
+              {action.text}
+              <Icon name="tabler:arrow-up-left" class="h-4 w-4" />
+            </a>
+          ))
+        }
         <p class="mt-6 text-center text-[10px] font-bold tracking-wide text-white/30">حلب، سوريا · س.ت 23888/2025</p>
       </div>
     </div>

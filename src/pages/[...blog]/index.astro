@@ -43,9 +43,39 @@ const metadata = merge(
   },
   { ...(post?.metadata ? { ...post.metadata, canonical: post.metadata?.canonical || url } : {}) }
 ) as MetaData;
+
+const imageUrl = image
+  ? new URL(typeof image === 'string' ? image : image.src, Astro.site).toString()
+  : 'https://rabeh.sy/';
+const structuredData = [
+  {
+    '@type': 'BlogPosting',
+    '@id': `${url}#article`,
+    headline: post.title,
+    description: post.excerpt,
+    url: String(url),
+    mainEntityOfPage: { '@id': `${url}#webpage` },
+    datePublished: post.publishDate.toISOString(),
+    ...(post.updateDate ? { dateModified: post.updateDate.toISOString() } : {}),
+    ...(image ? { image: imageUrl } : {}),
+    inLanguage: 'ar',
+    author: { '@type': 'Person', name: post.author || 'فريق رابح' },
+    publisher: { '@id': 'https://rabeh.sy/#organization' },
+    ...(post.category ? { articleSection: post.category.title } : {}),
+    ...(post.tags?.length ? { keywords: post.tags.map((tag) => tag.title).join(', ') } : {}),
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'الرئيسية', item: 'https://rabeh.sy/' },
+      { '@type': 'ListItem', position: 2, name: 'المدونة', item: 'https://rabeh.sy/blog' },
+      { '@type': 'ListItem', position: 3, name: post.title, item: String(url) },
+    ],
+  },
+];
 ---
 
-<Layout metadata={metadata}>
+<Layout metadata={metadata} structuredData={structuredData}>
   <SinglePost post={{ ...post, image: image }} url={url}>
     {post.Content ? <post.Content /> : <Fragment set:html={post.content || ''} />}
   </SinglePost>
