@@ -1,0 +1,41 @@
+---
+---
+
+<dialog id="badenjki-signup" aria-labelledby="badenjki-signup-title" class="fixed inset-0 m-auto w-[min(94vw,490px)] max-h-[90vh] overflow-y-auto overscroll-contain border border-[#a6cdb2] bg-[#f4f5ed] p-0 text-[#102219] shadow-2xl backdrop:bg-[#07140d]/75" dir="rtl">
+  <div class="p-6 sm:p-8">
+    <div class="flex items-start justify-between gap-5">
+      <div>
+        <p class="text-xs font-bold text-[#168342]">بادنجكي الإداري</p>
+        <h2 id="badenjki-signup-title" class="mt-2 text-2xl font-black">سجّل رقمك قبل التحميل</h2>
+      </div>
+      <button type="button" data-signup-close aria-label="إغلاق" class="text-2xl leading-none">×</button>
+    </div>
+    <p class="mt-4 text-sm leading-7 text-[#456254]">خطوة قصيرة لحفظ مصدر زيارتك. أكمل إعداد عملك داخل التطبيق بعد التثبيت.</p>
+    <form id="badenjki-signup-form" class="mt-6 space-y-4">
+      <div>
+        <label for="badenjki-country" class="mb-1 block text-sm font-bold">البلد</label>
+        <select id="badenjki-country" required class="w-full border border-[#a6cdb2] bg-white px-3 py-3"><option value="SY">سوريا</option><option value="SA">السعودية</option><option value="AE">الإمارات</option><option value="IQ">العراق</option><option value="JO">الأردن</option><option value="LB">لبنان</option><option value="TR">تركيا</option><option value="US">الولايات المتحدة</option></select>
+      </div>
+      <div>
+        <label for="badenjki-phone" class="mb-1 block text-sm font-bold">رقم الهاتف مع رمز البلد</label>
+        <input id="badenjki-phone" type="tel" inputmode="tel" autocomplete="tel" required minlength="6" maxlength="24" placeholder="+963…" class="w-full border border-[#a6cdb2] bg-white px-3 py-3" dir="ltr" />
+      </div>
+      <div id="badenjki-code-field" hidden>
+        <label for="badenjki-code" class="mb-1 block text-sm font-bold">رمز التحقق</label>
+        <input id="badenjki-code" type="text" inputmode="numeric" autocomplete="one-time-code" class="w-full border border-[#a6cdb2] bg-white px-3 py-3" dir="ltr" />
+        <button type="button" id="badenjki-resend" class="mt-2 text-sm font-bold text-[#13743b] underline" hidden>إعادة إرسال الرمز</button>
+      </div>
+      <p id="badenjki-signup-error" role="alert" class="text-sm font-semibold text-red-700" hidden></p>
+      <button id="badenjki-submit" type="submit" class="w-full bg-[#102219] px-5 py-3 font-bold text-white">متابعة</button>
+    </form>
+    <div id="badenjki-success" hidden class="mt-6">
+      <p class="font-bold">استخدم رقم الهاتف نفسه عند إعداد التطبيق.</p>
+      <p class="mt-2 text-sm text-[#456254]">سيُفتح المتجر في نافذة جديدة. إذا منع المتصفح ذلك، استخدم الزر أدناه.</p>
+      <a id="badenjki-continue" href="#" target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex bg-[#13743b] px-6 py-3 font-bold text-white">متابعة التحميل</a>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  import '~/scripts/badenjki-signup';
+</script>

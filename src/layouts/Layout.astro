@@ -12,6 +12,7 @@ import SiteVerification from '~/components/common/SiteVerification.astro';
 import Analytics from '~/components/common/Analytics.astro';
 import BasicScripts from '~/components/common/BasicScripts.astro';
 import StructuredData from '~/components/common/StructuredData.astro';
+import BadenjkiSignup from '~/components/BadenjkiSignup.astro';
 import logoLight from '~/assets/images/logo-light.png';
 import socialHome from '~/assets/images/social-home.jpg';
 
@@ -106,6 +107,7 @@ const schemaGraph = [...baseSchema, ...structuredData];
   </head>
 
   <body class="antialiased text-default bg-page tracking-tight">
+    <BadenjkiSignup />
     <slot />
 
     <BasicScripts />

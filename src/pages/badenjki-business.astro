@@ -5,10 +5,6 @@ import appMark from '~/assets/images/badenjki-business-mark.png';
 import appStoreBadge from '~/assets/images/app-store.png';
 import googlePlayBadge from '~/assets/images/google-play.png';
 
-const googlePlayLink = 'https://play.google.com/store/apps/details?id=com.badenjkibusiness';
-const appStoreLink = 'https://apps.apple.com/us/app/badenjki-business/id6785101780';
-const desktopDownloadLink = 'https://drive.google.com/uc?export=download&id=1EpreyZlvTL4cw__Uo1srZZuduNpr2BL1';
-
 const modules = [
   {
     title: 'المبيعات',
@@ -98,7 +94,6 @@ const structuredData = [
     inLanguage: ['ar', 'en'],
     image: new URL(appMark.src, Astro.site).toString(),
     author: { '@id': 'https://rabeh.sy/#organization' },
-    downloadUrl: [googlePlayLink, appStoreLink, desktopDownloadLink],
     featureList: modules.map((module) => module.title),
   },
   {
@@ -178,26 +173,23 @@ const structuredData = [
           </p>
 
           <div class="mt-10 flex flex-wrap items-center gap-3">
-            <a
-              href={appStoreLink}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              data-download-platform="ios"
               aria-label="تحميل بادنجكي الإداري من App Store"
               class="store-link"
-              ><img src={appStoreBadge.src} alt="Download on the App Store" class="h-[50px] w-auto" /></a
+              ><img src={appStoreBadge.src} alt="Download on the App Store" class="h-[50px] w-auto" /></button
             >
-            <a
-              href={googlePlayLink}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              data-download-platform="android"
               aria-label="تحميل بادنجكي الإداري من Google Play"
               class="store-link"
-              ><img src={googlePlayBadge.src} alt="Get it on Google Play" class="h-[50px] w-auto" /></a
+              ><img src={googlePlayBadge.src} alt="Get it on Google Play" class="h-[50px] w-auto" /></button
             >
-            <a
-              href={desktopDownloadLink}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              data-download-platform="windows"
               class="windows-badge"
               aria-label="تحميل بادنجكي الإداري لنظام Windows"
               ><Icon name="tabler:brand-windows" class="h-6 w-6" /><span class="text-right leading-tight"
@@ -205,7 +197,7 @@ const structuredData = [
                   class="block text-[17px] font-semibold"
                   dir="ltr">Windows</strong
                 ></span
-              ></a
+              ></button
             >
           </div>
 
@@ -699,26 +691,23 @@ const structuredData = [
           >
             ابدأ من الجهاز الذي يناسب يومك
           </h2><p class="mx-auto mt-5 max-w-xl text-lg leading-8 text-[#31503e]">
-            حمّل التطبيق مباشرة من App Store أو Google Play أو Windows، واختر الجهاز الذي يناسب يوم عملك.
+            سجّل رقم هاتفك بخطوة قصيرة، ثم حمّل التطبيق من App Store أو Google Play أو Windows.
           </p><div class="mt-9 flex flex-wrap items-center justify-center gap-3">
-            <a
-              href={appStoreLink}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              data-download-platform="ios"
               aria-label="تحميل بادنجكي الإداري من App Store"
               class="store-link"
-              ><img src={appStoreBadge.src} alt="Download on the App Store" class="h-[50px] w-auto" /></a
-            ><a
-              href={googlePlayLink}
-              target="_blank"
-              rel="noopener noreferrer"
+              ><img src={appStoreBadge.src} alt="Download on the App Store" class="h-[50px] w-auto" /></button
+            ><button
+              type="button"
+              data-download-platform="android"
               aria-label="تحميل بادنجكي الإداري من Google Play"
               class="store-link"
-              ><img src={googlePlayBadge.src} alt="Get it on Google Play" class="h-[50px] w-auto" /></a
-            ><a
-              href={desktopDownloadLink}
-              target="_blank"
-              rel="noopener noreferrer"
+              ><img src={googlePlayBadge.src} alt="Get it on Google Play" class="h-[50px] w-auto" /></button
+            ><button
+              type="button"
+              data-download-platform="windows"
               class="windows-badge"
               aria-label="تحميل بادنجكي الإداري لنظام Windows"
               ><Icon name="tabler:brand-windows" class="h-6 w-6" /><span class="text-right leading-tight"
@@ -726,7 +715,7 @@ const structuredData = [
                   class="block text-[17px] font-semibold"
                   dir="ltr">Windows</strong
                 ></span
-              ></a
+              ></button
             >
           </div><a
             href="/badenjki-business/privacy"
