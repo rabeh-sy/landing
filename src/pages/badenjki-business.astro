@@ -2,8 +2,6 @@
 import { Icon } from 'astro-icon/components';
 import Layout from '~/layouts/PageLayout.astro';
 import appMark from '~/assets/images/badenjki-business-mark.png';
-import appStoreBadge from '~/assets/images/app-store.png';
-import googlePlayBadge from '~/assets/images/google-play.png';
 
 const modules = [
   {
@@ -176,27 +174,35 @@ const structuredData = [
             <button
               type="button"
               data-download-platform="ios"
-              aria-label="تحميل بادنجكي الإداري من App Store"
-              class="store-link"
-              ><img src={appStoreBadge.src} alt="Download on the App Store" class="h-[50px] w-auto" /></button
+              aria-label="تحميل بادنجكي الإداري من متجر أبل"
+              class="download-badge"
+              ><Icon name="tabler:brand-apple-filled" class="h-[29px] w-[29px] shrink-0" /><span class="text-right leading-none" dir="rtl"
+                ><small class="block text-[11px] font-medium">التحميل من</small><strong class="mt-0.5 block text-[17px] font-semibold">متجر أبل</strong></span
+              ></button
             >
             <button
               type="button"
               data-download-platform="android"
-              aria-label="تحميل بادنجكي الإداري من Google Play"
-              class="store-link"
-              ><img src={googlePlayBadge.src} alt="Get it on Google Play" class="h-[50px] w-auto" /></button
+              aria-label="تحميل بادنجكي الإداري من متجر غوغل"
+              class="download-badge"
+              ><Icon name="tabler:brand-google-play" class="h-[29px] w-[29px] shrink-0" /><span class="text-right leading-none" dir="rtl"
+                ><small class="block text-[11px] font-medium">التحميل من</small><strong class="mt-0.5 block text-[17px] font-semibold">متجر غوغل</strong></span
+              ></button
             >
             <button
               type="button"
               data-download-platform="windows"
-              class="windows-badge"
-              aria-label="تحميل بادنجكي الإداري لنظام Windows"
-              ><Icon name="tabler:brand-windows" class="h-6 w-6" /><span class="text-right leading-tight"
-                ><small class="block text-[9px] font-medium text-white/70">تحميل لنظام</small><strong
-                  class="block text-[17px] font-semibold"
-                  dir="ltr">Windows</strong
+              class="download-badge"
+              aria-label="تحميل بادنجكي الإداري لنظام ويندوز"
+              ><Icon name="tabler:brand-windows" class="h-[29px] w-[29px] shrink-0" /><span class="text-right leading-none" dir="rtl"
+                ><small class="block text-[11px] font-medium">التحميل لنظام</small><strong
+                  class="mt-0.5 block text-[17px] font-semibold">ويندوز</strong
                 ></span
+              ></button
+            >
+            <button type="button" class="download-badge" aria-label="تحميل بادنجكي الإداري لنظام ماك بمعالج آبل سيليكون" disabled
+              ><Icon name="tabler:brand-apple-filled" class="h-[29px] w-[29px] shrink-0" /><span class="text-right leading-none" dir="rtl"
+                ><small class="block text-[11px] font-medium">معالج آبل سيليكون</small><strong class="mt-0.5 block text-[17px] font-semibold">ماك</strong></span
               ></button
             >
           </div>
@@ -691,30 +697,38 @@ const structuredData = [
           >
             ابدأ من الجهاز الذي يناسب يومك
           </h2><p class="mx-auto mt-5 max-w-xl text-lg leading-8 text-[#31503e]">
-            سجّل رقم هاتفك بخطوة قصيرة، ثم حمّل التطبيق من App Store أو Google Play أو Windows.
+            سجّل رقم هاتفك بخطوة قصيرة، ثم حمّل التطبيق من متجر أبل أو متجر غوغل أو ويندوز.
           </p><div class="mt-9 flex flex-wrap items-center justify-center gap-3">
             <button
               type="button"
               data-download-platform="ios"
-              aria-label="تحميل بادنجكي الإداري من App Store"
-              class="store-link"
-              ><img src={appStoreBadge.src} alt="Download on the App Store" class="h-[50px] w-auto" /></button
+              aria-label="تحميل بادنجكي الإداري من متجر أبل"
+              class="download-badge"
+              ><Icon name="tabler:brand-apple-filled" class="h-[29px] w-[29px] shrink-0" /><span class="text-right leading-none" dir="rtl"
+                ><small class="block text-[11px] font-medium">التحميل من</small><strong class="mt-0.5 block text-[17px] font-semibold">متجر أبل</strong></span
+              ></button
             ><button
               type="button"
               data-download-platform="android"
-              aria-label="تحميل بادنجكي الإداري من Google Play"
-              class="store-link"
-              ><img src={googlePlayBadge.src} alt="Get it on Google Play" class="h-[50px] w-auto" /></button
+              aria-label="تحميل بادنجكي الإداري من متجر غوغل"
+              class="download-badge"
+              ><Icon name="tabler:brand-google-play" class="h-[29px] w-[29px] shrink-0" /><span class="text-right leading-none" dir="rtl"
+                ><small class="block text-[11px] font-medium">التحميل من</small><strong class="mt-0.5 block text-[17px] font-semibold">متجر غوغل</strong></span
+              ></button
             ><button
               type="button"
               data-download-platform="windows"
-              class="windows-badge"
-              aria-label="تحميل بادنجكي الإداري لنظام Windows"
-              ><Icon name="tabler:brand-windows" class="h-6 w-6" /><span class="text-right leading-tight"
-                ><small class="block text-[9px] font-medium text-white/70">تحميل لنظام</small><strong
-                  class="block text-[17px] font-semibold"
-                  dir="ltr">Windows</strong
+              class="download-badge"
+              aria-label="تحميل بادنجكي الإداري لنظام ويندوز"
+              ><Icon name="tabler:brand-windows" class="h-[29px] w-[29px] shrink-0" /><span class="text-right leading-none" dir="rtl"
+                ><small class="block text-[11px] font-medium">التحميل لنظام</small><strong
+                  class="mt-0.5 block text-[17px] font-semibold">ويندوز</strong
                 ></span
+              ></button
+            >
+            <button type="button" class="download-badge" aria-label="تحميل بادنجكي الإداري لنظام ماك بمعالج آبل سيليكون" disabled
+              ><Icon name="tabler:brand-apple-filled" class="h-[29px] w-[29px] shrink-0" /><span class="text-right leading-none" dir="rtl"
+                ><small class="block text-[11px] font-medium">معالج آبل سيليكون</small><strong class="mt-0.5 block text-[17px] font-semibold">ماك</strong></span
               ></button
             >
           </div><a
@@ -773,35 +787,32 @@ const structuredData = [
       background: white;
       color: #168342;
     }
-    .store-link {
+    .download-badge {
       display: inline-flex;
-      transition:
-        transform 0.2s ease,
-        opacity 0.2s ease;
-    }
-    .store-link:hover {
-      transform: translateY(-2px);
-      opacity: 0.88;
-    }
-    .windows-badge {
-      display: inline-flex;
+      direction: rtl;
       height: 50px;
-      min-width: 164px;
+      min-width: 169px;
+      width: max-content;
       align-items: center;
-      justify-content: center;
-      gap: 0.65rem;
-      border: 1px solid rgb(255 255 255 / 0.28);
-      border-radius: 7px;
-      background: #050505;
-      padding: 0 0.9rem;
+      justify-content: flex-start;
+      gap: 0.5rem;
+      border: 1px solid white;
+      border-radius: 6px;
+      background: #000;
+      padding: 0 0.65rem;
       color: white;
+      white-space: nowrap;
       transition:
         transform 0.2s ease,
         opacity 0.2s ease;
     }
-    .windows-badge:hover {
+    .download-badge:not(:disabled):hover {
       transform: translateY(-2px);
       opacity: 0.88;
+    }
+    .download-badge:focus-visible {
+      outline: 2px solid #13743b;
+      outline-offset: 3px;
     }
     .faq summary::-webkit-details-marker {
       display: none;

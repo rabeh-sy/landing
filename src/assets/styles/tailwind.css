@@ -114,8 +114,3 @@
     transform: translateX(50%);
   }
 }
-/* Highlight the visitor's likely platform while keeping every platform available. */
-[data-download-platform].badenjki-recommended {
-  outline: 2px solid #13743b;
-  outline-offset: 2px;
-}

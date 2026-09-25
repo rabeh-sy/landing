@@ -149,11 +149,6 @@ async function captureReferral() {
   }
 }
 
-function platformRecommendation(): BadenjkiPlatform {
-  const agent = navigator.userAgent;
-  return /iPhone|iPad|iPod/i.test(agent) ? 'ios' : /Android/i.test(agent) ? 'android' : 'windows';
-}
-
 function dialog(): HTMLDialogElement | null { return document.querySelector('#badenjki-signup'); }
 function field<T extends HTMLElement>(selector: string): T { return document.querySelector<T>(selector)!; }
 function showError(message: string) {
@@ -319,10 +314,6 @@ function initializePage() {
     void referralPromise.then(() => { if (document.body === pageBody && !pendingCampaigns().length) recordEvent('landing_visit'); });
   }
   void status().catch(() => undefined);
-  const recommended = platformRecommendation();
-  document.querySelectorAll<HTMLElement>('[data-download-platform]').forEach((link) => {
-    link.classList.toggle('badenjki-recommended', link.dataset.downloadPlatform === recommended);
-  });
   let saved: string | null = null;
   try { saved = sessionStorage.getItem(selectedKey); } catch { /* optional convenience */ }
   if (saved && saved in badenjkiDownloads) selected = saved as BadenjkiPlatform;
