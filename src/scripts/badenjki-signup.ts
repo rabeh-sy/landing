@@ -8,6 +8,7 @@ const sessionKey = 'badenjki:visitor-token:v2';
 const attemptKey = 'badenjki:signup-attempt:v2';
 const pendingCampaignKey = 'badenjki:pending-campaign:v2';
 const selectedKey = 'badenjki:selected-download:v1';
+const dialCodes: Record<string, string> = { SY: '963', SA: '966', AE: '971', IQ: '964', JO: '962', LB: '961', TR: '90', US: '1' };
 
 let selected: BadenjkiPlatform = 'android';
 let challenge: Challenge | null = null;
@@ -16,17 +17,57 @@ let verified = false;
 let decisionFor = '';
 let busy = false;
 let referralPromise: Promise<void> = Promise.resolve();
-let lastPageInitialization = 0;
+let initializedBody: HTMLElement | null = null;
 let effective: SessionStatus | null = null;
 let decisionRevision = 0;
 let fallbackSession = '';
 let fallbackAttempt = '';
 let opening = false;
-let fallbackPending = '';
+let fallbackPending: string[] = [];
 
-function pendingCampaign() { try { return localStorage.getItem(pendingCampaignKey) || fallbackPending; } catch { return fallbackPending; } }
-function savePending(code: string) { fallbackPending = code; try { localStorage.setItem(pendingCampaignKey, code); } catch { /* memory fallback */ } }
-function clearPending() { fallbackPending = ''; try { localStorage.removeItem(pendingCampaignKey); } catch { /* memory fallback */ } }
+function pendingCampaigns(): string[] {
+  let raw = '';
+  try {
+    raw = localStorage.getItem(pendingCampaignKey) || '';
+    if (!raw) return fallbackPending;
+    const parsed: unknown = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed.filter((code): code is string => typeof code === 'string') : [raw];
+  } catch { return raw ? [raw] : fallbackPending; }
+}
+function savePending(codes: string[]) {
+  fallbackPending = codes;
+  try { localStorage.setItem(pendingCampaignKey, JSON.stringify(codes)); } catch { /* memory fallback */ }
+}
+function queueCampaign(code: string) {
+  const codes = pendingCampaigns();
+  if (!codes.includes(code)) savePending([...codes, code]);
+}
+
+function asciiDigits(value: string) {
+  return value.replace(/[٠-٩۰-۹]/g, digit => String(digit.charCodeAt(0) - (digit <= '٩' ? 0x660 : 0x6f0)));
+}
+
+function normalizedPhone(country: string, input: string): string {
+  const dial = dialCodes[country];
+  if (!dial) throw new Error('اختر بلدًا من القائمة.');
+  const value = asciiDigits(input.trim());
+  if (!value) throw new Error('أدخل رقم الهاتف.');
+  if (!/^\+?[\d\s().-]+$/.test(value) || (value.match(/\+/g) || []).length > 1)
+    throw new Error('استخدم أرقامًا ومسافات أو شرطات فقط في رقم الهاتف.');
+  const digits = value.replace(/\D/g, '');
+  const international = value.startsWith('+') || digits.startsWith('00');
+  let national = digits.startsWith('00') ? digits.slice(2) : digits;
+  if (international && !national.startsWith(dial))
+    throw new Error('رمز البلد في الرقم لا يطابق البلد المحدد.');
+  if (national.startsWith(dial) && (country !== 'SY' || international || national.length !== 9))
+    national = national.slice(dial.length);
+  national = national.replace(/^0/, '');
+  if (country === 'SY' && national.length !== 9)
+    throw new Error('يجب أن يتكون الرقم السوري من ٩ أرقام بعد حذف الصفر ورمز البلد.');
+  if (country !== 'SY' && (dial.length + national.length < 7 || dial.length + national.length > 15))
+    throw new Error('تحقق من طول رقم الهاتف.');
+  return `${dial}${national}`;
+}
 
 function sessionId(): string {
   try {
@@ -86,17 +127,26 @@ async function api(path: string, body?: Record<string, unknown>) {
   return data;
 }
 
+function landingPage() { return /^\/badenjki-business\/?$/.test(location.pathname); }
+
 async function captureReferral() {
-  const match = location.pathname.match(/^\/r\/([^/]+)\/?$/);
-  let code = pendingCampaign();
-  if (match) { try { code = decodeURIComponent(match[1]).toUpperCase(); } catch { /* invalid code */ } }
-  if (code && /^[A-Z0-9][A-Z0-9_-]{3,31}$/.test(code)) {
-    savePending(code);
+  const url = new URL(location.href);
+  const fromLanding = landingPage() && url.searchParams.has('ref');
+  const incoming = fromLanding ? (url.searchParams.get('ref') || '').trim().toUpperCase() : '';
+  if (incoming && /^[A-Z0-9][A-Z0-9_-]{3,31}$/.test(incoming)) queueCampaign(incoming);
+  let handled = !incoming || !/^[A-Z0-9][A-Z0-9_-]{3,31}$/.test(incoming);
+  for (const code of pendingCampaigns()) {
     try {
-      effective = await api('/website/session/capture', { source_code: code });
-      clearPending();
-    } catch { /* retry before signup */ }
-  } else clearPending();
+      const result = await api('/website/session/capture', { source_code: code }) as SessionStatus & { captured: boolean };
+      effective = result;
+      savePending(pendingCampaigns().filter(item => item !== code));
+      if (code === incoming) handled = true;
+    } catch { break; }
+  }
+  if (fromLanding && handled && location.pathname === url.pathname && new URL(location.href).searchParams.get('ref') === url.searchParams.get('ref')) {
+    url.searchParams.delete('ref');
+    history.replaceState(history.state, '', `${url.pathname}${url.search}${url.hash}`);
+  }
 }
 
 function platformRecommendation(): BadenjkiPlatform {
@@ -124,6 +174,22 @@ function resetDecision() {
   field<HTMLButtonElement>('#badenjki-submit').textContent = 'متابعة';
 }
 
+function phoneFields() {
+  const country = field<HTMLSelectElement>('#badenjki-country').value;
+  const phone = normalizedPhone(country, field<HTMLInputElement>('#badenjki-phone').value);
+  return { country, phone, key: `${country}:${phone}` };
+}
+
+function currentDecision(key: string, revision: number) {
+  if (revision !== decisionRevision) return false;
+  try { return phoneFields().key === key; } catch { return false; }
+}
+
+function updatePrefix() {
+  const country = field<HTMLSelectElement>('#badenjki-country').value;
+  field<HTMLElement>('#badenjki-prefix').textContent = `+${dialCodes[country] || ''}`;
+}
+
 function continueDownload(platform: BadenjkiPlatform) {
   window.open(badenjkiDownloads[platform], '_blank', 'noopener,noreferrer');
 }
@@ -140,15 +206,24 @@ function openSignup(platform: BadenjkiPlatform) {
   modal.showModal();
 }
 
+function showSuccess(platform: BadenjkiPlatform) {
+  selected = platform;
+  try { sessionStorage.setItem(selectedKey, platform); } catch { /* optional convenience */ }
+  field<HTMLElement>('#badenjki-signup-form').hidden = true;
+  field<HTMLElement>('#badenjki-success').hidden = false;
+  field<HTMLAnchorElement>('#badenjki-continue').href = badenjkiDownloads[platform];
+  const modal = dialog();
+  if (modal && !modal.open) modal.showModal();
+  continueDownload(platform);
+}
+
 async function startDecision() {
-  const country = field<HTMLInputElement>('#badenjki-country').value.trim().toUpperCase();
-  const phone = field<HTMLInputElement>('#badenjki-phone').value.trim();
-  if (!phone) return;
+  const { country, phone, key } = phoneFields();
   const revision = decisionRevision;
   const next = await api('/website/otp/challenge', { country, phone });
-  if (revision !== decisionRevision || `${field<HTMLSelectElement>('#badenjki-country').value}:${field<HTMLInputElement>('#badenjki-phone').value.trim()}` !== `${country}:${phone}`) return;
+  if (!currentDecision(key, revision)) return;
   challenge = next;
-  decisionFor = `${country}:${phone}`;
+  decisionFor = key;
   if (challenge!.required) {
     field<HTMLElement>('#badenjki-code-field').hidden = false;
     field<HTMLElement>('#badenjki-resend').hidden = false;
@@ -160,9 +235,9 @@ async function startDecision() {
 }
 
 async function submitSignup() {
-  const country = field<HTMLInputElement>('#badenjki-country').value.trim().toUpperCase();
-  const phone = field<HTMLInputElement>('#badenjki-phone').value.trim();
-  if (decisionFor !== `${country}:${phone}`) throw new Error('ابدأ التحقق من الهاتف مجددًا.');
+  const { country, phone, key } = phoneFields();
+  const revision = decisionRevision;
+  if (decisionFor !== key) throw new Error('ابدأ التحقق من الهاتف مجددًا.');
   const payload: Record<string, unknown> = {
     country, phone, attempt_id: attemptId(), selected_platform: selected,
   };
@@ -170,33 +245,30 @@ async function submitSignup() {
   else if (challenge?.no_otp_token) payload.no_otp_token = challenge.no_otp_token;
   else throw new Error('ابدأ التحقق من الهاتف مجددًا.');
   try {
-    if (pendingCampaign()) {
+    if (pendingCampaigns().length) {
       await captureReferral();
-      if (pendingCampaign()) throw new Error('تعذر تأكيد رابط الحملة. تحقق من اتصالك وحاول مجددًا.');
+      if (pendingCampaigns().length) throw new Error('تعذر تأكيد رابط الحملة. تحقق من اتصالك وحاول مجددًا.');
     }
+    if (!currentDecision(key, revision)) return;
     const response = await api('/website/signups', payload);
+    if (!currentDecision(key, revision)) return;
     if (!response.accepted) throw new Error('لم يكتمل التسجيل. حاول مجددًا.');
     effective = { completed: true, source_code: response.source_code };
     track('badenjki_website_signup', { source_code: response.source_code });
   } catch (error) {
     try {
       const recovered = await status();
-      if (recovered.completed) {
-        field<HTMLElement>('#badenjki-signup-form').hidden = true;
-        field<HTMLElement>('#badenjki-success').hidden = false;
-        field<HTMLAnchorElement>('#badenjki-continue').href = badenjkiDownloads[selected];
-        continueDownload(selected);
+      if (recovered.completed && currentDecision(key, revision)) {
+        showSuccess(selected);
         return;
       }
     } catch { /* retain original error for retry */ }
     const apiError = error as Error & { status?: number; code?: string };
+    if (!currentDecision(key, revision)) return;
     if (apiError.code === 'otp_required' || apiError.status === 401) resetDecision();
     throw error;
   }
-  field<HTMLElement>('#badenjki-signup-form').hidden = true;
-  field<HTMLElement>('#badenjki-success').hidden = false;
-  field<HTMLAnchorElement>('#badenjki-continue').href = badenjkiDownloads[selected];
-  continueDownload(selected);
+  showSuccess(selected);
 }
 
 async function handleSubmit(event: SubmitEvent) {
@@ -204,24 +276,27 @@ async function handleSubmit(event: SubmitEvent) {
   if (busy) return;
   busy = true;
   clearError();
+  let submittedRevision = decisionRevision;
   const button = field<HTMLButtonElement>('#badenjki-submit');
   button.disabled = true;
   try {
-    const key = `${field<HTMLInputElement>('#badenjki-country').value.trim().toUpperCase()}:${field<HTMLInputElement>('#badenjki-phone').value.trim()}`;
+    const key = phoneFields().key;
     if (decisionFor !== key) resetDecision();
+    submittedRevision = decisionRevision;
     if (!challenge) await startDecision();
     else if (challenge.required && !verified) {
-      const code = field<HTMLInputElement>('#badenjki-code').value.trim();
+      const code = asciiDigits(field<HTMLInputElement>('#badenjki-code').value.trim());
       if (!code) throw new Error('أدخل رمز التحقق.');
       const revision = decisionRevision;
       const result = await api('/website/otp/verify', { challenge_id: challenge.challenge_id, code });
-      if (revision !== decisionRevision || decisionFor !== `${field<HTMLSelectElement>('#badenjki-country').value}:${field<HTMLInputElement>('#badenjki-phone').value.trim()}`) return;
+      if (!currentDecision(key, revision) || decisionFor !== key) return;
       verificationToken = result.verification_token;
       verified = true;
       await submitSignup();
     } else await submitSignup();
   } catch (error) {
-    showError(error instanceof Error ? error.message : 'تعذر إكمال التسجيل. حاول مجددًا.');
+    if (submittedRevision === decisionRevision)
+      showError(error instanceof Error ? error.message : 'تعذر إكمال التسجيل. حاول مجددًا.');
   } finally { busy = false; button.disabled = false; }
 }
 
@@ -235,11 +310,13 @@ function initializePage() {
       void handleSubmit(event);
     });
   }
-  if (Date.now() - lastPageInitialization < 500) return;
-  lastPageInitialization = Date.now();
+  if (initializedBody === document.body) return;
+  initializedBody = document.body;
+  updatePrefix();
   referralPromise = captureReferral();
-  if (location.pathname === '/badenjki-business' || /^\/r\/[^/]+\/?$/.test(location.pathname)) {
-    void referralPromise.then(() => { if (!pendingCampaign()) recordEvent('landing_visit'); });
+  if (landingPage()) {
+    const pageBody = document.body;
+    void referralPromise.then(() => { if (document.body === pageBody && !pendingCampaigns().length) recordEvent('landing_visit'); });
   }
   void status().catch(() => undefined);
   const recommended = platformRecommendation();
@@ -263,7 +340,7 @@ document.addEventListener('click', async (event) => {
       await referralPromise;
       recordEvent('download_intent', platform);
       const current = await status();
-      if (current.completed) { continueDownload(platform); return; }
+      if (current.completed) { showSuccess(platform); return; }
       openSignup(platform);
     } catch (error) {
       openSignup(platform);
@@ -285,10 +362,10 @@ document.addEventListener('click', async (event) => {
 });
 
 document.addEventListener('input', (event) => {
-  if (['badenjki-phone', 'badenjki-country'].includes((event.target as HTMLElement).id)) resetDecision();
+  if ((event.target as HTMLElement).id === 'badenjki-phone') { resetDecision(); clearError(); }
 });
 document.addEventListener('change', (event) => {
-  if ((event.target as HTMLElement).id === 'badenjki-country') resetDecision();
+  if ((event.target as HTMLElement).id === 'badenjki-country') { updatePrefix(); resetDecision(); clearError(); }
 });
 document.addEventListener('astro:page-load', initializePage);
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initializePage);
