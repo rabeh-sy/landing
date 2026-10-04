@@ -1,0 +1,92 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import { getPermalink } from '~/utils/permalinks';
+
+const metadata = {
+  title: 'من نحن | شركة رابح لتطوير البرمجيات في حلب',
+  description:
+    'تعرف على رابح للتقنية، شركة تطوير برمجيات مستقلة في حلب أسسها محمد خالد بادنجكي. نبني المواقع والتطبيقات وأنظمة الأعمال وبرنامج بادنجكي الإداري.',
+  ignoreTitleTemplate: true,
+};
+
+const structuredData = [
+  {
+    '@type': 'AboutPage',
+    '@id': 'https://rabeh.sy/about#webpage',
+    url: 'https://rabeh.sy/about',
+    name: metadata.title,
+    description: metadata.description,
+    inLanguage: 'ar',
+    mainEntity: { '@id': 'https://rabeh.sy/#organization' },
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'الرئيسية', item: 'https://rabeh.sy/' },
+      { '@type': 'ListItem', position: 2, name: 'من نحن', item: 'https://rabeh.sy/about' },
+    ],
+  },
+];
+---
+
+<Layout metadata={metadata} structuredData={structuredData}>
+  <section class="bg-[#f1efe7] px-5 py-16 text-[#111511] sm:px-8 lg:py-24">
+    <div class="mx-auto max-w-5xl">
+      <nav aria-label="مسار التصفح" class="mb-12 flex gap-3 text-sm text-[#111511]/60">
+        <a href={getPermalink('/')} class="hover:underline">الرئيسية</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">من نحن</span>
+      </nav>
+      <p class="text-sm font-bold text-[#111511]/60">رابح للتقنية · حلب، سوريا</p>
+      <h1 class="mt-6 text-4xl font-black leading-[1.5] sm:text-6xl sm:leading-[1.45]">
+        شركة برمجيات تفهم العمل قبل أن تبني الحل.
+      </h1>
+      <p class="mt-8 text-lg leading-9 text-[#111511]/65">
+        رابح استوديو برمجيات مستقل من حلب، سوريا. نجمع فهم المشكلة وتصميم تجربة المستخدم والهندسة في فريق واحد لبناء
+        مواقع وتطبيقات وأنظمة أعمال واضحة وقابلة للتطور.
+      </p>
+
+      <div id="about" class="mt-14 border-t border-[#111511]/25 pt-10">
+        <h2 class="text-3xl font-black">المؤسس: محمد خالد بادنجكي</h2>
+        <p class="mt-5 text-lg leading-9 text-[#111511]/65">
+          محمد خالد بادنجكي مهندس برمجيات ومؤسس رابح للتقنية. يركز عمله على بناء حلول عملية وسهلة الاستخدام، وفهم
+          احتياجات الشركات قبل اختيار ما يحتاج إلى تصميم وبرمجة.
+        </p>
+      </div>
+
+      <div class="mt-14 grid gap-10 border-t border-[#111511]/25 pt-10 md:grid-cols-2">
+        <div>
+          <h2 class="text-3xl font-black">ما الذي نبنيه؟</h2>
+          <p class="mt-5 leading-8 text-[#111511]/65">
+            نطور المنتجات الرقمية وأنظمة الأعمال والمتاجر الإلكترونية، ونراجع المنصات القائمة لتحسين تجربتها وأدائها.
+            نعمل محليًا وعن بعد، مع اهتمام بالتجربة العربية منذ بداية المشروع.
+          </p>
+          <a
+            href={getPermalink('/services/custom-software-development')}
+            class="mt-6 inline-block font-bold underline underline-offset-4">خدمات تطوير المواقع والتطبيقات</a
+          >
+        </div>
+        <div>
+          <h2 class="text-3xl font-black">منتجنا: بادنجكي الإداري</h2>
+          <p class="mt-5 leading-8 text-[#111511]/65">
+            برنامج لإدارة المبيعات والمشتريات والمخزون والحسابات، يعمل على الجوال وسطح المكتب ويتيح متابعة العمل بدون
+            إنترنت.
+          </p>
+          <a href={getPermalink('/badenjki-business')} class="mt-6 inline-block font-bold underline underline-offset-4">
+            تعرف على برنامج بادنجكي الإداري
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-14 bg-[#9cff7e] p-7 sm:p-10">
+        <h2 class="text-3xl font-black">تواصل مع رابح في حلب</h2>
+        <p class="mt-5 leading-8 text-[#111511]/65">مكتبنا في الجميلية، حلب. شركة رابح للتقنية م م · س.ت 23888/2025.</p>
+        <a
+          href={getPermalink('/contact')}
+          class="mt-6 inline-flex min-h-12 items-center bg-[#111511] px-6 py-3 font-bold text-white"
+          >ناقش مشروعك مع الفريق</a
+        >
+      </div>
+    </div>
+  </section>
+</Layout>

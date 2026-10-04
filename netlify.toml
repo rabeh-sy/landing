@@ -3,6 +3,16 @@
   command = "npm run build"
 [build.processing.html]
   pretty_urls = false
+[[redirects]]
+  from = "/rabeh-lite"
+  to = "/badenjki-business"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/rabeh-lite/"
+  to = "/badenjki-business"
+  status = 301
+  force = true
 [[headers]]
   for = "/_astro/*"
   [headers.values]

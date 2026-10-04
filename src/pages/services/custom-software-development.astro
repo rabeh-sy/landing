@@ -1,3 +1,160 @@
 ---
-return Astro.redirect('/#services', 301);
+import { Icon } from 'astro-icon/components';
+import Layout from '~/layouts/PageLayout.astro';
+import { getPermalink } from '~/utils/permalinks';
+
+const metadata = {
+  title: 'تطوير مواقع وتطبيقات وأنظمة أعمال في حلب، سوريا | رابح',
+  description:
+    'خدمات تطوير البرمجيات من رابح في حلب: مواقع وتطبيقات مخصصة، أنظمة أعمال ومتاجر إلكترونية. نبدأ بفهم عملك ونصمم الحل ونطوره على مراحل.',
+  ignoreTitleTemplate: true,
+  openGraph: {
+    images: [{ url: '~/assets/images/social-home.jpg', width: 1200, height: 630 }],
+  },
+};
+
+const services = [
+  {
+    title: 'تطوير المواقع وتطبيقات الويب',
+    description:
+      'نبني مواقع للشركات وتطبيقات ويب تخدم المستخدمين والعمليات اليومية، مع تجربة عربية واضحة تناسب الجوال وسطح المكتب.',
+  },
+  {
+    title: 'تطوير تطبيقات الجوال',
+    description:
+      'نحوّل فكرة المنتج إلى تجربة استخدام وواجهات وتطبيق، ونحدد معك الوظائف الأساسية التي تحتاجها النسخة الأولى قبل التوسع.',
+  },
+  {
+    title: 'أنظمة أعمال مخصصة',
+    description:
+      'نربط بيانات العمل والفريق والتقارير في نظام يناسب طريقة تشغيل شركتك، بدل توزيع العمليات بين ملفات وأدوات منفصلة.',
+  },
+  {
+    title: 'تطوير المتاجر الإلكترونية',
+    description: 'نصمم كتالوجات ومتاجر بمسار شراء واضح، مع اهتمام بسرعة الصفحات وعرض المنتجات واحتياجات التشغيل.',
+  },
+  {
+    title: 'تحديث البرمجيات القائمة',
+    description:
+      'نراجع المنتج الحالي وتجربة المستخدم والأداء، ثم نحدد الأجزاء التي تحتاج إلى تحسين أو إعادة بناء حتى يستمر المنتج في التطور.',
+  },
+];
+
+const steps = [
+  { title: 'نفهم العمل', description: 'نحدد المشكلة والجمهور وطريقة العمل والنتيجة المطلوبة من المشروع.' },
+  { title: 'نصمم ونختبر', description: 'نحوّل الفكرة إلى تجربة ملموسة ونراجعها معك قبل توسيع نطاق البرمجة.' },
+  { title: 'نبني ونطلق', description: 'نطور على مراحل قصيرة، ونراجع النسخ التي تعمل، ثم نجهز الإطلاق والدعم.' },
+];
+
+const structuredData = [
+  {
+    '@type': 'Service',
+    '@id': 'https://rabeh.sy/services/custom-software-development#service',
+    name: 'تطوير المواقع والتطبيقات وأنظمة الأعمال',
+    serviceType: 'تطوير البرمجيات المخصصة',
+    description: metadata.description,
+    url: 'https://rabeh.sy/services/custom-software-development',
+    provider: { '@id': 'https://rabeh.sy/#organization' },
+    areaServed: [
+      { '@type': 'Country', name: 'سوريا' },
+      { '@type': 'Place', name: 'الشرق الأوسط' },
+    ],
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'الرئيسية', item: 'https://rabeh.sy/' },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'تطوير البرمجيات',
+        item: 'https://rabeh.sy/services/custom-software-development',
+      },
+    ],
+  },
+];
 ---
+
+<Layout metadata={metadata} structuredData={structuredData}>
+  <section class="bg-[#f1efe7] px-5 py-16 text-[#111511] sm:px-8 lg:py-24">
+    <div class="mx-auto max-w-[1360px]">
+      <nav aria-label="مسار التصفح" class="mb-12 flex flex-wrap gap-3 text-sm text-[#111511]/60">
+        <a href={getPermalink('/')} class="hover:underline">الرئيسية</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">تطوير البرمجيات</span>
+      </nav>
+      <p class="text-sm font-bold text-[#111511]/60">حلب، سوريا · نعمل محليًا وعن بعد</p>
+      <h1 class="mt-6 max-w-5xl text-4xl font-black leading-[1.5] sm:text-6xl sm:leading-[1.45]">
+        تطوير مواقع وتطبيقات وأنظمة أعمال تناسب عملك.
+      </h1>
+      <p class="mt-8 max-w-3xl text-lg leading-9 text-[#111511]/65">
+        رابح شركة تطوير برمجيات في حلب. نجمع فهم العمل وتصميم تجربة المستخدم والبرمجة في فريق واحد، ونساعد الشركات في
+        سوريا والمنطقة على بناء منتجات رقمية وتحسين أنظمتها القائمة.
+      </p>
+      <a
+        href={getPermalink('/contact')}
+        class="mt-8 inline-flex min-h-12 items-center gap-3 bg-[#111511] px-6 py-3 font-bold text-white"
+      >
+        تحدث معنا عن مشروعك <Icon name="tabler:arrow-left" class="h-5 w-5" />
+      </a>
+    </div>
+  </section>
+
+  <section class="bg-[#f1efe7] px-5 pb-20 text-[#111511] sm:px-8 lg:pb-28" aria-labelledby="services-heading">
+    <div class="mx-auto max-w-[1360px] border-t border-[#111511]/25 pt-10">
+      <h2 id="services-heading" class="text-3xl font-black sm:text-4xl">خدمات تطوير البرمجيات</h2>
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        {
+          services.map((service) => (
+            <article class="border border-[#111511]/20 p-6 sm:p-8">
+              <h3 class="text-2xl font-black">{service.title}</h3>
+              <p class="mt-4 leading-8 text-[#111511]/65">{service.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#9cff7e] px-5 py-16 text-[#111511] sm:px-8 lg:py-24" aria-labelledby="process-heading">
+    <div class="mx-auto max-w-[1360px]">
+      <h2 id="process-heading" class="text-3xl font-black sm:text-4xl">كيف نبدأ مشروعك؟</h2>
+      <ol class="mt-10 grid gap-8 md:grid-cols-3">
+        {
+          steps.map((step, index) => (
+            <li class="border-t border-[#111511]/30 pt-6">
+              <span class="text-sm font-bold">0{index + 1}</span>
+              <h3 class="mt-4 text-2xl font-black">{step.title}</h3>
+              <p class="mt-4 leading-8 text-[#111511]/65">{step.description}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="px-5 py-16 sm:px-8 lg:py-24">
+    <div class="mx-auto grid max-w-[1360px] gap-10 md:grid-cols-2">
+      <div>
+        <h2 class="text-3xl font-black">هل تحتاج برنامجًا جاهزًا لإدارة أعمالك؟</h2>
+        <p class="mt-5 leading-8 text-muted">
+          إذا كانت حاجتك إدارة المبيعات والمشتريات والمخزون والحسابات، تعرف على بادنجكي الإداري، برنامجنا للجوال وسطح
+          المكتب الذي يعمل بدون إنترنت.
+        </p>
+        <a href={getPermalink('/badenjki-business')} class="mt-6 inline-block font-bold underline underline-offset-4">
+          استكشف برنامج بادنجكي الإداري
+        </a>
+      </div>
+      <div>
+        <h2 class="text-3xl font-black">ما الذي نحتاج معرفته عن مشروعك؟</h2>
+        <p class="mt-5 leading-8 text-muted">
+          أخبرنا عن نشاطك، المشكلة التي تريد حلها، المستخدمين، والأدوات التي تعتمد عليها حاليًا. تساعدنا هذه التفاصيل
+          على تحديد نطاق مناسب للمشروع ومناقشة الخطوة التالية معك.
+        </p>
+        <a href={getPermalink('/contact')} class="mt-6 inline-block font-bold underline underline-offset-4">
+          تواصل مع فريق رابح في حلب
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

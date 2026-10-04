@@ -1,7 +1,8 @@
 ---
 import '~/assets/styles/tailwind.css';
 
-import { I18N } from 'astrowind:config';
+import { I18N, METADATA } from 'astrowind:config';
+import { getCanonical } from '~/utils/permalinks';
 
 import CommonMeta from '~/components/common/CommonMeta.astro';
 import Favicons from '~/components/Favicons.astro';
@@ -28,8 +29,7 @@ export interface Props {
 
 const { metadata = {}, structuredData = [] } = Astro.props;
 const { language, textDirection } = I18N;
-const canonical = metadata.canonical || new URL(Astro.url.pathname, Astro.site).toString();
-const isHomePage = Astro.url.pathname === '/';
+const canonical = metadata.canonical || String(getCanonical(Astro.url.pathname));
 
 const organizationSchema = {
   '@type': ['Organization', 'LocalBusiness'],
@@ -65,26 +65,22 @@ const baseSchema = [
     '@type': 'WebPage',
     '@id': `${canonical}#webpage`,
     url: canonical,
-    name: metadata.title,
-    description: metadata.description,
+    name: metadata.title || METADATA.title.default,
+    description: metadata.description || METADATA.description,
     inLanguage: language,
     isPartOf: { '@id': 'https://rabeh.sy/#website' },
     about: { '@id': 'https://rabeh.sy/#organization' },
   },
-  ...(isHomePage
-    ? [
-        organizationSchema,
-        {
-          '@type': 'WebSite',
-          '@id': 'https://rabeh.sy/#website',
-          url: 'https://rabeh.sy/',
-          name: 'رابح للتقنية',
-          alternateName: 'Rabeh Technology',
-          inLanguage: language,
-          publisher: { '@id': 'https://rabeh.sy/#organization' },
-        },
-      ]
-    : []),
+  organizationSchema,
+  {
+    '@type': 'WebSite',
+    '@id': 'https://rabeh.sy/#website',
+    url: 'https://rabeh.sy/',
+    name: 'رابح للتقنية',
+    alternateName: 'Rabeh Technology',
+    inLanguage: language,
+    publisher: { '@id': 'https://rabeh.sy/#organization' },
+  },
 ];
 
 const schemaGraph = [...baseSchema, ...structuredData];

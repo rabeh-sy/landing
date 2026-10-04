@@ -34,6 +34,8 @@ export const footerData = {
     {
       title: 'استكشف',
       links: [
+        { text: 'من نحن', href: getPermalink('/about') },
+        { text: 'تطوير البرمجيات', href: getPermalink('/services/custom-software-development') },
         { text: 'بادنجكي الإداري', href: getPermalink('/badenjki-business') },
         { text: 'المقالات', href: getBlogPermalink() },
         { text: 'تواصل', href: getPermalink('/contact') },

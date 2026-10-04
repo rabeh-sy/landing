@@ -27,11 +27,11 @@ const metadata = {
   title: `المدونة${currentPage > 1 ? ` — صفحة ${currentPage}` : ''}`,
   description: 'مقالات رابح حول بناء المنتجات الرقمية، أنظمة الأعمال، التقنية، وريادة الأعمال في سوريا.',
   robots: {
-    index: blogListRobots?.index && currentPage === 1,
+    index: blogListRobots?.index,
     follow: blogListRobots?.follow,
   },
   openGraph: {
-    type: 'blog',
+    type: 'website',
   },
 };
 ---
@@ -39,13 +39,9 @@ const metadata = {
 <Layout metadata={metadata}>
   <section class="bg-[#f1efe7] px-5 py-16 text-[#111511] sm:px-8 sm:py-20 lg:py-28">
     <div class="mx-auto max-w-[1360px]">
-    <Headline
-      subtitle="منشورات تتعلق بالتكنولوجيا وريادة الأعمال في سوريا"
-    >
-      المدونة
-    </Headline>
-    <BlogList posts={page.data} />
-    <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
+      <Headline subtitle="منشورات تتعلق بالتكنولوجيا وريادة الأعمال في سوريا"> المدونة </Headline>
+      <BlogList posts={page.data} />
+      <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
     </div>
     <!--
       <PostTags tags={allCategories} class="mb-2" title="Search by Categories:" isCategory />

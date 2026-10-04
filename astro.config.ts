@@ -31,12 +31,7 @@ export default defineConfig({
     sitemap({
       filter: (page) => {
         const pathname = new URL(page).pathname;
-        return (
-          pathname !== '/rabeh-lite' &&
-          pathname !== '/services/custom-software-development' &&
-          pathname !== '/blog/2' &&
-          !pathname.startsWith('/tag/')
-        );
+        return pathname !== '/rabeh-lite' && !pathname.startsWith('/tag/');
       },
     }),
     mdx(),

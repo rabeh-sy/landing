@@ -1,0 +1,711 @@
+{
+  "siteUrl": "https://rabeh.sy/",
+  "auditDate": "2026-10-04",
+  "reportingDateBasis": "Search Console reports dates in America/Los_Angeles",
+  "summary": {
+    "siteUrl": "https://rabeh.sy/",
+    "range": {
+      "startDate": "2026-09-02",
+      "endDate": "2026-09-29",
+      "days": 28
+    },
+    "comparison": {
+      "startDate": "2026-08-05",
+      "endDate": "2026-09-01"
+    },
+    "current": {
+      "clicks": 9,
+      "impressions": 211,
+      "ctr": 4.265402843601896,
+      "avgPosition": 7.696682464454977
+    },
+    "previous": {
+      "clicks": 8,
+      "impressions": 153,
+      "ctr": 5.228758169934641,
+      "avgPosition": 12.660130718954248
+    },
+    "deltas": {
+      "clicks": 1,
+      "impressions": 58,
+      "ctrPoints": -0.9633553263327448,
+      "positionDelta": -4.963448254499271
+    },
+    "dataSource": "api",
+    "settledThrough": "2026-09-29",
+    "dataMaturity": {
+      "firstIncompleteDate": "2026-09-30",
+      "settledThrough": "2026-09-29",
+      "dateBasis": "America/Los_Angeles",
+      "source": "gsc-api-metadata",
+      "probe": {
+        "searchType": "web",
+        "startDate": "2026-09-25",
+        "endDate": "2026-10-04",
+        "dataState": "all"
+      }
+    }
+  },
+  "queryCoverageNote": "Google returned only 10 visible query rows for the 90-day window; these do not cover all property-level clicks and impressions. Do not infer precise keyword demand or expected uplift.",
+  "queryPerformance90Days": {
+    "siteUrl": "https://rabeh.sy/",
+    "range": {
+      "startDate": "2026-07-02",
+      "endDate": "2026-09-29"
+    },
+    "queries": [
+      {
+        "query": "rabeh",
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 74
+      },
+      {
+        "query": "إدارة شركات ناشئة تعاون مع منظمات سورية",
+        "clicks": 0,
+        "impressions": 7,
+        "ctr": 0,
+        "position": 9.142857142857142
+      },
+      {
+        "query": "بادنجكي",
+        "clicks": 0,
+        "impressions": 4,
+        "ctr": 0,
+        "position": 11.5
+      },
+      {
+        "query": "تطبيق رابح",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 5
+      },
+      {
+        "query": "شركة رابح",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 45
+      },
+      {
+        "query": "في حلب",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 5
+      },
+      {
+        "query": "كمان",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 7
+      },
+      {
+        "query": "مطور برمجيات حلب",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 5
+      },
+      {
+        "query": "من ايمتى",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 4
+      },
+      {
+        "query": "هل تعمل في سوريا",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 1
+      }
+    ],
+    "pagination": {
+      "limit": 100,
+      "offset": 0,
+      "returned": 10,
+      "hasMore": false,
+      "note": "Showing all 10 rows."
+    },
+    "dataSource": "api",
+    "settledThrough": "2026-09-29",
+    "dataMaturity": {
+      "firstIncompleteDate": "2026-09-30",
+      "settledThrough": "2026-09-29",
+      "dateBasis": "America/Los_Angeles",
+      "source": "gsc-api-metadata",
+      "probe": {
+        "searchType": "web",
+        "startDate": "2026-09-25",
+        "endDate": "2026-10-04",
+        "dataState": "all"
+      }
+    }
+  },
+  "queryPagePerformance90Days": {
+    "siteUrl": "https://rabeh.sy/",
+    "startDate": "2026-07-02",
+    "endDate": "2026-09-29",
+    "dimensions": [
+      "query",
+      "page"
+    ],
+    "searchType": "web",
+    "rowCount": 11,
+    "rows": [
+      {
+        "keys": [
+          "rabeh",
+          "https://rabeh.sy/"
+        ],
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 74
+      },
+      {
+        "keys": [
+          "إدارة شركات ناشئة تعاون مع منظمات سورية",
+          "https://rabeh.sy/syrian-startup-map-launch"
+        ],
+        "clicks": 0,
+        "impressions": 7,
+        "ctr": 0,
+        "position": 9.142857142857142
+      },
+      {
+        "keys": [
+          "بادنجكي",
+          "https://rabeh.sy/badenjki-business"
+        ],
+        "clicks": 0,
+        "impressions": 4,
+        "ctr": 0,
+        "position": 11.5
+      },
+      {
+        "keys": [
+          "تطبيق رابح",
+          "https://rabeh.sy/rabeh-lite"
+        ],
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 5
+      },
+      {
+        "keys": [
+          "شركة رابح",
+          "https://rabeh.sy/"
+        ],
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 45
+      },
+      {
+        "keys": [
+          "في حلب",
+          "https://rabeh.sy/"
+        ],
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 5
+      },
+      {
+        "keys": [
+          "كمان",
+          "https://rabeh.sy/"
+        ],
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 7
+      },
+      {
+        "keys": [
+          "مطور برمجيات حلب",
+          "https://rabeh.sy/"
+        ],
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 5
+      },
+      {
+        "keys": [
+          "من ايمتى",
+          "https://rabeh.sy/google-lifts-advertising-ban-on-syria"
+        ],
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 4
+      },
+      {
+        "keys": [
+          "هل تعمل في سوريا",
+          "https://rabeh.sy/"
+        ],
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 2
+      },
+      {
+        "keys": [
+          "هل تعمل في سوريا",
+          "https://rabeh.sy/syrian-startup-map-launch"
+        ],
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 1
+      }
+    ],
+    "pagination": {
+      "limit": 100,
+      "offset": 0,
+      "returned": 11,
+      "hasMore": false,
+      "note": "Showing all 11 rows."
+    },
+    "dataSource": "api",
+    "settledThrough": "2026-09-29",
+    "dataMaturity": {
+      "firstIncompleteDate": "2026-09-30",
+      "settledThrough": "2026-09-29",
+      "dateBasis": "America/Los_Angeles",
+      "source": "gsc-api-metadata",
+      "probe": {
+        "searchType": "web",
+        "startDate": "2026-09-25",
+        "endDate": "2026-10-04",
+        "dataState": "all"
+      }
+    }
+  },
+  "liveAudit": {
+    "summary": {
+      "total_pages": 6,
+      "total_issues": 7,
+      "by_severity": {
+        "critical": 3,
+        "high": 0,
+        "medium": 0,
+        "low": 4,
+        "info": 0
+      },
+      "indexable_pages": 3,
+      "non_indexable_pages": 3
+    },
+    "pages": [
+      {
+        "url": "https://rabeh.sy/google-lifts-advertising-ban-on-syria",
+        "finalUrl": "https://rabeh.sy/google-lifts-advertising-ban-on-syria",
+        "statusCode": 200,
+        "redirected": false,
+        "redirectChain": [],
+        "responseTimeMs": 258,
+        "impressions": 60,
+        "clicks": 0,
+        "indexable": true,
+        "indexabilityStatus": "Indexable",
+        "title": "غوغل ترفع الحظر الإعلاني عن سوريا بعد عقود من المنع — رابح للتقنية",
+        "titleLength": 66,
+        "metaDescriptionLength": 64,
+        "metaKeywords": null,
+        "h1Count": 1,
+        "h3Count": 4,
+        "h4Count": 0,
+        "h5Count": 0,
+        "h6Count": 0,
+        "wordCount": 734,
+        "canonicalUrl": "https://rabeh.sy/google-lifts-advertising-ban-on-syria",
+        "canonicalIsSelf": true,
+        "noindex": false,
+        "internalLinks": 30,
+        "externalLinks": 3,
+        "imagesMissingAlt": 0,
+        "imagesCount": 9,
+        "hasStructuredData": true,
+        "structuredDataTypes": [
+          "BlogPosting",
+          "BreadcrumbList",
+          "ListItem",
+          "Person",
+          "WebPage"
+        ],
+        "schemaIssues": [],
+        "hasViewport": true,
+        "faviconPresent": true,
+        "lang": "ar",
+        "hreflangCount": 0,
+        "bodyBytes": 45059,
+        "contentEncoding": "br",
+        "issues": [
+          {
+            "id": "title-long",
+            "category": "meta",
+            "severity": "low",
+            "message": "Title is 66 chars (over ~60 may truncate)"
+          },
+          {
+            "id": "meta-short",
+            "category": "meta",
+            "severity": "low",
+            "message": "Meta description is only 64 chars"
+          }
+        ]
+      },
+      {
+        "url": "https://rabeh.sy/",
+        "finalUrl": "https://rabeh.sy/",
+        "statusCode": 200,
+        "redirected": false,
+        "redirectChain": [],
+        "responseTimeMs": 377,
+        "impressions": 60,
+        "clicks": 5,
+        "indexable": true,
+        "indexabilityStatus": "Indexable",
+        "title": "شركة تطوير برمجيات في حلب، سوريا | رابح",
+        "titleLength": 39,
+        "metaDescriptionLength": 135,
+        "metaKeywords": null,
+        "h1Count": 1,
+        "h3Count": 10,
+        "h4Count": 0,
+        "h5Count": 0,
+        "h6Count": 0,
+        "wordCount": 469,
+        "canonicalUrl": "https://rabeh.sy",
+        "canonicalIsSelf": true,
+        "noindex": false,
+        "internalLinks": 22,
+        "externalLinks": 5,
+        "imagesMissingAlt": 1,
+        "imagesCount": 6,
+        "hasStructuredData": true,
+        "structuredDataTypes": [
+          "ContactPoint",
+          "Country",
+          "LocalBusiness",
+          "Organization",
+          "Place",
+          "PostalAddress",
+          "WebPage",
+          "WebSite"
+        ],
+        "schemaIssues": [],
+        "hasViewport": true,
+        "faviconPresent": true,
+        "lang": "ar",
+        "hreflangCount": 0,
+        "bodyBytes": 45378,
+        "contentEncoding": "br",
+        "issues": [
+          {
+            "id": "images-missing-alt",
+            "category": "images",
+            "severity": "low",
+            "message": "1 of 6 images missing alt text"
+          }
+        ]
+      },
+      {
+        "url": "https://rabeh.sy/products/manara",
+        "finalUrl": "https://rabeh.sy/products/manara",
+        "statusCode": 404,
+        "redirected": false,
+        "redirectChain": [],
+        "responseTimeMs": 249,
+        "impressions": 10,
+        "clicks": 0,
+        "indexable": false,
+        "indexabilityStatus": "HTTP 404",
+        "title": null,
+        "titleLength": 0,
+        "metaDescriptionLength": 0,
+        "metaKeywords": null,
+        "h1Count": 0,
+        "h3Count": 0,
+        "h4Count": 0,
+        "h5Count": 0,
+        "h6Count": 0,
+        "wordCount": 0,
+        "canonicalUrl": null,
+        "canonicalIsSelf": false,
+        "noindex": false,
+        "internalLinks": 0,
+        "externalLinks": 0,
+        "imagesMissingAlt": 0,
+        "imagesCount": 0,
+        "hasStructuredData": false,
+        "structuredDataTypes": [],
+        "schemaIssues": [],
+        "hasViewport": false,
+        "faviconPresent": false,
+        "lang": null,
+        "hreflangCount": 0,
+        "bodyBytes": null,
+        "contentEncoding": "br",
+        "issues": [
+          {
+            "id": "http-error",
+            "category": "technical",
+            "severity": "critical",
+            "message": "Page returns HTTP 404"
+          }
+        ]
+      },
+      {
+        "url": "https://rabeh.sy/badenjki-business",
+        "finalUrl": "https://rabeh.sy/badenjki-business",
+        "statusCode": 200,
+        "redirected": false,
+        "redirectChain": [],
+        "responseTimeMs": 246,
+        "impressions": 8,
+        "clicks": 3,
+        "indexable": true,
+        "indexabilityStatus": "Indexable",
+        "title": "بادنجكي الإداري | برنامج إدارة أعمال للجوال وسطح المكتب",
+        "titleLength": 55,
+        "metaDescriptionLength": 117,
+        "metaKeywords": null,
+        "h1Count": 1,
+        "h3Count": 6,
+        "h4Count": 0,
+        "h5Count": 0,
+        "h6Count": 0,
+        "wordCount": 818,
+        "canonicalUrl": "https://rabeh.sy/badenjki-business",
+        "canonicalIsSelf": true,
+        "noindex": false,
+        "internalLinks": 18,
+        "externalLinks": 3,
+        "imagesMissingAlt": 3,
+        "imagesCount": 8,
+        "hasStructuredData": true,
+        "structuredDataTypes": [
+          "Answer",
+          "BreadcrumbList",
+          "FAQPage",
+          "ListItem",
+          "Question",
+          "SoftwareApplication",
+          "WebPage"
+        ],
+        "schemaIssues": [],
+        "hasViewport": true,
+        "faviconPresent": true,
+        "lang": "ar",
+        "hreflangCount": 0,
+        "bodyBytes": 86798,
+        "contentEncoding": "br",
+        "issues": [
+          {
+            "id": "images-missing-alt",
+            "category": "images",
+            "severity": "low",
+            "message": "3 of 8 images missing alt text"
+          }
+        ]
+      },
+      {
+        "url": "https://rabeh.sy/about",
+        "finalUrl": "https://rabeh.sy/about",
+        "statusCode": 404,
+        "redirected": false,
+        "redirectChain": [],
+        "responseTimeMs": 529,
+        "impressions": 4,
+        "clicks": 0,
+        "indexable": false,
+        "indexabilityStatus": "HTTP 404",
+        "title": null,
+        "titleLength": 0,
+        "metaDescriptionLength": 0,
+        "metaKeywords": null,
+        "h1Count": 0,
+        "h3Count": 0,
+        "h4Count": 0,
+        "h5Count": 0,
+        "h6Count": 0,
+        "wordCount": 0,
+        "canonicalUrl": null,
+        "canonicalIsSelf": false,
+        "noindex": false,
+        "internalLinks": 0,
+        "externalLinks": 0,
+        "imagesMissingAlt": 0,
+        "imagesCount": 0,
+        "hasStructuredData": false,
+        "structuredDataTypes": [],
+        "schemaIssues": [],
+        "hasViewport": false,
+        "faviconPresent": false,
+        "lang": null,
+        "hreflangCount": 0,
+        "bodyBytes": null,
+        "contentEncoding": "br",
+        "issues": [
+          {
+            "id": "http-error",
+            "category": "technical",
+            "severity": "critical",
+            "message": "Page returns HTTP 404"
+          }
+        ]
+      },
+      {
+        "url": "https://rabeh.sy/products/talabatak",
+        "finalUrl": "https://rabeh.sy/products/talabatak",
+        "statusCode": 404,
+        "redirected": false,
+        "redirectChain": [],
+        "responseTimeMs": 124,
+        "impressions": 4,
+        "clicks": 0,
+        "indexable": false,
+        "indexabilityStatus": "HTTP 404",
+        "title": null,
+        "titleLength": 0,
+        "metaDescriptionLength": 0,
+        "metaKeywords": null,
+        "h1Count": 0,
+        "h3Count": 0,
+        "h4Count": 0,
+        "h5Count": 0,
+        "h6Count": 0,
+        "wordCount": 0,
+        "canonicalUrl": null,
+        "canonicalIsSelf": false,
+        "noindex": false,
+        "internalLinks": 0,
+        "externalLinks": 0,
+        "imagesMissingAlt": 0,
+        "imagesCount": 0,
+        "hasStructuredData": false,
+        "structuredDataTypes": [],
+        "schemaIssues": [],
+        "hasViewport": false,
+        "faviconPresent": false,
+        "lang": null,
+        "hreflangCount": 0,
+        "bodyBytes": null,
+        "contentEncoding": "br",
+        "issues": [
+          {
+            "id": "http-error",
+            "category": "technical",
+            "severity": "critical",
+            "message": "Page returns HTTP 404"
+          }
+        ]
+      }
+    ]
+  },
+  "urlInspections": {
+    "siteUrl": "https://rabeh.sy/",
+    "count": 4,
+    "succeeded": 4,
+    "failed": 0,
+    "skipped": 0,
+    "quotaExhausted": false,
+    "quota": {
+      "count": 4,
+      "limit": 2000,
+      "remaining": 1996
+    },
+    "results": [
+      {
+        "url": "https://rabeh.sy/",
+        "verdict": "PASS",
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawlTime": "2026-10-01T04:45:26Z"
+      },
+      {
+        "url": "https://rabeh.sy/badenjki-business",
+        "verdict": "PASS",
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawlTime": "2026-09-27T20:42:23Z"
+      },
+      {
+        "url": "https://rabeh.sy/google-lifts-advertising-ban-on-syria",
+        "verdict": "PASS",
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawlTime": "2026-09-29T08:56:24Z"
+      },
+      {
+        "url": "https://rabeh.sy/about",
+        "verdict": "NEUTRAL",
+        "coverageState": "Not found (404)",
+        "indexingState": "INDEXING_STATE_UNSPECIFIED",
+        "lastCrawlTime": "2026-10-04T08:11:13Z"
+      }
+    ]
+  },
+  "sitemapSubmission": {
+    "siteUrl": "https://rabeh.sy/",
+    "attempted": 1,
+    "submitted": 1,
+    "failed": 0,
+    "results": [
+      {
+        "sitemapUrl": "https://rabeh.sy/sitemap-index.xml",
+        "accepted": true,
+        "confirmed": true,
+        "lastSubmitted": "2026-10-04T13:19:10.998Z",
+        "isPending": true,
+        "isSitemapsIndex": true,
+        "warnings": "0",
+        "errors": "0"
+      }
+    ],
+    "message": "Submitted 1 of 1 sitemap(s) to Search Console for https://rabeh.sy/. Submitting queues a download; it does not index the URLs.",
+    "actions": [
+      "Re-check list_sitemaps in a few hours: warnings, errors and indexed counts appear only after Google has downloaded the sitemap."
+    ]
+  },
+  "changesPrepared": [
+    {
+      "change": "Create Arabic custom software services landing page with home/footer links",
+      "status": "local; not deployed"
+    },
+    {
+      "change": "Make blog pagination indexable and include it in the sitemap",
+      "status": "local; not deployed"
+    },
+    {
+      "change": "Define organization and website references on all pages; align canonical URLs",
+      "status": "local; not deployed"
+    },
+    {
+      "change": "Restore /about as a company and founder page",
+      "status": "local; not deployed"
+    },
+    {
+      "change": "Use HTTP 301 for /rabeh-lite on Netlify, Vercel and Nginx",
+      "status": "local; not deployed; host behavior must be verified after deployment"
+    },
+    {
+      "change": "Revise Google Ads Syria article title, excerpt and source attribution",
+      "status": "local; not deployed"
+    },
+    {
+      "change": "Retired /products/manara and /products/talabatak",
+      "status": "left removed per user instruction"
+    }
+  ]
+}
