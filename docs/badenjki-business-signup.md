@@ -2,6 +2,10 @@
 
 The Astro site stays static. All visible iOS, Android and Windows download actions use the signup gate. Visitors can browse freely. After Rails confirms signup, the chosen allowlisted destination opens in a new tab and remains available through the Continue button.
 
+## Windows downloads
+
+The Windows destination is `https://downloads.rabeh.sy/desktop/stable/windows.exe`. After the existing signup flow, it redirects directly to the latest promoted EXE with attachment headers; visitors do not open Google Drive or an intermediate download page. Both automatic opening and the explicit Continue link use the same allowlisted destination. The download service resolves the current release at request time, so publishing a newer desktop release does not require rebuilding this website. iOS and Android retain their store destinations.
+
 ## Configuration and deployment
 
 Build with `PUBLIC_BADENJKI_API_ORIGIN` set to the Rails HTTPS origin. The API owns the direct source through `WEBSITE_DIRECT_SOURCE_CODE` and `bin/rails website:provision_direct_source`; no public direct-source value is needed in the website build. Rails `WEBSITE_ALLOWED_ORIGINS` must include this website's exact HTTPS origin. The browser uses `X-Website-Session` with an opaque 256-bit token and `credentials: omit`, so third-party cookie availability does not affect this flow. Keep URLs, analytics and access logs free of phone numbers and credentials. The token is sent only as a header.
