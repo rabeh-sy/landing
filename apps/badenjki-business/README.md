@@ -12,4 +12,4 @@ Run `npm run check` for Astro diagnostics. For production, set `PUBLIC_BADENJKI_
 
 Add `https://badenjki.business` to Rails `WEBSITE_ALLOWED_ORIGINS` before launch. Verify signup on the new domain before deploying the main site's link changes and permanent redirects. See the [signup and referral documentation](../../docs/badenjki-business-signup.md) for the API and campaign behavior.
 
-In Dokploy, select the GitHub provider and set the build path to `/apps/badenjki-business`. Use the Dockerfile build type with `./Dockerfile` and context `.`. Enable Autodeploy on the selected branch. Dokploy routes `badenjki.business` to container port 80.
+In Dokploy, select the `rabeh-sy/landing` GitHub repository and set the build path to `/apps/badenjki-business`. Use the Dockerfile build type with `./Dockerfile` and the repository-relative context `./apps/badenjki-business`. The initial production deployment tracks `codex/badenjki-business` with Autodeploy set to On Push. Dokploy routes `badenjki.business` to container port 80 and provisions TLS with Let's Encrypt.
