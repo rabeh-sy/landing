@@ -1,0 +1,233 @@
+---
+import Layout from '../layouts/Layout.astro';
+import type { Language } from '../lib/language';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const copy = {
+  ar: {
+    title: 'حذف حسابك في بادنجكي الإداري',
+    warning:
+      'يؤدي هذا الإجراء إلى حذف ملفك الشخصي وبيانات تسجيل الدخول ومحادثاتك الخاصة نهائيًا. كما يحذف كل نشاط تجاري تكون فيه المالك النشط الأخير، بما في ذلك سجلاته وملفاته المتزامنة. تحتفظ الأنشطة التي لديها مالك نشط آخر بسجلاتها ومعرّفات الجهات المنفّذة المجهّلة في السجل التاريخي.',
+    copies:
+      'صدّر أي سجلات تحتاج إليها قبل الحذف. قد تظل البيانات موجودة على الأجهزة غير المتصلة وفي النسخ التي صدّرتها.',
+    country: 'بلد رقم الهاتف',
+    selectCountry: 'اختر بلد رقم الهاتف',
+    otherCountry: 'بلد آخر (أدخل الرقم الدولي كاملًا)',
+    phone: 'رقم الهاتف',
+    password: 'كلمة المرور',
+    confirm: 'أفهم أن هذا الحذف نهائي.',
+    submit: 'حذف الحساب نهائيًا',
+    pending: 'جارٍ حذف الحساب…',
+    complete:
+      'حُذف حسابك وأُلغي وصولك إليه. تُحذف الملفات المخزنة المدرجة في قائمة الحذف في الخلفية. تتلقى الأجهزة غير المتصلة إشعار الحذف عند اتصالها مجددًا.',
+    invalid: 'تحقق من بلد رقم الهاتف ورقمه وكلمة المرور والتأكيد، ثم حاول مجددًا.',
+    rateLimited: 'محاولات كثيرة. حاول مرة أخرى لاحقًا.',
+    unavailable: 'تعذّر تأكيد حذف الحساب. حاول مرة أخرى لاحقًا.',
+    javascript: 'فعّل JavaScript لإرسال طلب حذف حسابك.',
+    countries: {
+      AE: 'الإمارات العربية المتحدة',
+      EG: 'مصر',
+      IQ: 'العراق',
+      JO: 'الأردن',
+      LB: 'لبنان',
+      QA: 'قطر',
+      SA: 'السعودية',
+      SY: 'سوريا',
+      TR: 'تركيا',
+      US: 'الولايات المتحدة',
+    },
+  },
+  en: {
+    title: 'Delete your Badenjki Business account',
+    warning:
+      'This permanently deletes your profile, credentials and private chats. It also deletes every business where you are the last active owner, including its synced records and files. Businesses with another active owner keep their records and anonymous historical actor references.',
+    copies:
+      'Export any records you need before deleting. Offline devices and copies you exported can still contain data.',
+    country: 'Phone country',
+    selectCountry: 'Select your phone country',
+    otherCountry: 'Other country (enter the full international number)',
+    phone: 'Phone number',
+    password: 'Password',
+    confirm: 'I understand that this deletion is permanent.',
+    submit: 'Permanently delete account',
+    pending: 'Deleting account…',
+    complete:
+      'Your account and access have been deleted. Stored files queued for deletion are removed in the background. Devices that are offline can learn about the deletion when they reconnect.',
+    invalid: 'Check your phone country, phone number, password and confirmation, then try again.',
+    rateLimited: 'Too many attempts. Try again later.',
+    unavailable: 'Could not confirm account deletion. Try again later.',
+    javascript: 'Enable JavaScript to submit your account deletion request.',
+    countries: {
+      AE: 'United Arab Emirates',
+      EG: 'Egypt',
+      IQ: 'Iraq',
+      JO: 'Jordan',
+      LB: 'Lebanon',
+      QA: 'Qatar',
+      SA: 'Saudi Arabia',
+      SY: 'Syria',
+      TR: 'Türkiye',
+      US: 'United States',
+    },
+  },
+}[lang];
+const inputClass =
+  'mt-1 block w-full rounded-lg border border-[#a6cdb2] bg-white px-3 py-2.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#13743b]';
+---
+
+<Layout {lang} title={copy.title} description={copy.copies} page="/account-deletion" analytics={false}>
+  <article class="mx-auto max-w-2xl px-5 py-16 sm:px-8 lg:py-20">
+    <h1 class="text-4xl font-black">{copy.title}</h1>
+    <p class="mt-6 leading-7">{copy.warning}</p>
+    <p class="mt-3 leading-7">{copy.copies}</p>
+    <p id="account-deletion-complete" class="mt-6 rounded-lg bg-[#e2f4e8] p-4" role="status" tabindex="-1" hidden>
+      {copy.complete}
+    </p>
+    <noscript><p class="mt-6">{copy.javascript}</p></noscript>
+    <form id="account-deletion-form" method="post" class="mt-6">
+      <fieldset class="space-y-5" disabled>
+        <div>
+          <label for="country" class="font-bold">{copy.country}</label>
+          <select id="country" name="country" autocomplete="country" required class={inputClass}>
+            <option value="">{copy.selectCountry}</option>
+            {Object.entries(copy.countries).map(([code, name]) => <option value={code}>{name}</option>)}
+            <option value="other">{copy.otherCountry}</option>
+          </select>
+        </div>
+        <div>
+          <label for="phone" class="font-bold">{copy.phone}</label>
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            autocomplete="username"
+            placeholder="+963…"
+            maxlength="40"
+            required
+            dir="ltr"
+            class={inputClass}
+          />
+        </div>
+        <div>
+          <label for="password" class="font-bold">{copy.password}</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            autocomplete="current-password"
+            maxlength="72"
+            required
+            class={inputClass}
+          />
+        </div>
+        <label class="flex items-start gap-2">
+          <input name="confirm" type="checkbox" required class="mt-1 h-4 w-4 shrink-0 accent-[#13743b]" />
+          <span>{copy.confirm}</span>
+        </label>
+        <button
+          type="submit"
+          class="rounded-lg bg-[#a21d27] px-5 py-3 font-bold text-white disabled:opacity-60"
+          data-pending={copy.pending}
+        >
+          {copy.submit}
+        </button>
+      </fieldset>
+      <p
+        class="mt-4 font-semibold text-red-800"
+        role="alert"
+        data-invalid={copy.invalid}
+        data-rate-limited={copy.rateLimited}
+        data-unavailable={copy.unavailable}
+        hidden
+      >
+      </p>
+    </form>
+  </article>
+</Layout>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('#account-deletion-form');
+  const fields = form?.querySelector<HTMLFieldSetElement>('fieldset');
+  const password = form?.querySelector<HTMLInputElement>('#password');
+  const button = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
+  const error = form?.querySelector<HTMLElement>('[role="alert"]');
+  const complete = document.querySelector<HTMLElement>('#account-deletion-complete');
+
+  if (
+    form &&
+    fields &&
+    password &&
+    button &&
+    error &&
+    complete &&
+    !('languageRedirect' in document.documentElement.dataset)
+  ) {
+    const apiOrigin = import.meta.env.PUBLIC_BADENJKI_API_ORIGIN?.replace(/\/$/, '') || '';
+    const localApi = import.meta.env.DEV && /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(apiOrigin);
+
+    function showError(element: HTMLElement, message: string | undefined) {
+      element.textContent = message ?? '';
+      element.hidden = false;
+    }
+
+    if (!/^https:\/\/[^/?#@]+$/.test(apiOrigin) && !localApi) {
+      showError(error, error.dataset.unavailable);
+    } else {
+      const submitLabel = button.textContent?.trim() ?? '';
+      fields.disabled = false;
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        if (fields.disabled) return;
+
+        const values = new FormData(form);
+        const body = JSON.stringify({
+          country: values.get('country'),
+          phone: values.get('phone'),
+          password: values.get('password'),
+          confirm: values.has('confirm'),
+        });
+        password.value = '';
+        error.hidden = true;
+        fields.disabled = true;
+        button.textContent = button.dataset.pending ?? '';
+
+        try {
+          const response = await fetch(apiOrigin + '/website/account-deletion', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body,
+            credentials: 'omit',
+            cache: 'no-store',
+            redirect: 'error',
+            referrerPolicy: 'no-referrer',
+          });
+          if (response.status === 204) {
+            form.reset();
+            form.hidden = true;
+            complete.hidden = false;
+            complete.focus();
+            return;
+          }
+
+          const message =
+            response.status === 429
+              ? error.dataset.rateLimited
+              : response.status === 422
+                ? error.dataset.invalid
+                : error.dataset.unavailable;
+          showError(error, message);
+        } catch {
+          showError(error, error.dataset.unavailable);
+        } finally {
+          fields.disabled = form.hidden;
+          button.textContent = submitLabel;
+          if (!form.hidden) password.focus();
+        }
+      });
+    }
+  }
+</script>

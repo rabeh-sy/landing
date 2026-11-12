@@ -1,42 +1,139 @@
 ---
+import { signupActions } from '../lib/signup-copy';
+import { siteCopy, type Language } from '../lib/language';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const text = (ar: string, en: string) => (lang === 'ar' ? ar : en);
 ---
 
-<dialog id="badenjki-signup" aria-labelledby="badenjki-signup-title" aria-describedby="badenjki-signup-description" class="fixed inset-0 m-auto w-[min(94vw,490px)] max-h-[90dvh] overflow-y-auto overscroll-contain rounded-2xl border border-[#a6cdb2] bg-[#f4f5ed] p-0 text-[#102219] shadow-2xl backdrop:bg-[#07140d]/75" dir="rtl">
+<dialog
+  id="badenjki-signup"
+  aria-labelledby="badenjki-signup-title"
+  aria-describedby="badenjki-signup-description"
+  class="fixed inset-0 m-auto w-[min(94vw,490px)] max-h-[90dvh] overflow-y-auto overscroll-contain rounded-2xl border border-[#a6cdb2] bg-[#f4f5ed] p-0 text-[#102219] shadow-2xl backdrop:bg-[#07140d]/75"
+>
   <div class="p-5 sm:p-8">
     <div class="flex items-start justify-between gap-5">
       <div>
-        <p class="text-xs font-bold text-[#168342]">بادنجكي الإداري</p>
-        <h2 id="badenjki-signup-title" class="mt-2 text-2xl font-black leading-snug">ابدأ باستخدام بادنجكي الإداري</h2>
+        <p class="text-xs font-bold text-[#168342]">{siteCopy[lang].brand}</p>
+        <h2 id="badenjki-signup-title" class="mt-2 text-2xl font-black leading-snug">
+          {text('ابدأ باستخدام بادنجكي الإداري', 'Get started with Badenjki Business')}
+        </h2>
       </div>
-      <button type="button" data-signup-close aria-label="إغلاق" class="rounded-lg px-2 text-2xl leading-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#13743b]">×</button>
+      <button
+        type="button"
+        data-signup-close
+        aria-label={text('إغلاق', 'Close')}
+        class="rounded-lg px-2 text-2xl leading-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#13743b]"
+        >×</button
+      >
     </div>
-    <p id="badenjki-signup-description" class="mt-4 text-sm leading-7 text-[#456254]">أدخل رقم هاتفك للمتابعة إلى التحميل، واستخدم الرقم نفسه عند إعداد التطبيق.</p>
+    <p id="badenjki-signup-description" class="mt-4 text-sm leading-7 text-[#456254]">
+      {
+        text(
+          'أدخل رقم هاتفك للمتابعة إلى التحميل، واستخدم الرقم نفسه عند إعداد التطبيق.',
+          'Enter your phone number to download the app. Use the same number when you set it up.'
+        )
+      }
+    </p>
     <form id="badenjki-signup-form" class="mt-6 space-y-4">
       <div>
-        <label for="badenjki-country" class="mb-1 block text-sm font-bold">البلد</label>
-        <select id="badenjki-country" required class="w-full rounded-lg border border-[#a6cdb2] bg-white px-3 py-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#13743b]"><option value="SY">سوريا</option><option value="SA">السعودية</option><option value="AE">الإمارات</option><option value="IQ">العراق</option><option value="JO">الأردن</option><option value="LB">لبنان</option><option value="TR">تركيا</option><option value="US">الولايات المتحدة</option></select>
+        <label for="badenjki-country" class="mb-1 block text-sm font-bold">{text('البلد', 'Country')}</label>
+        <select
+          id="badenjki-country"
+          required
+          class="w-full rounded-lg border border-[#a6cdb2] bg-white px-3 py-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#13743b]"
+          ><option value="SY">{text('سوريا', 'Syria')}</option><option value="SA"
+            >{text('السعودية', 'Saudi Arabia')}</option
+          ><option value="AE">{text('الإمارات', 'United Arab Emirates')}</option><option value="IQ"
+            >{text('العراق', 'Iraq')}</option
+          ><option value="JO">{text('الأردن', 'Jordan')}</option><option value="LB">{text('لبنان', 'Lebanon')}</option
+          ><option value="TR">{text('تركيا', 'Türkiye')}</option><option value="US"
+            >{text('الولايات المتحدة', 'United States')}</option
+          ></select
+        >
       </div>
       <div>
-        <label for="badenjki-phone" class="mb-1 block text-sm font-bold">رقم الهاتف</label>
-        <div class="flex overflow-hidden rounded-lg border border-[#a6cdb2] bg-white focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-[#13743b]" dir="ltr">
-          <span id="badenjki-prefix" class="flex min-w-[4.5rem] items-center justify-center border-r border-[#d5e2d8] bg-[#eaf1e9] px-3 font-bold" aria-label="رمز الاتصال الدولي">+963</span>
-          <input id="badenjki-phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="9xxxxxxxx" aria-describedby="badenjki-phone-help badenjki-signup-error" class="min-w-0 flex-1 bg-transparent px-3 py-3 outline-none" dir="ltr" />
+        <label for="badenjki-phone" class="mb-1 block text-sm font-bold">{text('رقم الهاتف', 'Phone number')}</label>
+        <div
+          class="flex overflow-hidden rounded-lg border border-[#a6cdb2] bg-white focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-[#13743b]"
+          dir="ltr"
+        >
+          <span
+            id="badenjki-prefix"
+            class="flex min-w-[4.5rem] items-center justify-center border-e border-[#d5e2d8] bg-[#eaf1e9] px-3 font-bold"
+            aria-label={text('رمز الاتصال الدولي', 'Country calling code')}>+963</span
+          >
+          <input
+            id="badenjki-phone"
+            type="tel"
+            inputmode="tel"
+            autocomplete="tel-national"
+            placeholder="9xxxxxxxx"
+            aria-describedby="badenjki-phone-help badenjki-signup-error"
+            class="min-w-0 flex-1 bg-transparent px-3 py-3 outline-none"
+            dir="ltr"
+          />
         </div>
-        <p id="badenjki-phone-help" class="mt-1.5 text-xs leading-5 text-[#456254]">اكتب الرقم المحلي؛ ويمكنك لصق الرقم كاملًا مع رمز البلد.</p>
+        <p id="badenjki-phone-help" class="mt-1.5 text-xs leading-5 text-[#456254]">
+          {
+            text(
+              'اكتب الرقم المحلي؛ ويمكنك لصق الرقم كاملًا مع رمز البلد.',
+              'Enter your local number or paste the full number with its country code.'
+            )
+          }
+        </p>
       </div>
       <div id="badenjki-code-field" hidden>
-        <label for="badenjki-code" class="mb-1 block text-sm font-bold">رمز التحقق</label>
-        <p class="mb-2 text-sm text-[#456254]">سنرسل رمز تحقق إلى رقم هاتفك.</p>
-        <input id="badenjki-code" type="text" inputmode="numeric" autocomplete="one-time-code" class="w-full rounded-lg border border-[#a6cdb2] bg-white px-3 py-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#13743b]" dir="ltr" />
-        <button type="button" id="badenjki-resend" class="mt-2 text-sm font-bold text-[#13743b] underline" hidden>إعادة إرسال الرمز</button>
+        <label for="badenjki-code" class="mb-1 block text-sm font-bold">{text('رمز التحقق', 'Verification code')}</label
+        >
+        <p class="mb-2 text-sm text-[#456254]">
+          {text('سنرسل رمز تحقق إلى رقم هاتفك.', 'We’ll send a verification code to your phone number.')}
+        </p>
+        <input
+          id="badenjki-code"
+          type="text"
+          inputmode="numeric"
+          autocomplete="one-time-code"
+          class="w-full rounded-lg border border-[#a6cdb2] bg-white px-3 py-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#13743b]"
+          dir="ltr"
+        />
+        <button type="button" id="badenjki-resend" class="mt-2 text-sm font-bold text-[#13743b] underline" hidden
+          >{text('إعادة إرسال الرمز', 'Resend code')}</button
+        >
       </div>
       <p id="badenjki-signup-error" role="alert" class="text-sm font-semibold text-red-700" hidden></p>
-      <button id="badenjki-submit" type="submit" class="w-full rounded-lg bg-[#102219] px-5 py-3 font-bold text-white disabled:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#13743b]">متابعة</button>
+      <button
+        id="badenjki-submit"
+        type="submit"
+        class="w-full rounded-lg bg-[#102219] px-5 py-3 font-bold text-white disabled:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#13743b]"
+        >{signupActions[lang].continue}</button
+      >
     </form>
     <div id="badenjki-success" hidden class="mt-6">
-      <p class="font-bold">استخدم رقم الهاتف نفسه عند إعداد التطبيق.</p>
-      <p class="mt-2 text-sm text-[#456254]">سيُفتح المتجر في نافذة جديدة. إذا منع المتصفح ذلك، استخدم الزر أدناه.</p>
-      <a id="badenjki-continue" href="#" target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex rounded-lg bg-[#13743b] px-6 py-3 font-bold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#102219]">متابعة التحميل</a>
+      <p class="font-bold">
+        {text('استخدم رقم الهاتف نفسه عند إعداد التطبيق.', 'Use the same phone number when setting up the app.')}
+      </p>
+      <p class="mt-2 text-sm text-[#456254]">
+        {
+          text(
+            'سيُفتح المتجر في نافذة جديدة. إذا منع المتصفح ذلك، استخدم الزر أدناه.',
+            'The download opens in a new window. If your browser blocks it, use the button below.'
+          )
+        }
+      </p>
+      <a
+        id="badenjki-continue"
+        href="#"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mt-5 inline-flex rounded-lg bg-[#13743b] px-6 py-3 font-bold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#102219]"
+        >{text('متابعة التحميل', 'Continue to download')}</a
+      >
     </div>
   </div>
 </dialog>

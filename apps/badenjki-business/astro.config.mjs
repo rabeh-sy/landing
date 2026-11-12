@@ -7,6 +7,6 @@ export default defineConfig({
   trailingSlash: 'never',
   integrations: [
     icon({ iconDir: 'src/assets' }),
-    sitemap({ filter: (url) => new URL(url).pathname.replace(/\/$/, '') !== '/badenjki-business' }),
+    sitemap({ filter: (url) => /^\/(ar|en)(\/|$)/.test(new URL(url).pathname) }),
   ],
 });

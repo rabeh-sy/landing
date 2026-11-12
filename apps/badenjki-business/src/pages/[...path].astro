@@ -1,0 +1,39 @@
+---
+import BadenjkiHome from '../components/BadenjkiHome.astro';
+import AccountDeletion from '../components/AccountDeletion.astro';
+import PrivacyLayout from '../layouts/PrivacyLayout.astro';
+import { Content as ArabicPrivacy, frontmatter as arabicPrivacy } from '../content/privacy-ar.md';
+import { Content as EnglishPrivacy, frontmatter as englishPrivacy } from '../content/privacy-en.md';
+import { languages, localizedPath, pagePaths, type Language, type PagePath } from '../lib/language';
+
+export function getStaticPaths() {
+  return pagePaths.flatMap((page) => [
+    { params: { path: page.slice(1) || undefined }, props: { lang: 'ar', page } },
+    ...languages.map((lang) => ({
+      params: { path: localizedPath(lang, page).slice(1) },
+      props: { lang, page },
+    })),
+  ]);
+}
+
+interface Props {
+  lang: Language;
+  page: PagePath;
+}
+
+const { lang, page } = Astro.props;
+const Privacy = lang === 'ar' ? ArabicPrivacy : EnglishPrivacy;
+const privacy = lang === 'ar' ? arabicPrivacy : englishPrivacy;
+---
+
+{
+  page === '/' ? (
+    <BadenjkiHome {lang} />
+  ) : page === '/privacy' ? (
+    <PrivacyLayout {lang} title={privacy.title} description={privacy.description}>
+      <Privacy />
+    </PrivacyLayout>
+  ) : (
+    <AccountDeletion {lang} />
+  )
+}

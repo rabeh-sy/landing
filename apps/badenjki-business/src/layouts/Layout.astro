@@ -2,33 +2,90 @@
 import '@fontsource-variable/rubik';
 import '../styles/global.css';
 import appMark from '../assets/badenjki-business-mark.png';
-import socialCard from '../assets/social-badenjki-business.jpg';
+import arabicSocialCard from '../assets/social-badenjki-business.jpg';
+import englishSocialCard from '../assets/social-badenjki-business-en.jpg';
+import { localizedPath, siteCopy, type Language, type PagePath } from '../lib/language';
 
 interface Props {
   title: string;
   description: string;
+  lang: Language;
+  page: PagePath;
+  analytics?: boolean;
   structuredData?: Record<string, unknown>[];
 }
 
-const { title, description, structuredData } = Astro.props;
-const canonical = new URL(Astro.url.pathname, Astro.site);
+const { title, description, lang, page, analytics = true, structuredData } = Astro.props;
+const copy = siteCopy[lang];
+const alternate = lang === 'ar' ? 'en' : 'ar';
+const home = localizedPath(lang, '/');
+const canonical = new URL(localizedPath(lang, page), Astro.site);
+const englishPath = localizedPath('en', page);
+const detectLanguage = (Astro.url.pathname.replace(/\/$/, '') || '/') === page;
+const socialCard = lang === 'ar' ? arabicSocialCard : englishSocialCard;
 const socialImage = new URL(socialCard.src, Astro.site);
 const schema = structuredData && JSON.stringify({ '@context': 'https://schema.org', '@graph': structuredData });
-const analyticsId = 'G-Y40B7NYV2Z';
+const analyticsId = analytics && import.meta.env.PROD ? 'G-Y40B7NYV2Z' : null;
 ---
 
 <!doctype html>
-<html lang="ar" dir="rtl" class="motion-safe:scroll-smooth 2xl:text-[20px]">
+<html lang={lang} dir={lang === 'ar' ? 'rtl' : 'ltr'} class="motion-safe:scroll-smooth 2xl:text-[20px]">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="ar" href={new URL(localizedPath('ar', page), Astro.site)} />
+    <link rel="alternate" hreflang="en" href={new URL(englishPath, Astro.site)} />
+    <link rel="alternate" hreflang="x-default" href={new URL(page, Astro.site)} />
+    <script is:inline define:vars={{ detectLanguage, englishPath, analyticsId }}>
+      const languageKey = 'badenjki:language';
+      if (detectLanguage) {
+        let preferred;
+        try {
+          preferred = localStorage.getItem(languageKey);
+        } catch {
+          /* use browser preferences */
+        }
+        if (preferred !== 'ar' && preferred !== 'en') {
+          preferred = (navigator.languages?.length ? navigator.languages : [navigator.language])
+            .map((locale) => locale?.toLowerCase().split('-')[0])
+            .find((language) => language === 'ar' || language === 'en');
+        }
+        if (preferred === 'en') {
+          document.documentElement.dataset.languageRedirect = '';
+          location.replace(englishPath + location.search + location.hash);
+        }
+      }
+      document.addEventListener('click', (event) => {
+        const link = event.target?.closest?.('[data-site-language]');
+        if (!link) return;
+        try {
+          localStorage.setItem(languageKey, link.dataset.siteLanguage);
+        } catch {
+          /* follow the localized link */
+        }
+        link.href = link.pathname + location.search + location.hash;
+      });
+
+      if (analyticsId && !('languageRedirect' in document.documentElement.dataset)) {
+        const analyticsScript = document.createElement('script');
+        analyticsScript.async = true;
+        analyticsScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + analyticsId;
+        document.head.append(analyticsScript);
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          window.dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', analyticsId);
+      }
+    </script>
     <link rel="icon" type="image/png" href={appMark.src} />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="بادنجكي الإداري" />
-    <meta property="og:locale" content="ar" />
+    <meta property="og:site_name" content={copy.brand} />
+    <meta property="og:locale" content={lang} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
@@ -37,32 +94,30 @@ const analyticsId = 'G-Y40B7NYV2Z';
     <meta property="og:image:height" content={String(socialCard.height)} />
     <meta name="twitter:card" content="summary_large_image" />
     {schema && <script is:inline type="application/ld+json" set:html={schema.replace(/</g, '\\u003c')} />}
-    {
-      import.meta.env.PROD && (
-        <>
-          <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${analyticsId}`}></script>
-          <script is:inline define:vars={{ analyticsId }}>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() {
-              window.dataLayer.push(arguments);
-            }
-            gtag('js', new Date());
-            gtag('config', analyticsId);
-          </script>
-        </>
-      )
-    }
   </head>
   <body class="bg-[#f5f6f0] tracking-tight text-[#102219] antialiased">
     <header class="border-b border-[#173f2b]/10">
-      <div class="mx-auto flex max-w-[1440px] flex-wrap items-center justify-between gap-x-6 gap-y-3 px-5 py-4 sm:px-8 lg:px-12">
-        <a href="/" class="inline-flex items-center gap-3 font-black">
+      <div
+        class="mx-auto flex max-w-[1440px] flex-wrap items-center justify-between gap-x-6 gap-y-3 px-5 py-4 sm:px-8 lg:px-12"
+      >
+        <a href={home} class="inline-flex items-center gap-3 font-black">
           <img src={appMark.src} width="40" height="40" alt="" class="rounded-xl" />
-          بادنجكي الإداري
+          {copy.brand}
         </a>
-        <nav aria-label="التنقل الرئيسي" class="flex items-center gap-4 text-sm font-bold sm:gap-6">
-          <a href="https://rabeh.sy/contact" class="hover:underline">تواصل معنا</a>
-          <a href="/#download" class="rounded-lg bg-[#173f2b] px-4 py-2 text-white hover:bg-[#13743b]">تحميل التطبيق</a>
+        <nav aria-label={copy.navigation} class="flex items-center gap-4 text-sm font-bold sm:gap-6">
+          <a
+            href={localizedPath(alternate, page)}
+            lang={alternate}
+            hreflang={alternate}
+            data-site-language={alternate}
+            class="hover:underline"
+          >
+            {copy.switchLanguage}
+          </a>
+          <a href="https://rabeh.sy/contact" class="hover:underline">{copy.contact}</a>
+          <a href={home + '#download'} class="rounded-lg bg-[#173f2b] px-4 py-2 text-white hover:bg-[#13743b]"
+            >{copy.download}</a
+          >
         </nav>
       </div>
     </header>
@@ -70,7 +125,7 @@ const analyticsId = 'G-Y40B7NYV2Z';
       <slot />
     </main>
     <footer class="border-t border-[#173f2b]/10 px-5 py-6 text-center text-sm text-[#445a4d]">
-      <a href="https://rabeh.sy/" class="font-bold hover:underline">رابح للتقنية</a>
+      <a href="https://rabeh.sy/" class="font-bold hover:underline">{copy.company}</a>
     </footer>
   </body>
 </html>

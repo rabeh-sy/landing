@@ -1,4 +1,9 @@
 import { badenjkiDownloads, type BadenjkiPlatform } from '../config/badenjki-downloads';
+import { signupActions, signupMessages } from '../lib/signup-copy';
+
+const language = document.documentElement.lang === 'en' ? 'en' : 'ar';
+const copy = signupMessages[language];
+const actions = signupActions[language];
 
 type SessionStatus = { completed: boolean; source_code: string | null };
 type Challenge = { required: boolean; challenge_id?: number; resend_available_at?: string; no_otp_token?: string };
@@ -48,23 +53,23 @@ function asciiDigits(value: string) {
 
 function normalizedPhone(country: string, input: string): string {
   const dial = dialCodes[country];
-  if (!dial) throw new Error('اختر بلدًا من القائمة.');
+  if (!dial) throw new Error(copy.selectCountry);
   const value = asciiDigits(input.trim());
-  if (!value) throw new Error('أدخل رقم الهاتف.');
+  if (!value) throw new Error(copy.enterPhone);
   if (!/^\+?[\d\s().-]+$/.test(value) || (value.match(/\+/g) || []).length > 1)
-    throw new Error('استخدم أرقامًا ومسافات أو شرطات فقط في رقم الهاتف.');
+    throw new Error(copy.phoneFormat);
   const digits = value.replace(/\D/g, '');
   const international = value.startsWith('+') || digits.startsWith('00');
   let national = digits.startsWith('00') ? digits.slice(2) : digits;
   if (international && !national.startsWith(dial))
-    throw new Error('رمز البلد في الرقم لا يطابق البلد المحدد.');
+    throw new Error(copy.countryMismatch);
   if (national.startsWith(dial) && (country !== 'SY' || international || national.length !== 9))
     national = national.slice(dial.length);
   national = national.replace(/^0/, '');
   if (country === 'SY' && national.length !== 9)
-    throw new Error('يجب أن يتكون الرقم السوري من ٩ أرقام بعد حذف الصفر ورمز البلد.');
+    throw new Error(copy.syrianLength);
   if (country !== 'SY' && (dial.length + national.length < 7 || dial.length + national.length > 15))
-    throw new Error('تحقق من طول رقم الهاتف.');
+    throw new Error(copy.phoneLength);
   return `${dial}${national}`;
 }
 
@@ -109,16 +114,20 @@ function track(event: string, details: Record<string, string> = {}) {
 
 async function api(path: string, body?: Record<string, unknown>) {
   const localApi = import.meta.env.DEV && /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(apiOrigin);
-  if (!apiOrigin || (!/^https:\/\//.test(apiOrigin) && !localApi)) throw new Error('خدمة التسجيل غير مهيأة حاليًا. حاول لاحقًا.');
+  if (!apiOrigin || (!/^https:\/\//.test(apiOrigin) && !localApi)) throw new Error(copy.unavailable);
   const response = await fetch(`${apiOrigin}${path}`, {
     method: body ? 'POST' : 'GET',
     headers: { 'X-Website-Session': sessionId(), ...(body ? { 'Content-Type': 'application/json' } : {}) },
     body: body ? JSON.stringify(body) : undefined,
     credentials: 'omit',
-  }).catch(() => { throw new Error('تعذر الاتصال بالخدمة. تحقق من اتصالك وحاول مجددًا.'); });
+  }).catch(() => { throw new Error(copy.connection); });
   const data = await response.json().catch(() => ({}));
   if (!response.ok) {
-    const error = new Error(data.error || 'تعذر الاتصال بالخدمة. حاول مجددًا.') as Error & { status?: number; code?: string };
+    let message = copy.requestFailed;
+    if (data.code === 'otp_required') message = copy.restartVerification;
+    else if (response.status === 429) message = copy.waitToResend;
+    else if (path === '/website/otp/verify' && response.status === 422) message = copy.checkCode;
+    const error = new Error(message) as Error & { status?: number; code?: string };
     error.status = response.status;
     error.code = data.code;
     throw error;
@@ -162,7 +171,7 @@ function resetDecision() {
   field<HTMLElement>('#badenjki-code-field').hidden = true;
   field<HTMLInputElement>('#badenjki-code').value = '';
   field<HTMLElement>('#badenjki-resend').hidden = true;
-  field<HTMLButtonElement>('#badenjki-submit').textContent = 'متابعة';
+  field<HTMLButtonElement>('#badenjki-submit').textContent = actions.continue;
 }
 
 function phoneFields() {
@@ -218,7 +227,7 @@ async function startDecision() {
   if (challenge!.required) {
     field<HTMLElement>('#badenjki-code-field').hidden = false;
     field<HTMLElement>('#badenjki-resend').hidden = false;
-    field<HTMLButtonElement>('#badenjki-submit').textContent = 'تحقق من الرمز';
+    field<HTMLButtonElement>('#badenjki-submit').textContent = actions.verify;
     field<HTMLInputElement>('#badenjki-code').focus();
   } else {
     await submitSignup();
@@ -228,22 +237,22 @@ async function startDecision() {
 async function submitSignup() {
   const { country, phone, key } = phoneFields();
   const revision = decisionRevision;
-  if (decisionFor !== key) throw new Error('ابدأ التحقق من الهاتف مجددًا.');
+  if (decisionFor !== key) throw new Error(copy.restartVerification);
   const payload: Record<string, unknown> = {
     country, phone, attempt_id: attemptId(), selected_platform: selected,
   };
   if (verified) payload.verification_token = verificationToken;
   else if (challenge?.no_otp_token) payload.no_otp_token = challenge.no_otp_token;
-  else throw new Error('ابدأ التحقق من الهاتف مجددًا.');
+  else throw new Error(copy.restartVerification);
   try {
     if (pendingCampaigns().length) {
       await captureReferral();
-      if (pendingCampaigns().length) throw new Error('تعذر تأكيد رابط الحملة. تحقق من اتصالك وحاول مجددًا.');
+      if (pendingCampaigns().length) throw new Error(copy.referralFailed);
     }
     if (!currentDecision(key, revision)) return;
     const response = await api('/website/signups', payload);
     if (!currentDecision(key, revision)) return;
-    if (!response.accepted) throw new Error('لم يكتمل التسجيل. حاول مجددًا.');
+    if (!response.accepted) throw new Error(copy.signupFailed);
     effective = { completed: true, source_code: response.source_code };
     track('badenjki_website_signup', { source_code: response.source_code });
   } catch (error) {
@@ -277,7 +286,7 @@ async function handleSubmit(event: SubmitEvent) {
     if (!challenge) await startDecision();
     else if (challenge.required && !verified) {
       const code = asciiDigits(field<HTMLInputElement>('#badenjki-code').value.trim());
-      if (!code) throw new Error('أدخل رمز التحقق.');
+      if (!code) throw new Error(copy.enterCode);
       const revision = decisionRevision;
       const result = await api('/website/otp/verify', { challenge_id: challenge.challenge_id, code });
       if (!currentDecision(key, revision) || decisionFor !== key) return;
@@ -287,11 +296,12 @@ async function handleSubmit(event: SubmitEvent) {
     } else await submitSignup();
   } catch (error) {
     if (submittedRevision === decisionRevision)
-      showError(error instanceof Error ? error.message : 'تعذر إكمال التسجيل. حاول مجددًا.');
+      showError(error instanceof Error ? error.message : copy.signupFailed);
   } finally { busy = false; button.disabled = false; }
 }
 
 function initializePage() {
+  if ('languageRedirect' in document.documentElement.dataset) return;
   const form = document.querySelector<HTMLFormElement>('#badenjki-signup-form');
   form?.addEventListener('submit', handleSubmit);
   updatePrefix();
@@ -319,7 +329,7 @@ document.addEventListener('click', async (event) => {
       openSignup(platform);
     } catch (error) {
       openSignup(platform);
-      showError(error instanceof Error ? error.message : 'تعذر التحقق من حالة التسجيل.');
+      showError(error instanceof Error ? error.message : copy.statusFailed);
     } finally { opening = false; }
     return;
   }
@@ -328,10 +338,10 @@ document.addEventListener('click', async (event) => {
     event.preventDefault();
     if (busy) return;
     const retryAt = challenge?.resend_available_at ? Date.parse(challenge.resend_available_at) : 0;
-    if (Date.now() < retryAt) return showError('انتظر قليلًا قبل إعادة إرسال الرمز.');
+    if (Date.now() < retryAt) return showError(copy.waitToResend);
     busy = true;
     resetDecision();
-    try { await startDecision(); clearError(); } catch (error) { showError(error instanceof Error ? error.message : 'تعذر إرسال الرمز.'); }
+    try { await startDecision(); clearError(); } catch (error) { showError(error instanceof Error ? error.message : copy.resendFailed); }
     finally { busy = false; }
   }
 });

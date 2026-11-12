@@ -1,16 +1,19 @@
 ---
 import Layout from './Layout.astro';
+import type { Language } from '../lib/language';
 
 interface Props {
-  frontmatter: { title: string; description: string };
+  lang: Language;
+  title: string;
+  description: string;
 }
 
-const { frontmatter } = Astro.props;
+const { lang, title, description } = Astro.props;
 ---
 
-<Layout {...frontmatter}>
+<Layout {lang} {title} {description} page="/privacy">
   <article class="mx-auto max-w-4xl px-5 py-16 sm:px-8 lg:py-20">
-    <h1 class="text-4xl font-black md:text-5xl">{frontmatter.title}</h1>
+    <h1 class="text-4xl font-black md:text-5xl">{title}</h1>
     <div class="prose prose-lg mt-8 max-w-none prose-headings:text-[#102219] prose-a:text-[#13743b]">
       <slot />
     </div>

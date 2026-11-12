@@ -1,0 +1,964 @@
+---
+import { Icon } from 'astro-icon/components';
+import Layout from '../layouts/Layout.astro';
+import BadenjkiSignup from './BadenjkiSignup.astro';
+import appMark from '../assets/badenjki-business-mark.png';
+import { localizedPath, siteCopy, type Language } from '../lib/language';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const text = (ar: string, en: string) => (lang === 'ar' ? ar : en);
+const { brand, company } = siteCopy[lang];
+
+const modules = [
+  {
+    title: text('المبيعات', 'Sales'),
+    description: text(
+      'فواتير، مردودات، سندات تسليم، ومتابعة أرصدة الزبائن.',
+      'Invoices, returns, delivery notes, and customer balances.'
+    ),
+    icon: 'tabler:receipt-2',
+    tone: 'lime',
+  },
+  {
+    title: text('المشتريات', 'Purchases'),
+    description: text(
+      'فواتير شراء، موردون، مردودات، واستحقاقات واضحة.',
+      'Purchase invoices, suppliers, returns, and amounts due.'
+    ),
+    icon: 'tabler:shopping-bag',
+    tone: 'amber',
+  },
+  {
+    title: text('المخزون', 'Inventory'),
+    description: text(
+      'مواد، مستودعات، تحويلات، جرد، وتنبيهات نقص المخزون.',
+      'Items, warehouses, stock transfers, stock counts, and low-stock alerts.'
+    ),
+    icon: 'tabler:box',
+    tone: 'blue',
+  },
+  {
+    title: text('الخزينة', 'Treasury'),
+    description: text(
+      'قبض ودفع، صناديق وحسابات مالية، وحركة يومية منظمة.',
+      'Receipts, payments, cash registers, and financial accounts in one place.'
+    ),
+    icon: 'tabler:wallet',
+    tone: 'violet',
+  },
+  {
+    title: text('المحاسبة', 'Accounting'),
+    description: text(
+      'قيود وتقارير تساعدك على رؤية الأرقام خلف كل حركة.',
+      'Journal entries and reports that show the numbers behind each transaction.'
+    ),
+    icon: 'tabler:calculator',
+    tone: 'rose',
+  },
+  {
+    title: text('التقارير', 'Reports'),
+    description: text(
+      'كشف حساب، حركة مواد، مبيعات، مشتريات، وأرصدة قابلة للطباعة.',
+      'Account statements, stock movements, sales, purchases, and printable balances.'
+    ),
+    icon: 'tabler:chart-bar',
+    tone: 'teal',
+  },
+];
+
+const faqs = [
+  {
+    question: text(
+      'هل يحتاج بادنجكي الإداري إلى اتصال دائم بالإنترنت؟',
+      'Does Badenjki Business need a constant internet connection?'
+    ),
+    answer: text(
+      'لا. صُمم التطبيق بأسلوب offline-first، لذلك تبقى بيانات العمل الأساسية على جهازك وتستمر العمليات اليومية عند ضعف الاتصال أو انقطاعه. المزامنة والمساعد الذكي فقط يحتاجان إلى اتصال عند استخدامهما.',
+      'The app is built to work offline. Your core business data stays on your device so you can keep working when the connection is weak or unavailable. Sync and the AI assistant require a connection when you use them.'
+    ),
+  },
+  {
+    question: text('هل نسخة سطح المكتب تطبيق مستقل؟', 'Is the desktop version a separate app?'),
+    answer: text(
+      'هي واجهة سطح مكتب لبادنجكي الإداري نفسه، وتستخدم نفس منطق الأعمال والبيانات والميزات. صُممت للشاشات الكبيرة والعمل المكثف، بينما تبقى نسخة الجوال أسرع للمهام أثناء الحركة.',
+      'The desktop version of Badenjki Business uses the same business rules, data, and features. It is designed for large screens and longer work sessions. The mobile version is handy for tasks on the go.'
+    ),
+  },
+  {
+    question: text('ما الأنظمة المدعومة حاليًا؟', 'Which platforms are supported?'),
+    answer: text(
+      'يتوفر التطبيق على Android وiPhone وiPad، إضافة إلى نسخة سطح مكتب مخصصة لنظام Windows. يمكنك تحميل كل نسخة مباشرة من رابط المنصة المناسبة.',
+      'The app is available on Android, iPhone, iPad, and Windows. Use the download link for your device.'
+    ),
+  },
+  {
+    question: text('هل يمكن أخذ نسخة احتياطية من البيانات؟', 'Can I back up my data?'),
+    answer: text(
+      'نعم. يمكنك تصدير نسخة احتياطية من قاعدة بيانات العمل المحلية واستعادتها لاحقًا عند الحاجة.',
+      'Yes. You can export a backup of your local business database and restore it when needed.'
+    ),
+  },
+  {
+    question: text('ماذا يقدم المساعد الذكي؟', 'What can the AI assistant do?'),
+    answer: text(
+      'يمكنك سؤاله عن الفواتير والعملاء والمواد والتقارير المتاحة ضمن صلاحياتك. هذه ميزة متصلة بالإنترنت وتُرسل فقط السياق المطلوب للإجابة.',
+      'Ask about invoices, customers, items, and reports you have permission to access. The assistant needs an internet connection and sends only the context required to answer.'
+    ),
+  },
+];
+
+const metadata = {
+  title: text(
+    'بادنجكي الإداري | برنامج إدارة أعمال للجوال وسطح المكتب',
+    'Badenjki Business | Business management software for mobile and desktop'
+  ),
+  description: text(
+    'برنامج متعدد اللغات لإدارة المبيعات والمشتريات والمخزون والحسابات، متوفر على iOS وAndroid وWindows ويعمل بدون إنترنت.',
+    'Multilingual, offline business software for sales, purchases, inventory, and accounting on iOS, Android, and Windows.'
+  ),
+};
+
+const homepage = new URL(localizedPath(lang, '/'), Astro.site).href;
+const structuredData = [
+  {
+    '@type': 'SoftwareApplication',
+    '@id': `${homepage}#app`,
+    name: brand,
+    alternateName: text('Badenjki Business', 'بادنجكي الإداري'),
+    url: homepage,
+    description: metadata.description,
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: ['Android', 'iOS', 'iPadOS', 'Windows'],
+    inLanguage: ['ar', 'en'],
+    image: new URL(appMark.src, Astro.site).toString(),
+    author: { '@type': 'Organization', name: company, url: 'https://rabeh.sy/' },
+    featureList: modules.map((module) => module.title),
+  },
+  {
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+    })),
+  },
+];
+---
+
+<Layout {...metadata} {lang} page="/" structuredData={structuredData}>
+  <BadenjkiSignup {lang} />
+  <div class="product-page overflow-hidden bg-[#f5f6f0] text-[#102219]">
+    <section class="relative isolate overflow-hidden border-b border-[#173f2b]/10 lg:min-h-[780px]">
+      <div class="hero-grid absolute inset-0 -z-20"></div>
+      <div class="absolute -right-32 top-20 -z-10 h-[520px] w-[520px] rounded-full bg-[#9ee6b8]/35 blur-3xl"></div>
+      <div class="absolute -left-40 bottom-0 -z-10 h-[420px] w-[420px] rounded-full bg-[#f0cf69]/25 blur-3xl"></div>
+
+      <div
+        class="mx-auto grid max-w-[1440px] items-center gap-14 px-5 pb-20 pt-28 sm:px-8 lg:grid-cols-[0.88fr_1.12fr] lg:px-12 lg:pb-28 lg:pt-36"
+      >
+        <div class="relative z-10 max-w-2xl">
+          <div
+            class="mb-8 inline-flex items-center gap-3 rounded-full border border-[#173f2b]/15 bg-white/70 px-4 py-2 text-sm font-semibold shadow-sm backdrop-blur"
+          >
+            <span class="relative flex h-2.5 w-2.5"
+              ><span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#2f9c5b] opacity-50"
+              ></span><span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#168342]"></span></span
+            >
+            {text('على الجوال وسطح المكتب', 'On mobile and desktop')}
+          </div>
+
+          <div class="mb-7 flex items-center gap-4">
+            <img
+              src={appMark.src}
+              alt={text('شعار بادنجكي الإداري', 'Badenjki Business logo')}
+              class="h-14 w-14 rounded-2xl shadow-lg shadow-[#0d6d38]/20"
+            />
+            <div>
+              <p class="text-lg font-black leading-tight">{brand}</p><p
+                class="mt-1 text-xs font-bold uppercase tracking-[0.16em] text-[#4d6859]"
+                lang={lang === 'ar' ? 'en' : 'ar'}
+              >
+                {text('Badenjki Business', 'بادنجكي الإداري')}
+              </p>
+            </div>
+          </div>
+
+          <h1
+            class="max-w-[780px] text-[3.25rem] font-black leading-[1.4] tracking-[-0.025em] text-[#102219] sm:text-6xl sm:leading-[1.34] lg:text-[4.6rem]"
+          >
+            {text('شغلك مرتب.', 'Keep your business organized.')}<br />
+            <span class="relative inline-block text-[#13743b]"
+              >{text('أينما كنت.', 'Wherever you are.')}<svg
+                class="absolute -bottom-3 start-0 h-4 w-full"
+                viewBox="0 0 330 18"
+                fill="none"
+                aria-hidden="true"
+                ><path d="M5 12.5C84 2.5 177 2 325 9" stroke="#8fd5a8" stroke-width="9" stroke-linecap="round"
+                ></path></svg
+              ></span
+            >
+          </h1>
+
+          <p class="mt-9 max-w-xl text-lg font-medium leading-9 text-[#445a4d] sm:text-xl">
+            {
+              text(
+                'برنامج واضح ومرن لإدارة المبيعات والمشتريات والمخزون والحسابات. على الجوال للسرعة، وعلى سطح المكتب للمساحة والتركيز—وبياناتك معك حتى بدون إنترنت.',
+                'Manage sales, purchases, inventory, and accounting in one flexible app. Use your phone for quick tasks and your desktop when you need more room. Your data is available offline.'
+              )
+            }
+          </p>
+
+          <div class="mt-10 flex flex-wrap items-center gap-3">
+            <button
+              type="button"
+              data-download-platform="ios"
+              aria-label={text('تحميل بادنجكي الإداري من متجر أبل', 'Download Badenjki Business from the App Store')}
+              class="download-badge"
+              ><Icon name="tabler:brand-apple-filled" class="h-[29px] w-[29px] shrink-0" /><span
+                class="text-start leading-none"
+                ><small class="block text-[11px] font-medium">{text('التحميل من', 'Download on the')}</small><strong
+                  class="mt-0.5 block text-[17px] font-semibold">{text('متجر أبل', 'App Store')}</strong
+                ></span
+              ></button
+            >
+            <button
+              type="button"
+              data-download-platform="android"
+              aria-label={text('تحميل بادنجكي الإداري من متجر غوغل', 'Download Badenjki Business from Google Play')}
+              class="download-badge"
+              ><Icon name="tabler:brand-google-play" class="h-[29px] w-[29px] shrink-0" /><span
+                class="text-start leading-none"
+                ><small class="block text-[11px] font-medium">{text('التحميل من', 'Download on the')}</small><strong
+                  class="mt-0.5 block text-[17px] font-semibold">{text('متجر غوغل', 'Google Play')}</strong
+                ></span
+              ></button
+            >
+            <button
+              type="button"
+              data-download-platform="windows"
+              class="download-badge"
+              aria-label={text('تحميل بادنجكي الإداري لنظام ويندوز', 'Download Badenjki Business for Windows')}
+              ><Icon name="tabler:brand-windows" class="h-[29px] w-[29px] shrink-0" /><span
+                class="text-start leading-none"
+                ><small class="block text-[11px] font-medium">{text('التحميل لنظام', 'Download for')}</small><strong
+                  class="mt-0.5 block text-[17px] font-semibold">{text('ويندوز', 'Windows')}</strong
+                ></span
+              ></button
+            >
+          </div>
+
+          <div class="mt-9 flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-[#567064]">
+            <span class="inline-flex items-center gap-2"
+              ><Icon name="tabler:wifi-off" class="h-4 w-4 text-[#168342]" />
+              {text('يعمل بدون إنترنت', 'Works offline')}</span
+            >
+            <span class="inline-flex items-center gap-2"
+              ><Icon name="tabler:language" class="h-4 w-4 text-[#168342]" />
+              {text('العربية والإنجليزية', 'Arabic and English')}</span
+            >
+            <span class="inline-flex items-center gap-2"
+              ><Icon name="tabler:database" class="h-4 w-4 text-[#168342]" /> {text('بيانات محلية', 'Local data')}</span
+            >
+          </div>
+        </div>
+
+        <div class="relative mx-auto hidden w-full max-w-[760px] pb-12 pt-6 lg:block lg:pb-0 lg:pt-0">
+          <div
+            class="desktop-frame relative overflow-hidden rounded-[26px] border-[8px] border-[#183227] bg-[#e8eee8] shadow-[0_45px_100px_-35px_rgba(13,48,30,0.55)]"
+          >
+            <div class="flex h-10 items-center justify-between border-b border-black/10 bg-[#f6f8f4] px-4" dir="ltr">
+              <div class="flex gap-1.5">
+                <span class="h-2.5 w-2.5 rounded-full bg-[#ff655e]"></span><span
+                  class="h-2.5 w-2.5 rounded-full bg-[#ffbd44]"></span><span
+                  class="h-2.5 w-2.5 rounded-full bg-[#00ca4e]"></span>
+              </div>
+              <span class="text-[10px] font-bold tracking-wide text-[#5d6f64]">BADENJKI BUSINESS</span><span
+                class="w-10"></span>
+            </div>
+            <div class="grid min-h-[430px] grid-cols-[150px_1fr] bg-[#f8faf7]">
+              <aside class="border-e border-[#d8e0d9] bg-[#edf2ed] p-4">
+                <div class="mb-7 flex items-center gap-2">
+                  <img src={appMark.src} alt="" class="h-8 w-8 rounded-lg" /><div>
+                    <p class="text-[10px] font-black">{brand}</p><p class="text-[7px] text-[#718076]">
+                      {text('شركة البشائر', 'Al Bashayer Co.')}
+                    </p>
+                  </div>
+                </div>
+                <div class="space-y-1.5 text-[9px] font-bold text-[#607065]">
+                  <div class="flex items-center gap-2 rounded-lg bg-[#dce9df] px-2.5 py-2.5 text-[#126c38]">
+                    <Icon name="tabler:layout-dashboard" class="h-3.5 w-3.5" />
+                    {text('لوحة المعلومات', 'Dashboard')}
+                  </div>
+                  <div class="flex items-center gap-2 px-2.5 py-2">
+                    <Icon name="tabler:receipt-2" class="h-3.5 w-3.5" />
+                    {text('المبيعات', 'Sales')}
+                  </div>
+                  <div class="flex items-center gap-2 px-2.5 py-2">
+                    <Icon name="tabler:shopping-bag" class="h-3.5 w-3.5" />
+                    {text('المشتريات', 'Purchases')}
+                  </div>
+                  <div class="flex items-center gap-2 px-2.5 py-2">
+                    <Icon name="tabler:box" class="h-3.5 w-3.5" />
+                    {text('المخزون', 'Inventory')}
+                  </div>
+                  <div class="flex items-center gap-2 px-2.5 py-2">
+                    <Icon name="tabler:wallet" class="h-3.5 w-3.5" />
+                    {text('الخزينة', 'Treasury')}
+                  </div>
+                  <div class="flex items-center gap-2 px-2.5 py-2">
+                    <Icon name="tabler:chart-bar" class="h-3.5 w-3.5" />
+                    {text('التقارير', 'Reports')}
+                  </div>
+                </div>
+              </aside>
+              <div class="p-5">
+                <div class="mb-5 flex items-center justify-between">
+                  <div>
+                    <p class="text-lg font-black">{text('صباح الخير 👋', 'Good morning 👋')}</p><p
+                      class="mt-1 text-[9px] text-[#718076]"
+                    >
+                      {text('إليك ملخص أعمالك اليوم', 'Here is your business today')}
+                    </p>
+                  </div><button class="rounded-lg bg-[#126c38] px-3 py-2 text-[9px] font-bold text-white"
+                    >{text('فاتورة جديدة +', '+ New invoice')}</button
+                  >
+                </div>
+                <div class="grid grid-cols-3 gap-3">
+                  <div class="rounded-xl border border-[#dfe6df] bg-white p-3">
+                    <p class="text-[8px] text-[#718076]">{text('مبيعات اليوم', "Today's sales")}</p><p
+                      class="mt-2 text-sm font-black"
+                    >
+                      2,480,000 <small class="text-[7px]">{text('ل.س', 'SYP')}</small>
+                    </p><span
+                      class="mt-2 inline-block rounded-full bg-[#e2f4e8] px-2 py-1 text-[7px] font-bold text-[#168342]"
+                      >+ 12.5%</span
+                    >
+                  </div>
+                  <div class="rounded-xl border border-[#dfe6df] bg-white p-3">
+                    <p class="text-[8px] text-[#718076]">{text('المقبوضات', 'Receipts')}</p><p
+                      class="mt-2 text-sm font-black"
+                    >
+                      1,760,000 <small class="text-[7px]">{text('ل.س', 'SYP')}</small>
+                    </p><span
+                      class="mt-2 inline-block rounded-full bg-[#fff0d6] px-2 py-1 text-[7px] font-bold text-[#a76d10]"
+                      >{text('8 عمليات', '8 transactions')}</span
+                    >
+                  </div>
+                  <div class="rounded-xl border border-[#dfe6df] bg-white p-3">
+                    <p class="text-[8px] text-[#718076]">{text('تنبيهات المخزون', 'Stock alerts')}</p><p
+                      class="mt-2 text-sm font-black"
+                    >
+                      6 <small class="text-[7px]">{text('مواد', 'items')}</small>
+                    </p><span
+                      class="mt-2 inline-block rounded-full bg-[#fee5e3] px-2 py-1 text-[7px] font-bold text-[#b54b42]"
+                      >{text('تحتاج مراجعة', 'Needs review')}</span
+                    >
+                  </div>
+                </div>
+                <div class="mt-3 grid grid-cols-[1.4fr_1fr] gap-3">
+                  <div class="rounded-xl border border-[#dfe6df] bg-white p-4">
+                    <div class="flex items-center justify-between">
+                      <p class="text-[9px] font-black">{text('حركة المبيعات', 'Sales activity')}</p><span
+                        class="text-[7px] text-[#718076]">{text('آخر 7 أيام', 'Last 7 days')}</span
+                      >
+                    </div><div class="mt-4 flex h-28 items-end gap-2" dir="ltr">
+                      {
+                        [38, 58, 42, 76, 54, 88, 69].map((height, index) => (
+                          <div class="flex flex-1 flex-col items-center gap-1">
+                            <>
+                              <div
+                                class:list={['w-full rounded-t-sm', index === 5 ? 'bg-[#168342]' : 'bg-[#b9ddc5]']}
+                                style={`height:${height}%`}
+                              />
+                              <span class="text-[6px] text-[#819086]">{index + 1}</span>
+                            </>
+                          </div>
+                        ))
+                      }
+                    </div>
+                  </div>
+                  <div class="rounded-xl border border-[#dfe6df] bg-white p-4">
+                    <p class="text-[9px] font-black">{text('أحدث الفواتير', 'Latest invoices')}</p><div
+                      class="mt-4 space-y-3"
+                    >
+                      {
+                        [
+                          [text('شركة النور', 'Al Noor Co.'), '480,000'],
+                          [text('مؤسسة الهدى', 'Al Huda Trading'), '325,000'],
+                          [text('متجر الشام', 'Al Sham Store'), '210,000'],
+                        ].map(([name, amount], index) => (
+                          <div class="flex items-center justify-between border-b border-[#edf1ed] pb-2">
+                            <>
+                              <div class="flex items-center gap-2">
+                                <>
+                                  <span class="flex h-6 w-6 items-center justify-center rounded-lg bg-[#eef4ef] text-[7px] font-black text-[#126c38]">
+                                    {index + 1}
+                                  </span>
+                                  <span class="text-[7px] font-bold">{name}</span>
+                                </>
+                              </div>
+                              <span class="text-[7px] font-black">{amount}</span>
+                            </>
+                          </div>
+                        ))
+                      }
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="phone-frame absolute -bottom-2 -end-2 w-[180px] overflow-hidden rounded-[28px] border-[7px] border-[#163025] bg-[#f8faf7] shadow-[0_35px_70px_-20px_rgba(13,48,30,0.55)] sm:-end-5 sm:w-[210px]"
+          >
+            <div class="mx-auto mt-2 h-4 w-16 rounded-full bg-[#163025]"></div><div class="p-4 pt-3">
+              <div class="mb-4 flex items-center justify-between">
+                <div>
+                  <p class="text-[11px] font-black">{text('مرحبًا خالد', 'Hello, Khaled')}</p><p
+                    class="text-[7px] text-[#718076]"
+                  >
+                    {text('ملخص اليوم', "Today's summary")}
+                  </p>
+                </div><img src={appMark.src} alt="" class="h-7 w-7 rounded-lg" />
+              </div>
+              <div class="rounded-2xl bg-[#126c38] p-4 text-white">
+                <p class="text-[7px] text-white/70">{text('الرصيد الإجمالي', 'Total balance')}</p><p
+                  class="mt-2 text-base font-black"
+                >
+                  3,240,000 <small class="text-[7px]">{text('ل.س', 'SYP')}</small>
+                </p>
+              </div>
+              <p class="mb-2 mt-4 text-[9px] font-black">{text('الوحدات', 'Modules')}</p><div
+                class="grid grid-cols-2 gap-2"
+              >
+                {
+                  [
+                    ['tabler:receipt-2', text('المبيعات', 'Sales')],
+                    ['tabler:shopping-bag', text('المشتريات', 'Purchases')],
+                    ['tabler:box', text('المخزون', 'Inventory')],
+                    ['tabler:wallet', text('الخزينة', 'Treasury')],
+                  ].map(([icon, label]) => (
+                    <div class="rounded-xl border border-[#e0e6e0] bg-white p-2.5">
+                      <>
+                        <Icon name={icon} class="h-4 w-4 text-[#168342]" />
+                        <p class="mt-2 text-[7px] font-bold">{label}</p>
+                      </>
+                    </div>
+                  ))
+                }
+              </div>
+              <div class="mt-4 flex justify-around border-t border-[#e0e6e0] pt-3 text-[#77877d]">
+                <Icon name="tabler:home" class="h-4 w-4 text-[#168342]" /><Icon
+                  name="tabler:sparkles"
+                  class="h-4 w-4"
+                /><Icon name="tabler:user" class="h-4 w-4" />
+              </div>
+            </div>
+          </div>
+          <div
+            class="device-note absolute -start-3 -top-5 flex items-center gap-2 rounded-2xl border border-white/70 bg-white/90 px-4 py-3 text-xs font-black text-[#173f2b] shadow-xl backdrop-blur sm:start-8"
+          >
+            <span class="flex h-8 w-8 items-center justify-center rounded-xl bg-[#dff2e5] text-[#168342]"
+              ><Icon name="tabler:cloud-check" class="h-4 w-4" /></span
+            >{text('نظام واحد، على جهازين', 'One system on two devices')}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-b border-[#173f2b]/10 bg-[#102219] text-white">
+      <div
+        class="mx-auto grid max-w-[1200px] grid-cols-2 divide-x divide-x-reverse divide-white/10 px-5 py-8 sm:grid-cols-4 sm:px-8"
+      >
+        <div class="px-4 py-3 text-center">
+          <p class="text-xl font-black text-[#a6e4b9]">{text('يعمل دون إنترنت', 'Works offline')}</p><p
+            class="mt-1 text-xs text-white/55"
+          >
+            {text('العمل لا يتوقف', 'Keep working')}
+          </p>
+        </div>
+        <div class="px-4 py-3 text-center">
+          <p class="text-xl font-black text-[#a6e4b9]">{text('تطبيق الجوال', 'Mobile app')}</p><p
+            class="mt-1 text-xs text-white/55"
+          >
+            {text('على iOS وAndroid', 'On iOS and Android')}
+          </p>
+        </div>
+        <div class="px-4 py-3 text-center">
+          <p class="text-xl font-black text-[#a6e4b9]">{text('سطح المكتب', 'Desktop')}</p><p
+            class="mt-1 text-xs text-white/55"
+          >
+            {text('متوفر على Windows', 'Available on Windows')}
+          </p>
+        </div>
+        <div class="px-4 py-3 text-center">
+          <p class="text-xl font-black text-[#a6e4b9]">{text('متعدد اللغات', 'Multilingual')}</p><p
+            class="mt-1 text-xs text-white/55"
+          >
+            {text('العربية والإنجليزية', 'Arabic and English')}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="px-5 py-24 sm:px-8 lg:py-32">
+      <div class="mx-auto max-w-[1240px]">
+        <div class="mx-auto max-w-3xl text-center">
+          <p class="text-sm font-black text-[#168342]">
+            {text('كل يوم عمل، من مكان واحد', 'Run your business from one place')}
+          </p><h2 class="mt-4 text-4xl font-black tracking-[-0.035em] text-[#102219] sm:text-5xl">
+            {text('بدل الدفاتر المتفرقة، صورة واحدة واضحة', 'See your whole business in one place')}
+          </h2><p class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-[#586d61]">
+            {
+              text(
+                'وحدات مترابطة تنقل الحركة من الفاتورة إلى المخزون والحساب، وتترك لك وقتًا أكبر لإدارة العمل نفسه.',
+                'Connected modules carry each transaction from invoice to inventory and accounts, giving you more time to run the business.'
+              )
+            }
+          </p>
+        </div>
+        <div class="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {
+            modules.map((module, index) => (
+              <article
+                class:list={[
+                  'module-card group relative overflow-hidden rounded-[28px] border border-[#173f2b]/10 bg-white p-7 shadow-[0_20px_60px_-45px_rgba(13,48,30,0.45)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_28px_70px_-40px_rgba(13,48,30,0.4)]',
+                  `tone-${module.tone}`,
+                ]}
+              >
+                <>
+                  <span class="absolute end-6 top-5 text-6xl font-black leading-none text-[#102219]/[0.035]">
+                    0{index + 1}
+                  </span>
+                  <div class="module-icon flex h-12 w-12 items-center justify-center rounded-2xl">
+                    <Icon name={module.icon} class="h-6 w-6" />
+                  </div>
+                  <h3 class="mt-8 text-2xl font-black text-[#102219]">{module.title}</h3>
+                  <p class="mt-3 leading-7 text-[#607268]">{module.description}</p>
+                  <div class="mt-7 flex items-center gap-2 text-sm font-black text-[#168342]">
+                    {text('ضمن نفس النظام', 'In the same system')}{' '}
+                    <Icon
+                      name={text('tabler:arrow-left', 'tabler:arrow-right')}
+                      class="h-4 w-4 transition rtl:group-hover:-translate-x-1 ltr:group-hover:translate-x-1"
+                    />
+                  </div>
+                </>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="px-5 pb-24 sm:px-8 lg:pb-32">
+      <div class="mx-auto max-w-[1240px] overflow-hidden rounded-[38px] bg-[#dfeee2]">
+        <div class="grid lg:grid-cols-2">
+          <div class="p-8 sm:p-12 lg:p-16">
+            <span
+              class="inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-2 text-xs font-black text-[#126c38]"
+              ><Icon name="tabler:device-mobile" class="h-4 w-4" /> {text('على الجوال', 'On mobile')}</span
+            ><h2 class="mt-7 text-4xl font-black tracking-[-0.035em] text-[#102219]">
+              {text('كل ما تحتاجه، في جيبك', 'Everything you need in your pocket')}
+            </h2><p class="mt-5 text-lg leading-8 text-[#52685b]">
+              {
+                text(
+                  'أنشئ فاتورة عند الزبون، راجع رصيد مادة في المستودع، أو سجّل دفعة فور حدوثها. تجربة سريعة مصممة للاستخدام اليومي بيد واحدة.',
+                  "Create an invoice at a customer's premises, check stock in a warehouse, or record a payment as it happens. Designed for quick, one-handed use."
+                )
+              }
+            </p><ul class="mt-8 space-y-4 text-sm font-bold text-[#30493b]">
+              <li class="flex items-center gap-3">
+                <span class="check"><Icon name="tabler:check" class="h-4 w-4" /></span>
+                {text('وصول سريع إلى العمليات المتكررة', 'Quick access to everyday tasks')}
+              </li><li class="flex items-center gap-3">
+                <span class="check"><Icon name="tabler:check" class="h-4 w-4" /></span>
+                {text('عمل محلي حتى عند انقطاع الإنترنت', 'Work locally when the internet goes down')}
+              </li><li class="flex items-center gap-3">
+                <span class="check"><Icon name="tabler:check" class="h-4 w-4" /></span>
+                {text('باركود، جهات اتصال، وإشعارات مخزون', 'Barcodes, contacts, and stock alerts')}
+              </li>
+            </ul>
+          </div>
+          <div class="relative min-h-[470px] overflow-hidden bg-[#c9e5d0] p-8">
+            <div class="absolute inset-0 opacity-40 hero-grid"></div><div
+              class="relative mx-auto mt-8 w-[260px] rotate-[-4deg] rounded-[42px] border-[9px] border-[#102219] bg-[#f9fbf8] p-4 shadow-2xl"
+            >
+              <div class="mx-auto mb-5 h-5 w-20 rounded-full bg-[#102219]"></div><p class="text-xs text-[#718076]">
+                {text('فاتورة مبيعات جديدة', 'New sales invoice')}
+              </p><p class="mt-1 text-lg font-black">{text('شركة الهدى', 'Al Huda Co.')}</p><div class="mt-5 space-y-3">
+                {
+                  [
+                    text('سكر 1 كغ', 'Sugar, 1 kg'),
+                    text('زيت نباتي', 'Vegetable oil'),
+                    text('شاي سيلاني', 'Ceylon tea'),
+                  ].map((item, index) => (
+                    <div class="flex items-center justify-between rounded-xl border border-[#dce5dc] bg-white p-3">
+                      <>
+                        <div>
+                          <>
+                            <p class="text-[10px] font-black">{item}</p>
+                            <p class="mt-1 text-[8px] text-[#718076]">
+                              {text('الكمية', 'Quantity')} {index + 1}
+                            </p>
+                          </>
+                        </div>
+                        <span class="text-[10px] font-black">{[8500, 32000, 14500][index]}</span>
+                      </>
+                    </div>
+                  ))
+                }
+              </div><div class="mt-5 flex items-center justify-between border-t border-[#dce5dc] pt-4">
+                <span class="text-xs font-black">{text('الإجمالي', 'Total')}</span><span
+                  class="text-base font-black text-[#126c38]">{text('55,000 ل.س', '55,000 SYP')}</span
+                >
+              </div><button class="mt-5 w-full rounded-xl bg-[#126c38] py-3 text-xs font-black text-white"
+                >{text('حفظ الفاتورة', 'Save invoice')}</button
+              >
+            </div>
+          </div>
+        </div>
+        <div class="grid border-t border-[#173f2b]/10 lg:grid-cols-2">
+          <div class="relative order-2 hidden min-h-[470px] overflow-hidden bg-[#183227] p-7 lg:order-1 lg:block">
+            <div class="absolute inset-0 opacity-10 hero-grid"></div><div
+              class="relative mx-auto mt-10 max-w-xl overflow-hidden rounded-2xl border border-white/10 bg-[#f7f9f6] shadow-2xl"
+            >
+              <div class="flex h-8 items-center gap-1.5 bg-[#e9eee9] px-3" dir="ltr">
+                <span class="h-2 w-2 rounded-full bg-[#ff655e]"></span><span class="h-2 w-2 rounded-full bg-[#ffbd44]"
+                ></span><span class="h-2 w-2 rounded-full bg-[#00ca4e]"></span>
+              </div><div class="grid grid-cols-[110px_1fr]">
+                <div class="bg-[#edf2ed] p-3 text-[8px] font-bold text-[#5c6e62]">
+                  <p class="mb-5 text-[9px] font-black text-[#102219]">{text('المبيعات', 'Sales')}</p>{
+                    [
+                      text('نظرة عامة', 'Overview'),
+                      text('الفواتير', 'Invoices'),
+                      text('الزبائن', 'Customers'),
+                      text('سندات التسليم', 'Delivery notes'),
+                      text('مردودات المبيعات', 'Sales returns'),
+                    ].map((item, index) => (
+                      <p class:list={['mb-1 rounded-md px-2 py-2', index === 1 && 'bg-[#dce9df] text-[#126c38]']}>
+                        {item}
+                      </p>
+                    ))
+                  }
+                </div><div class="p-4">
+                  <div class="flex items-center justify-between">
+                    <p class="text-xs font-black">{text('فواتير المبيعات', 'Sales invoices')}</p><button
+                      class="rounded-md bg-[#126c38] px-2.5 py-1.5 text-[7px] font-bold text-white"
+                      >{text('فاتورة جديدة +', '+ New invoice')}</button
+                    >
+                  </div><div class="mt-4 overflow-hidden rounded-lg border border-[#dce5dc]">
+                    <div class="grid grid-cols-4 bg-[#eef2ee] px-2 py-2 text-[7px] font-black">
+                      <span>{text('الرقم', 'Number')}</span><span>{text('الزبون', 'Customer')}</span><span
+                        >{text('التاريخ', 'Date')}</span
+                      ><span>{text('الإجمالي', 'Total')}</span>
+                    </div>{
+                      [
+                        ['INV-0128', text('متجر الشام', 'Al Sham Store'), text('12 أيلول', '12 Sep'), '480,000'],
+                        ['INV-0127', text('شركة الهدى', 'Al Huda Co.'), text('12 أيلول', '12 Sep'), '325,000'],
+                        ['INV-0126', text('أسواق النور', 'Al Noor Markets'), text('11 أيلول', '11 Sep'), '210,000'],
+                        ['INV-0125', text('مؤسسة الوفاء', 'Al Wafa Trading'), text('11 أيلول', '11 Sep'), '185,000'],
+                      ].map((row) => (
+                        <div class="grid grid-cols-4 border-t border-[#e8ece8] px-2 py-2.5 text-[7px]">
+                          {row.map((cell) => (
+                            <span>{cell}</span>
+                          ))}
+                        </div>
+                      ))
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="order-1 p-8 sm:p-12 lg:order-2 lg:p-16">
+            <span
+              class="inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-2 text-xs font-black text-[#126c38]"
+              ><Icon name="tabler:device-desktop" class="h-4 w-4" /> {text('على سطح المكتب', 'On desktop')}</span
+            ><h2 class="mt-7 text-4xl font-black tracking-[-0.035em] text-[#102219]">
+              {text('تفاصيل أكثر، بدون ازدحام', 'More room for the details')}
+            </h2><p class="mt-5 text-lg leading-8 text-[#52685b]">
+              {
+                text(
+                  'واجهة Windows تستفيد من الشاشة الكبيرة: جداول أكثف، نماذج أسرع، اختصارات لوحة مفاتيح، وطباعة التقارير والمستندات من مكان العمل نفسه.',
+                  'The Windows app makes room for more table rows, faster forms, and keyboard shortcuts. Print reports and documents right from your workspace.'
+                )
+              }
+            </p><ul class="mt-8 space-y-4 text-sm font-bold text-[#30493b]">
+              <li class="flex items-center gap-3">
+                <span class="check"><Icon name="tabler:check" class="h-4 w-4" /></span>
+                {text('جداول وفلاتر مهيأة للعمل المكتبي', 'Tables and filters designed for desktop')}
+              </li><li class="flex items-center gap-3">
+                <span class="check"><Icon name="tabler:check" class="h-4 w-4" /></span>
+                {text('اختصارات للحفظ والتنقل بين الوحدات', 'Shortcuts for saving and switching modules')}
+              </li><li class="flex items-center gap-3">
+                <span class="check"><Icon name="tabler:check" class="h-4 w-4" /></span>
+                {text('طباعة وحفظ التقارير والمستندات PDF', 'Print or save reports and documents as PDFs')}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="relative overflow-hidden bg-[#102219] px-5 py-24 text-white sm:px-8 lg:py-32">
+      <div class="hero-grid absolute inset-0 opacity-20"></div><div
+        class="absolute -left-32 top-0 h-96 w-96 rounded-full bg-[#4bb978]/20 blur-3xl"
+      >
+      </div>
+      <div class="relative mx-auto grid max-w-[1240px] items-center gap-14 lg:grid-cols-[0.9fr_1.1fr]">
+        <div>
+          <span
+            class="inline-flex items-center gap-2 rounded-full border border-[#9ee6b8]/20 bg-[#9ee6b8]/10 px-3 py-2 text-xs font-black text-[#a6e4b9]"
+            ><Icon name="tabler:sparkles" class="h-4 w-4" /> {text('المساعد الذكي', 'AI assistant')}</span
+          ><h2 class="mt-7 text-4xl font-black tracking-[-0.035em] sm:text-5xl">
+            {text('اسأل عن عملك', 'Ask about your business')}<br />{text('بلغة بسيطة', 'in plain language')}
+          </h2><p class="mt-6 max-w-xl text-lg leading-9 text-white/60">
+            {
+              text(
+                'بدل البحث بين القوائم، اسأل عن أحدث الفواتير أو مبيعات فترة أو أرصدة العملاء. يحصل المساعد على السياق المسموح فقط، ويترك القرار لك.',
+                'Ask for your latest invoices, sales over a period, or customer balances. The assistant uses only the data you have permission to access and leaves decisions to you.'
+              )
+            }
+          </p><div class="mt-8 flex flex-wrap gap-2 text-xs font-bold text-white/65">
+            <span class="rounded-full border border-white/10 px-3 py-2">{text('تقارير المبيعات', 'Sales reports')}</span
+            ><span class="rounded-full border border-white/10 px-3 py-2"
+              >{text('العملاء والمواد', 'Customers and items')}</span
+            ><span class="rounded-full border border-white/10 px-3 py-2"
+              >{text('صلاحيات واضحة', 'Permission-based access')}</span
+            >
+          </div>
+        </div>
+        <div class="rounded-[30px] border border-white/10 bg-white/[0.06] p-4 shadow-2xl backdrop-blur sm:p-7">
+          <div class="mb-6 flex items-center gap-3 border-b border-white/10 pb-5">
+            <span class="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#a6e4b9] text-[#102219]"
+              ><Icon name="tabler:sparkles" class="h-5 w-5" /></span
+            ><div>
+              <p class="text-sm font-black">{text('مساعد بادنجكي', 'Badenjki assistant')}</p><p
+                class="text-[11px] text-white/40"
+              >
+                {text('متصل الآن', 'Online')}
+              </p>
+            </div>
+          </div><div class="space-y-4">
+            <div
+              class="mr-auto max-w-[80%] rounded-2xl rounded-bl-md bg-white/10 px-4 py-3 text-sm leading-7 text-white/80"
+            >
+              {text('ما هي أحدث فواتير المبيعات؟', 'What are the latest sales invoices?')}
+            </div><div
+              class="ml-auto max-w-[88%] rounded-2xl rounded-br-md bg-[#e7f5e9] px-4 py-4 text-sm leading-7 text-[#173f2b] shadow-lg"
+            >
+              <p class="font-black">{text('أحدث 3 فواتير مبيعات:', 'Latest 3 sales invoices')}</p><div
+                class="mt-3 space-y-2 text-xs"
+              >
+                <p class="flex justify-between gap-5">
+                  <span>{text('#128 · متجر الشام', '#128 · Al Sham Store')}</span><strong
+                    >{text('480,000 ل.س', '480,000 SYP')}</strong>
+                </p><p class="flex justify-between gap-5">
+                  <span>{text('#127 · شركة الهدى', '#127 · Al Huda Co.')}</span><strong
+                    >{text('325,000 ل.س', '325,000 SYP')}</strong
+                  >
+                </p><p class="flex justify-between gap-5">
+                  <span>{text('#126 · أسواق النور', '#126 · Al Noor Markets')}</span><strong
+                    >{text('210,000 ل.س', '210,000 SYP')}</strong
+                  >
+                </p>
+              </div>
+            </div><div
+              class="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/10 px-4 py-3 text-sm text-white/35"
+            >
+              <span class="flex-1"
+                >{text('اسأل عن مبيعاتك، مخزونك، أو عملائك...', 'Ask about sales, inventory, or customers…')}</span
+              ><Icon name="tabler:send" class="h-5 w-5 text-[#a6e4b9]" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="px-5 py-24 sm:px-8 lg:py-32">
+      <div class="mx-auto grid max-w-[1240px] gap-14 lg:grid-cols-[0.72fr_1.28fr]">
+        <div>
+          <p class="text-sm font-black text-[#168342]">{text('أسئلة شائعة', 'Frequently asked questions')}</p><h2
+            class="mt-4 text-4xl font-black tracking-[-0.035em] text-[#102219] sm:text-5xl"
+          >
+            {text('قبل أن تبدأ', 'Before you get started')}
+          </h2><p class="mt-6 max-w-md text-lg leading-8 text-[#5a6e62]">
+            {
+              text(
+                'إذا كان لديك سؤال آخر عن التفعيل أو نقل بياناتك، فريقنا جاهز لمساعدتك.',
+                'Our team can help with questions about activation or moving your data.'
+              )
+            }
+          </p><a
+            href="https://rabeh.sy/contact"
+            class="mt-8 inline-flex items-center gap-2 text-sm font-black text-[#126c38]"
+            >{text('تواصل معنا', 'Contact us')}
+            <Icon name={text('tabler:arrow-left', 'tabler:arrow-right')} class="h-4 w-4" /></a
+          >
+        </div>
+        <div class="divide-y divide-[#173f2b]/10 border-y border-[#173f2b]/10">
+          {
+            faqs.map((faq, index) => (
+              <details class="faq group py-1" open={index === 0}>
+                <>
+                  <summary class="flex cursor-pointer list-none items-center justify-between gap-5 py-6 text-lg font-black text-[#173f2b] marker:hidden">
+                    <>
+                      <span>{faq.question}</span>
+                      <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#173f2b]/15 transition group-open:rotate-45 group-open:bg-[#173f2b] group-open:text-white">
+                        <Icon name="tabler:plus" class="h-4 w-4" />
+                      </span>
+                    </>
+                  </summary>
+                  <p class="max-w-2xl pb-7 pl-12 leading-8 text-[#5a6e62]">{faq.answer}</p>
+                </>
+              </details>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section id="download" class="px-5 pb-8 sm:px-8">
+      <div
+        class="relative mx-auto max-w-[1240px] overflow-hidden rounded-[38px] bg-[#a6e4b9] px-7 py-14 text-center sm:px-12 sm:py-20"
+      >
+        <div class="hero-grid absolute inset-0 opacity-25"></div><div class="relative mx-auto max-w-3xl">
+          <img src={appMark.src} alt="" class="mx-auto h-16 w-16 rounded-2xl shadow-lg" /><h2
+            class="mt-7 text-4xl font-black leading-[1.2] tracking-[-0.04em] text-[#102219] sm:text-5xl"
+          >
+            {text('ابدأ من الجهاز الذي يناسب يومك', 'Get started on the device you use')}
+          </h2><p class="mx-auto mt-5 max-w-xl text-lg leading-8 text-[#31503e]">
+            {
+              text(
+                'سجّل رقم هاتفك بخطوة قصيرة، ثم حمّل التطبيق من متجر أبل أو متجر غوغل أو ويندوز.',
+                'Register your phone number, then download the app from the App Store, Google Play, or for Windows.'
+              )
+            }
+          </p><div class="mt-9 flex flex-wrap items-center justify-center gap-3">
+            <button
+              type="button"
+              data-download-platform="ios"
+              aria-label={text('تحميل بادنجكي الإداري من متجر أبل', 'Download Badenjki Business from the App Store')}
+              class="download-badge"
+              ><Icon name="tabler:brand-apple-filled" class="h-[29px] w-[29px] shrink-0" /><span
+                class="text-start leading-none"
+                ><small class="block text-[11px] font-medium">{text('التحميل من', 'Download on the')}</small><strong
+                  class="mt-0.5 block text-[17px] font-semibold">{text('متجر أبل', 'App Store')}</strong
+                ></span
+              ></button
+            ><button
+              type="button"
+              data-download-platform="android"
+              aria-label={text('تحميل بادنجكي الإداري من متجر غوغل', 'Download Badenjki Business from Google Play')}
+              class="download-badge"
+              ><Icon name="tabler:brand-google-play" class="h-[29px] w-[29px] shrink-0" /><span
+                class="text-start leading-none"
+                ><small class="block text-[11px] font-medium">{text('التحميل من', 'Download on the')}</small><strong
+                  class="mt-0.5 block text-[17px] font-semibold">{text('متجر غوغل', 'Google Play')}</strong
+                ></span
+              ></button
+            ><button
+              type="button"
+              data-download-platform="windows"
+              class="download-badge"
+              aria-label={text('تحميل بادنجكي الإداري لنظام ويندوز', 'Download Badenjki Business for Windows')}
+              ><Icon name="tabler:brand-windows" class="h-[29px] w-[29px] shrink-0" /><span
+                class="text-start leading-none"
+                ><small class="block text-[11px] font-medium">{text('التحميل لنظام', 'Download for')}</small><strong
+                  class="mt-0.5 block text-[17px] font-semibold">{text('ويندوز', 'Windows')}</strong
+                ></span
+              ></button
+            >
+          </div><a
+            href={localizedPath(lang, '/privacy')}
+            class="mt-7 inline-flex items-center gap-2 text-xs font-bold text-[#31503e] hover:text-[#102219]"
+            ><Icon name="tabler:shield-lock" class="h-4 w-4" />
+            {text('سياسة خصوصية بادنجكي الإداري', 'Badenjki Business privacy policy')}</a
+          >
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <style>
+    .product-page {
+      font-family: 'Rubik Variable', 'Cairo Variable', sans-serif;
+    }
+    .hero-grid {
+      background-image:
+        linear-gradient(rgba(16, 34, 25, 0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(16, 34, 25, 0.055) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(to bottom, black 20%, transparent 92%);
+    }
+    .module-card .module-icon {
+      background: #e2f3e7;
+      color: #168342;
+    }
+    .module-card.tone-amber .module-icon {
+      background: #fff0d4;
+      color: #a76d10;
+    }
+    .module-card.tone-blue .module-icon {
+      background: #e3eefb;
+      color: #3977b8;
+    }
+    .module-card.tone-violet .module-icon {
+      background: #eee8fb;
+      color: #7958b4;
+    }
+    .module-card.tone-rose .module-icon {
+      background: #f9e5e3;
+      color: #b55750;
+    }
+    .module-card.tone-teal .module-icon {
+      background: #dff2ef;
+      color: #187c70;
+    }
+    .check {
+      display: flex;
+      height: 1.75rem;
+      width: 1.75rem;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9999px;
+      background: white;
+      color: #168342;
+    }
+    .download-badge {
+      display: inline-flex;
+      height: 50px;
+      min-width: 169px;
+      width: max-content;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 0.5rem;
+      border: 1px solid white;
+      border-radius: 6px;
+      background: #000;
+      padding: 0 0.65rem;
+      color: white;
+      white-space: nowrap;
+      transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+    }
+    .download-badge:not(:disabled):hover {
+      transform: translateY(-2px);
+      opacity: 0.88;
+    }
+    .download-badge:focus-visible {
+      outline: 2px solid #13743b;
+      outline-offset: 3px;
+    }
+    .faq summary::-webkit-details-marker {
+      display: none;
+    }
+  </style>
+</Layout>
