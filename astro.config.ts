@@ -30,8 +30,13 @@ export default defineConfig({
     }),
     sitemap({
       filter: (page) => {
-        const pathname = new URL(page).pathname;
-        return pathname !== '/rabeh-lite' && !pathname.startsWith('/tag/');
+        const pathname = new URL(page).pathname.replace(/\/$/, '');
+        return (
+          pathname !== '/rabeh-lite' &&
+          pathname !== '/badenjki-business' &&
+          pathname !== '/badenjki-business/privacy' &&
+          !pathname.startsWith('/tag/')
+        );
       },
     }),
     mdx(),

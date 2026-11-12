@@ -1,4 +1,5 @@
 import { getPermalink, getBlogPermalink } from './utils/permalinks';
+import { BADENJKI_BUSINESS_PRIVACY_URL, BADENJKI_BUSINESS_URL } from './config/badenjki-business';
 
 export const headerData = {
   links: [
@@ -8,7 +9,7 @@ export const headerData = {
     },
     {
       text: 'بادنجكي الإداري',
-      href: getPermalink('/badenjki-business'),
+      href: BADENJKI_BUSINESS_URL,
     },
     {
       text: 'المقالات',
@@ -36,7 +37,7 @@ export const footerData = {
       links: [
         { text: 'من نحن', href: getPermalink('/about') },
         { text: 'تطوير البرمجيات', href: getPermalink('/services/custom-software-development') },
-        { text: 'بادنجكي الإداري', href: getPermalink('/badenjki-business') },
+        { text: 'بادنجكي الإداري', href: BADENJKI_BUSINESS_URL },
         { text: 'المقالات', href: getBlogPermalink() },
         { text: 'تواصل', href: getPermalink('/contact') },
       ],
@@ -45,7 +46,7 @@ export const footerData = {
   secondaryLinks: [
     { text: 'الشروط', href: getPermalink('/terms') },
     { text: 'سياسة الخصوصية', href: getPermalink('/privacy') },
-    { text: 'خصوصية بادنجكي الإداري', href: getPermalink('/badenjki-business/privacy') },
+    { text: 'خصوصية بادنجكي الإداري', href: BADENJKI_BUSINESS_PRIVACY_URL },
   ],
   socialLinks: [
     { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: 'https://www.facebook.com/rabeh.tech.sy' },

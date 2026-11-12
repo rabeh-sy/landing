@@ -4,6 +4,7 @@ import Layout from '~/layouts/PageLayout.astro';
 import studioIllustration from '~/assets/images/hero-image-2.png';
 import appMark from '~/assets/images/badenjki-business-mark.png';
 import { getBlogPermalink, getPermalink } from '~/utils/permalinks';
+import { BADENJKI_BUSINESS_URL } from '~/config/badenjki-business';
 
 const metadata = {
   title: 'شركة تطوير برمجيات في حلب، سوريا | رابح',
@@ -174,13 +175,13 @@ const journal = [
             بادنجكي الإداري
           </h2>
         </div>
-        <a href={getPermalink('/badenjki-business')} class="studio-button studio-button-dark"
+        <a href={BADENJKI_BUSINESS_URL} class="studio-button studio-button-dark"
           >استكشف المنتج <Icon name="tabler:arrow-left" class="h-4 w-4" /></a
         >
       </div>
 
       <a
-        href={getPermalink('/badenjki-business')}
+        href={BADENJKI_BUSINESS_URL}
         class="group grid gap-10 py-12 lg:grid-cols-[0.72fr_1.28fr] lg:items-center lg:py-20"
       >
         <div>

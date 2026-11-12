@@ -1,6 +1,7 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import { getPermalink } from '~/utils/permalinks';
+import { BADENJKI_BUSINESS_URL } from '~/config/badenjki-business';
 
 const metadata = {
   title: 'من نحن | شركة رابح لتطوير البرمجيات في حلب',
@@ -72,7 +73,7 @@ const structuredData = [
             برنامج لإدارة المبيعات والمشتريات والمخزون والحسابات، يعمل على الجوال وسطح المكتب ويتيح متابعة العمل بدون
             إنترنت.
           </p>
-          <a href={getPermalink('/badenjki-business')} class="mt-6 inline-block font-bold underline underline-offset-4">
+          <a href={BADENJKI_BUSINESS_URL} class="mt-6 inline-block font-bold underline underline-offset-4">
             تعرف على برنامج بادنجكي الإداري
           </a>
         </div>

@@ -8,9 +8,11 @@ The Windows destination is `https://downloads.rabeh.sy/desktop/stable/windows.ex
 
 ## Configuration and deployment
 
-Build with `PUBLIC_BADENJKI_API_ORIGIN` set to the Rails HTTPS origin. The API owns the direct source through `WEBSITE_DIRECT_SOURCE_CODE` and `bin/rails website:provision_direct_source`; no public direct-source value is needed in the website build. Rails `WEBSITE_ALLOWED_ORIGINS` must include this website's exact HTTPS origin. The browser uses `X-Website-Session` with an opaque 256-bit token and `credentials: omit`, so third-party cookie availability does not affect this flow. Keep URLs, analytics and access logs free of phone numbers and credentials. The token is sent only as a header.
+Build from [`apps/badenjki-business`](../apps/badenjki-business/README.md) with `PUBLIC_BADENJKI_API_ORIGIN` set to the Rails HTTPS origin. Add `https://badenjki.business` to Rails `WEBSITE_ALLOWED_ORIGINS`. The API owns the direct source through `WEBSITE_DIRECT_SOURCE_CODE` and `bin/rails website:provision_direct_source`. The browser uses `X-Website-Session` with an opaque 256-bit token and `credentials: omit`, so third-party cookie availability does not affect this flow. Keep URLs, analytics and access logs free of phone numbers and credentials. The token is sent only as a header.
 
-Deploy the two Rails attribution migrations and API before this website. Admin generates `<configured-public-website-origin>/badenjki-business?ref=<CODE>` for links and QR payloads; the configured origin includes `https://`. Confirm the deployed host serves `/badenjki-business/index.html` at `/badenjki-business`. The site captures `ref` through the Rails visitor session before removing only that parameter from the address bar. It retains retryable codes in local storage during temporary API failures. The first active valid source in a 30-day visitor window is retained while browsing other pages. Direct browsing does not reserve the source slot. Expired or disabled campaigns fall back to Website — direct if configured. The API's source is authoritative after signup.
+Deploy the two Rails attribution migrations and API before this website. The canonical campaign URL is `https://badenjki.business/?ref=<CODE>`. Admin still generates `/badenjki-business?ref=<CODE>` on its configured public origin. Both the old domain and the new domain accept that path and forward it to the new homepage with the campaign code. Verify a printed QR code before publishing the link changes on the old domain.
+
+The site captures `ref` through the Rails visitor session before removing only that parameter from the address bar. It retains retryable codes in local storage during temporary API failures. The first active valid source in a 30-day visitor window is retained while browsing other pages on the same origin. Visitors moving from `rabeh.sy` start a fresh browser session on `badenjki.business`. Direct browsing does not reserve the source slot. Expired or disabled campaigns fall back to Website — direct if configured. The API's source is authoritative after signup.
 
 ## Session and funnel behavior
 
@@ -32,4 +34,4 @@ See the shared API and deployment contract in RabehLiteApp/docs/03-backend/api/w
 - Open a canonical `?ref=<CODE>` URL with another query parameter and fragment; confirm capture, cleaned URL, first-valid precedence, browsing persistence, disabled/invalid codes and retry after an API failure.
 - Open a copied/printed QR destination on the deployed host. Confirm one landing event per landing and the chosen download destination after signup, including the explicit Continue button when automatic opening is blocked.
 
-TODO verify: configured public origin, deployed static page routing, browser popup behavior, live CORS and OTP flows, and QR print output. No deployment, live OTP or validation command was run for this change.
+After deployment, verify live CORS, OTP and QR behavior on the new origin.

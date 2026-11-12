@@ -1,4 +1,4 @@
-import { badenjkiDownloads, type BadenjkiPlatform } from '~/config/badenjki-downloads';
+import { badenjkiDownloads, type BadenjkiPlatform } from '../config/badenjki-downloads';
 
 type SessionStatus = { completed: boolean; source_code: string | null };
 type Challenge = { required: boolean; challenge_id?: number; resend_available_at?: string; no_otp_token?: string };
@@ -17,7 +17,6 @@ let verified = false;
 let decisionFor = '';
 let busy = false;
 let referralPromise: Promise<void> = Promise.resolve();
-let initializedBody: HTMLElement | null = null;
 let effective: SessionStatus | null = null;
 let decisionRevision = 0;
 let fallbackSession = '';
@@ -127,12 +126,9 @@ async function api(path: string, body?: Record<string, unknown>) {
   return data;
 }
 
-function landingPage() { return /^\/badenjki-business\/?$/.test(location.pathname); }
-
 async function captureReferral() {
   const url = new URL(location.href);
-  const fromLanding = landingPage() && url.searchParams.has('ref');
-  const incoming = fromLanding ? (url.searchParams.get('ref') || '').trim().toUpperCase() : '';
+  const incoming = (url.searchParams.get('ref') || '').trim().toUpperCase();
   if (incoming && /^[A-Z0-9][A-Z0-9_-]{3,31}$/.test(incoming)) queueCampaign(incoming);
   let handled = !incoming || !/^[A-Z0-9][A-Z0-9_-]{3,31}$/.test(incoming);
   for (const code of pendingCampaigns()) {
@@ -143,7 +139,7 @@ async function captureReferral() {
       if (code === incoming) handled = true;
     } catch { break; }
   }
-  if (fromLanding && handled && location.pathname === url.pathname && new URL(location.href).searchParams.get('ref') === url.searchParams.get('ref')) {
+  if (url.searchParams.has('ref') && handled && location.pathname === url.pathname && new URL(location.href).searchParams.get('ref') === url.searchParams.get('ref')) {
     url.searchParams.delete('ref');
     history.replaceState(history.state, '', `${url.pathname}${url.search}${url.hash}`);
   }
@@ -297,22 +293,10 @@ async function handleSubmit(event: SubmitEvent) {
 
 function initializePage() {
   const form = document.querySelector<HTMLFormElement>('#badenjki-signup-form');
-  if (form && !form.dataset.signupBound) {
-    form.dataset.signupBound = 'true';
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      void handleSubmit(event);
-    });
-  }
-  if (initializedBody === document.body) return;
-  initializedBody = document.body;
+  form?.addEventListener('submit', handleSubmit);
   updatePrefix();
   referralPromise = captureReferral();
-  if (landingPage()) {
-    const pageBody = document.body;
-    void referralPromise.then(() => { if (document.body === pageBody && !pendingCampaigns().length) recordEvent('landing_visit'); });
-  }
+  void referralPromise.then(() => { if (!pendingCampaigns().length) recordEvent('landing_visit'); });
   void status().catch(() => undefined);
   let saved: string | null = null;
   try { saved = sessionStorage.getItem(selectedKey); } catch { /* optional convenience */ }
@@ -358,6 +342,5 @@ document.addEventListener('input', (event) => {
 document.addEventListener('change', (event) => {
   if ((event.target as HTMLElement).id === 'badenjki-country') { updatePrefix(); resetDecision(); clearError(); }
 });
-document.addEventListener('astro:page-load', initializePage);
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initializePage);
 else initializePage();

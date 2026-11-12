@@ -2,6 +2,7 @@
 import { Icon } from 'astro-icon/components';
 import Layout from '~/layouts/PageLayout.astro';
 import { getPermalink } from '~/utils/permalinks';
+import { BADENJKI_BUSINESS_URL } from '~/config/badenjki-business';
 
 const metadata = {
   title: 'تطوير مواقع وتطبيقات وأنظمة أعمال في حلب، سوريا | رابح',
@@ -141,7 +142,7 @@ const structuredData = [
           إذا كانت حاجتك إدارة المبيعات والمشتريات والمخزون والحسابات، تعرف على بادنجكي الإداري، برنامجنا للجوال وسطح
           المكتب الذي يعمل بدون إنترنت.
         </p>
-        <a href={getPermalink('/badenjki-business')} class="mt-6 inline-block font-bold underline underline-offset-4">
+        <a href={BADENJKI_BUSINESS_URL} class="mt-6 inline-block font-bold underline underline-offset-4">
           استكشف برنامج بادنجكي الإداري
         </a>
       </div>

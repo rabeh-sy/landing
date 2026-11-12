@@ -5,12 +5,32 @@
   pretty_urls = false
 [[redirects]]
   from = "/rabeh-lite"
-  to = "/badenjki-business"
+  to = "https://badenjki.business/"
   status = 301
   force = true
 [[redirects]]
   from = "/rabeh-lite/"
-  to = "/badenjki-business"
+  to = "https://badenjki.business/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/badenjki-business"
+  to = "https://badenjki.business/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/badenjki-business/"
+  to = "https://badenjki.business/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/badenjki-business/privacy"
+  to = "https://badenjki.business/privacy"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/badenjki-business/privacy/"
+  to = "https://badenjki.business/privacy"
   status = 301
   force = true
 [[headers]]

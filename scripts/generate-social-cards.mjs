@@ -4,17 +4,18 @@ import path from 'node:path';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const images = path.join(root, 'src/assets/images');
+const businessImages = path.join(root, 'apps/badenjki-business/src/assets');
 const width = 1200;
 const height = 630;
 
 const svg = (content) =>
   Buffer.from(`<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">${content}</svg>`);
 
-const writeCard = async (name, background, composites) => {
+const writeCard = async (name, background, composites, outputDirectory = images) => {
   await sharp(svg(background))
     .composite(composites)
     .jpeg({ quality: 92, chromaSubsampling: '4:4:4' })
-    .toFile(path.join(images, name));
+    .toFile(path.join(outputDirectory, name));
 };
 
 const rabehLogo = await sharp(path.join(images, 'logo-dark.png')).resize({ width: 330 }).png().toBuffer();
@@ -64,6 +65,7 @@ await writeCard(
     { input: businessMark, top: 145, left: 131 },
     { input: rabehLogo, top: 520, left: 50 },
   ],
+  businessImages,
 );
 
 console.log('Generated site social cards.');

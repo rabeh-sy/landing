@@ -4,7 +4,17 @@
   "redirects": [
     {
       "source": "/rabeh-lite",
-      "destination": "/badenjki-business",
+      "destination": "https://badenjki.business/",
+      "statusCode": 301
+    },
+    {
+      "source": "/badenjki-business",
+      "destination": "https://badenjki.business/",
+      "statusCode": 301
+    },
+    {
+      "source": "/badenjki-business/privacy",
+      "destination": "https://badenjki.business/privacy",
       "statusCode": 301
     }
   ],

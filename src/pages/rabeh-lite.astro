@@ -1,3 +1,6 @@
 ---
-return Astro.redirect('/badenjki-business', 301);
+import ExternalRedirect from '~/components/common/ExternalRedirect.astro';
+import { BADENJKI_BUSINESS_URL } from '~/config/badenjki-business';
 ---
+
+<ExternalRedirect destination={BADENJKI_BUSINESS_URL} />
