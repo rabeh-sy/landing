@@ -1,0 +1,91 @@
+{
+  "revision": "2026-11-15",
+  "en": {
+    "title": "Badenjki Business Terms of Use",
+    "description": "Terms for using Badenjki Business on mobile and desktop.",
+    "effectiveDate": "Last updated 15 November 2026",
+    "intro": "By using Badenjki Business, you agree to use the app responsibly and only for lawful business purposes. These terms describe the basic conditions for using the app.",
+    "sections": [
+      {
+        "heading": "Acceptance",
+        "blocks": [
+          "Using the app means you accept these terms and any related policies that apply to the services you use inside Badenjki Business."
+        ]
+      },
+      {
+        "heading": "License",
+        "blocks": [
+          "Badenjki Business gives you a limited right to use the app for your own business operations. This does not transfer ownership of the software or related intellectual property."
+        ]
+      },
+      {
+        "heading": "Your Responsibilities",
+        "blocks": [
+          "You are responsible for the accuracy of the data you enter, protecting access to your device and account, and using the app in a lawful manner."
+        ]
+      },
+      {
+        "heading": "Sync and offline access",
+        "blocks": [
+          "Routine business synchronization is optional and automatic sync is off by default for new businesses. Authorized users can manage automatic sync in Company Profile. Account setup and sign-in require internet access. The first time you open an existing business on a device, the app downloads its workspace online. Once set up, you can continue working offline in your current signed-in workspace."
+        ]
+      },
+      {
+        "heading": "Availability",
+        "blocks": [
+          "We may update, improve, limit, or discontinue parts of the app when needed. We do not guarantee uninterrupted availability of every feature at all times."
+        ]
+      },
+      {
+        "heading": "Contact",
+        "blocks": [
+          "If you have questions about these terms, please contact support through the channels provided inside the app."
+        ]
+      }
+    ]
+  },
+  "ar": {
+    "title": "شروط استخدام بادنجكي الإداري",
+    "description": "شروط استخدام بادنجكي الإداري على الجوال وسطح المكتب.",
+    "effectiveDate": "آخر تحديث في 15 تشرين الثاني 2026",
+    "intro": "باستخدامك لبادنجكي الإداري فإنك توافق على استخدام التطبيق بمسؤولية ولأغراض أعمال مشروعة فقط. توضح هذه الشروط الأحكام الأساسية لاستخدام التطبيق.",
+    "sections": [
+      {
+        "heading": "القبول",
+        "blocks": [
+          "استخدام التطبيق يعني موافقتك على هذه الشروط وعلى أي سياسات مرتبطة بالخدمات التي تستخدمها داخل بادنجكي الإداري."
+        ]
+      },
+      {
+        "heading": "الترخيص",
+        "blocks": [
+          "يمنحك بادنجكي الإداري حقاً محدوداً لاستخدام التطبيق في تشغيل أعمالك. ولا يعني ذلك نقل ملكية البرنامج أو أي حقوق ملكية فكرية مرتبطة به."
+        ]
+      },
+      {
+        "heading": "مسؤولياتك",
+        "blocks": [
+          "أنت مسؤول عن صحة البيانات التي تدخلها، وعن حماية الوصول إلى جهازك وحسابك، وعن استخدام التطبيق بطريقة قانونية."
+        ]
+      },
+      {
+        "heading": "المزامنة والعمل دون اتصال",
+        "blocks": [
+          "المزامنة الدورية لبيانات النشاط التجاري اختيارية، وتكون المزامنة التلقائية متوقفة افتراضياً للأنشطة الجديدة. ويمكن للمستخدمين المخوّلين إدارة المزامنة التلقائية من ملف الشركة. يتطلب إعداد الحساب وتسجيل الدخول اتصالاً بالإنترنت. وعند فتح نشاط قائم لأول مرة على جهاز، ينزّل التطبيق مساحة عمله عبر الإنترنت. بعد الإعداد، يمكنك مواصلة العمل دون اتصال في مساحة العمل التي سجلت الدخول إليها."
+        ]
+      },
+      {
+        "heading": "التوفر",
+        "blocks": [
+          "قد نقوم بتحديث أجزاء من التطبيق أو تحسينها أو تقييدها أو إيقافها عند الحاجة. ولا نضمن التوفر المستمر لكل ميزة في جميع الأوقات."
+        ]
+      },
+      {
+        "heading": "التواصل",
+        "blocks": [
+          "إذا كان لديك أي استفسار بخصوص هذه الشروط، يرجى التواصل مع الدعم عبر الوسائل المتاحة داخل التطبيق."
+        ]
+      }
+    ]
+  }
+}

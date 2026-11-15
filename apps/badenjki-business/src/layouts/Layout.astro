@@ -125,7 +125,10 @@ const analyticsId = analytics && import.meta.env.PROD ? 'G-Y40B7NYV2Z' : null;
       <slot />
     </main>
     <footer class="border-t border-[#173f2b]/10 px-5 py-6 text-center text-sm text-[#445a4d]">
-      <a href="https://rabeh.sy/" class="font-bold hover:underline">{copy.company}</a>
+      <div class="flex flex-wrap justify-center gap-x-5 gap-y-2">
+        <a href="https://rabeh.sy/" class="font-bold hover:underline">{copy.company}</a>
+        <a href={localizedPath(lang, '/terms')} class="hover:underline">{copy.terms}</a>
+      </div>
     </footer>
   </body>
 </html>

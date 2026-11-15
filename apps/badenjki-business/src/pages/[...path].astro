@@ -1,9 +1,9 @@
 ---
 import BadenjkiHome from '../components/BadenjkiHome.astro';
 import AccountDeletion from '../components/AccountDeletion.astro';
-import PrivacyLayout from '../layouts/PrivacyLayout.astro';
-import { Content as ArabicPrivacy, frontmatter as arabicPrivacy } from '../content/privacy-ar.md';
-import { Content as EnglishPrivacy, frontmatter as englishPrivacy } from '../content/privacy-en.md';
+import LegalLayout from '../layouts/LegalLayout.astro';
+import privacyPolicy from '../content/privacy-policy.json';
+import terms from '../content/terms.json';
 import { languages, localizedPath, pagePaths, type Language, type PagePath } from '../lib/language';
 
 export function getStaticPaths() {
@@ -22,17 +22,13 @@ interface Props {
 }
 
 const { lang, page } = Astro.props;
-const Privacy = lang === 'ar' ? ArabicPrivacy : EnglishPrivacy;
-const privacy = lang === 'ar' ? arabicPrivacy : englishPrivacy;
 ---
 
 {
   page === '/' ? (
     <BadenjkiHome {lang} />
-  ) : page === '/privacy' ? (
-    <PrivacyLayout {lang} title={privacy.title} description={privacy.description}>
-      <Privacy />
-    </PrivacyLayout>
+  ) : page === '/privacy' || page === '/terms' ? (
+    <LegalLayout {lang} {page} document={(page === '/privacy' ? privacyPolicy : terms)[lang]} />
   ) : (
     <AccountDeletion {lang} />
   )

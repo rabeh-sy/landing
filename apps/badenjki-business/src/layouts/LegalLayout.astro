@@ -1,0 +1,41 @@
+---
+import Layout from './Layout.astro';
+import type { Language } from '../lib/language';
+
+type Block = string | { items: string[] } | { runs: (string | { text: string; href: string })[] };
+
+interface Props {
+  lang: Language;
+  page: '/privacy' | '/terms';
+  document: {
+    title: string;
+    description: string;
+    effectiveDate: string;
+    intro: string;
+    sections: { heading: string; blocks: Block[] }[];
+  };
+}
+
+const { lang, page, document } = Astro.props;
+const { title, description, effectiveDate, intro, sections } = document;
+---
+
+<Layout {lang} {title} {description} {page}>
+  <article class="mx-auto max-w-4xl px-5 py-16 sm:px-8 lg:py-20">
+    <h1 class="text-4xl font-black md:text-5xl">{title}</h1>
+    <div class="prose prose-lg mt-8 max-w-none prose-headings:text-[#102219] prose-a:text-[#13743b]">
+      <p>{effectiveDate}</p>
+      <p>{intro}</p>
+      {sections.map(({ heading, blocks }) => (
+        <>
+          <h2>{heading}</h2>
+          {blocks.map((block) => {
+            if (typeof block === 'string') return <p>{block}</p>;
+            if ('items' in block) return <ul>{block.items.map((item) => <li>{item}</li>)}</ul>;
+            return <p>{block.runs.map((run) => typeof run === 'string' ? run : <a href={run.href}>{run.text}</a>)}</p>;
+          })}
+        </>
+      ))}
+    </div>
+  </article>
+</Layout>

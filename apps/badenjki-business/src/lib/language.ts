@@ -1,7 +1,7 @@
 export const languages = ['ar', 'en'] as const;
 export type Language = (typeof languages)[number];
 
-export const pagePaths = ['/', '/privacy', '/account-deletion'] as const;
+export const pagePaths = ['/', '/privacy', '/terms', '/account-deletion'] as const;
 export type PagePath = (typeof pagePaths)[number];
 
 export const siteCopy = {
@@ -10,6 +10,7 @@ export const siteCopy = {
     company: 'رابح للتقنية',
     navigation: 'التنقل الرئيسي',
     contact: 'تواصل معنا',
+    terms: 'شروط الاستخدام',
     download: 'تحميل التطبيق',
     switchLanguage: 'English',
   },
@@ -18,6 +19,7 @@ export const siteCopy = {
     company: 'Rabeh Technology',
     navigation: 'Main navigation',
     contact: 'Contact us',
+    terms: 'Terms of Use',
     download: 'Download the app',
     switchLanguage: 'العربية',
   },

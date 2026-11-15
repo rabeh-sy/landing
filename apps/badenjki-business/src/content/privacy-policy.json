@@ -1,0 +1,209 @@
+{
+  "revision": "2026-11-15",
+  "en": {
+    "title": "Badenjki Business Privacy Policy",
+    "description": "Learn how Badenjki Business handles accounts, business synchronization, AI, and data deletion.",
+    "effectiveDate": "Last updated 15 November 2026",
+    "intro": "This policy explains how Badenjki Business handles personal and business data in the mobile and desktop apps and on badenjki.business.",
+    "sections": [
+      {
+        "heading": "1. Accounts, businesses, and devices",
+        "blocks": [
+          "We collect your name, phone number, and country when you create an account. We use your phone number and one-time verification codes where required for signup and for password recovery. We store a password hash to verify your sign-in. A business owner or an authorized manager can add a staff member using their name and phone number.",
+          "We process business profile details, memberships, roles, installation identifiers, device and app information, session records, and license status. We use this information to set up the business, enroll devices, control access, and provide account support. Signup, sign-in, password recovery, and switching accounts or businesses require an internet connection."
+        ]
+      },
+      {
+        "heading": "2. Optional business sync and offline use",
+        "blocks": [
+          "Routine synchronization of business records is optional. Creating an account or setting up a new business requires internet access, but a new business can finish setup without uploading its workspace records when automatic sync is off. Opening an existing business on a device for the first time requires internet access to download its workspace. Once your current signed-in workspace is ready, you can continue working offline.",
+          "Synchronized data can include customer and supplier details, products, invoices and bills, payments, inventory and point-of-sale records, accounting entries, business settings, activity history, and supported images and attachments. Our servers store this data and send it to devices enrolled in the same business. Memberships and roles control access within the app.",
+          "Automatic sync is off by default for new businesses. Authorized users can turn it on or off in Company Profile. When sync runs, pending changes can be sent to our servers. Turning off automatic sync does not delete records already stored on our servers. The retention and deletion terms below apply to those records."
+        ]
+      },
+      {
+        "heading": "3. AI features",
+        "blocks": [
+          "When you use AI chat, your messages and relevant conversation context go to our servers and OpenAI to generate responses. During your request, the assistant can read relevant business records and reports on your device within your account’s permissions. It sends the relevant results to our servers and OpenAI as needed to answer you. The assistant can read data and answer questions. It cannot create or change business records.",
+          "We keep AI chat history under your account and business. We record usage and service credit charges against the applicable wallet. AI features require internet access."
+        ]
+      },
+      {
+        "heading": "4. Device permissions and files",
+        "blocks": [
+          "On supported devices, you can allow camera access for barcode scanning and notifications for business alerts. If you enable push notifications, we process a device push token and use Expo and the platform’s notification service to deliver them.",
+          "When you choose a file to import or attach, the app reads that file. Supported attachments can sync with the business records they belong to. Reports and backups that you export are copies you control. You decide where to store them and whom to share them with."
+        ]
+      },
+      {
+        "heading": "5. Diagnostics and support",
+        "blocks": [
+          "We use app and operating system versions, error and crash reports, network and sync information, and app usage events to troubleshoot problems, protect the service, and improve reliability. Sentry receives diagnostic reports that may include an IP address and device or account context. If you send us a support diagnostics bundle, we use the information in it to investigate your request."
+        ]
+      },
+      {
+        "heading": "6. Website visits and download requests",
+        "blocks": [
+          "The website stores your language preference and a visitor identifier in your browser. We use the visitor identifier to remember download progress and measure referrals and campaigns. When you request a download, we process your phone number, country, verification status, selected platform, referral or campaign, and your name if you provide it.",
+          "We use Google Analytics on the website to measure visits and interactions. Google Analytics may use cookies or browser identifiers. You can manage website cookies and site data in your browser settings."
+        ]
+      },
+      {
+        "heading": "7. Who receives data",
+        "blocks": [
+          "We use providers for hosting and file storage, phone verification, AI, diagnostics and analytics, notifications, and app distribution. Phone verification providers, including Talkalize and Aman Gate where configured, receive the phone number and information needed to deliver a code. When enabled, Telegram carries internal alerts about events such as download requests, business setup, staff enrollment, and verification delivery failures. These alerts can include names, phone numbers, and related business, device, or referral details.",
+          "We do not sell personal or business data. We may disclose information when required by law or to protect the service and its users."
+        ]
+      },
+      {
+        "heading": "8. Retention and account deletion",
+        "blocks": [
+          "We keep synced business records while needed to operate the workspace. We retain account, support, and diagnostic information as needed to operate and secure the service, resolve requests, and meet legal obligations.",
+          {
+            "runs": [
+              "You can permanently delete your account under Settings → Delete my account or on the ",
+              {
+                "text": "account deletion page",
+                "href": "https://badenjki.business/en/account-deletion"
+              },
+              ". Both require your password and explicit confirmation. We revoke your sessions and remove your profile, credentials, memberships, private AI conversations, and associated personal records from the service."
+            ]
+          },
+          "If you are the last active owner of a business, deleting your account also deletes that business and its synced records. We schedule removal of its stored files. Businesses with another active owner keep their shared records and accounting history. We retain limited deletion and historical references to prevent deleted credentials from being reused and to preserve the integrity of continuing business records.",
+          "Devices that are offline learn about the deletion when they reconnect. Exported files and copies outside the app remain with whoever holds them. Data previously sent to a provider may be subject to its retention processes."
+        ]
+      },
+      {
+        "heading": "9. Security",
+        "blocks": [
+          "We use HTTPS for communication with our servers, store password hashes, and check membership and device enrollment for online access. Protect your password, devices, and exported files."
+        ]
+      },
+      {
+        "heading": "10. Children’s privacy",
+        "blocks": [
+          "Badenjki Business is for business use. We do not knowingly collect personal data from children."
+        ]
+      },
+      {
+        "heading": "11. Policy updates and contact",
+        "blocks": [
+          "We publish updates to this policy on badenjki.business and make the current policy available in the app. The date above identifies this revision.",
+          {
+            "runs": [
+              "For privacy questions or help with your account or data, contact Badenjki Business at ",
+              {
+                "text": "contact@rabeh.sy",
+                "href": "mailto:contact@rabeh.sy"
+              },
+              "."
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "ar": {
+    "title": "سياسة الخصوصية لتطبيق بادنجكي الإداري",
+    "description": "تعرّف على كيفية تعامل بادنجكي الإداري مع الحسابات ومزامنة بيانات النشاط التجاري والذكاء الاصطناعي وحذف البيانات.",
+    "effectiveDate": "آخر تحديث في 15 تشرين الثاني 2026",
+    "intro": "توضح هذه السياسة كيف يتعامل بادنجكي الإداري مع البيانات الشخصية وبيانات النشاط التجاري في تطبيقَي الجوال وسطح المكتب وعلى موقع badenjki.business.",
+    "sections": [
+      {
+        "heading": "1. الحسابات والأنشطة التجارية والأجهزة",
+        "blocks": [
+          "نجمع اسمك ورقم هاتفك وبلدك عند إنشاء حساب. نستخدم رقم هاتفك ورموز التحقق لمرة واحدة عند الحاجة إلى التحقق أثناء التسجيل وعند استعادة كلمة المرور. نحتفظ ببصمة رقمية لكلمة المرور للتحقق من هويتك عند تسجيل الدخول. ويمكن لمالك النشاط التجاري أو لمدير مخوّل إضافة موظف باستخدام اسمه ورقم هاتفه.",
+          "نعالج بيانات الملف التعريفي للنشاط التجاري والعضويات والأدوار ومعرّفات تثبيت التطبيق ومعلومات الجهاز والتطبيق وسجلات الجلسات وحالة الترخيص. نستخدم هذه البيانات لإعداد النشاط التجاري وربط الأجهزة والتحكم في الوصول وتقديم دعم الحساب. يتطلب إنشاء الحساب وتسجيل الدخول واستعادة كلمة المرور والتبديل بين الحسابات أو الأنشطة التجارية اتصالاً بالإنترنت."
+        ]
+      },
+      {
+        "heading": "2. المزامنة الاختيارية والعمل دون اتصال",
+        "blocks": [
+          "المزامنة الدورية لسجلات النشاط التجاري اختيارية. يتطلب إنشاء حساب أو إعداد نشاط تجاري جديد اتصالاً بالإنترنت، لكن يمكن إكمال إعداد النشاط الجديد دون رفع سجلات مساحة عمله عندما تكون المزامنة التلقائية متوقفة. وعند فتح نشاط قائم لأول مرة على جهاز، يلزم الاتصال بالإنترنت لتنزيل مساحة عمله. بعد تجهيز مساحة العمل التي سجلت الدخول إليها، يمكنك مواصلة العمل فيها دون اتصال.",
+          "قد تشمل البيانات المتزامنة بيانات الزبائن والموردين والمواد والفواتير والمشتريات والدفعات والمخزون وسجلات نقاط البيع والقيود المحاسبية وإعدادات النشاط التجاري وسجل النشاط والصور والمرفقات المدعومة. تخزّن خوادمنا هذه البيانات وترسلها إلى الأجهزة المسجّلة لدى النشاط التجاري نفسه. تحدد العضويات والأدوار صلاحيات الوصول داخل التطبيق.",
+          "تكون المزامنة التلقائية متوقفة افتراضياً للأنشطة التجارية الجديدة. ويمكن للمستخدمين المخوّلين تشغيلها أو إيقافها من ملف الشركة. عند إجراء المزامنة، يمكن إرسال التغييرات المعلّقة إلى خوادمنا. إيقاف المزامنة التلقائية لا يحذف السجلات المخزّنة سابقاً على خوادمنا. وتسري عليها أحكام الاحتفاظ بالبيانات وحذفها أدناه."
+        ]
+      },
+      {
+        "heading": "3. ميزات الذكاء الاصطناعي",
+        "blocks": [
+          "عند استخدام محادثة الذكاء الاصطناعي، تُرسل رسائلك وسياق المحادثة ذي الصلة إلى خوادمنا وإلى OpenAI لتوليد الردود. أثناء معالجة طلبك، يمكن للمساعد قراءة سجلات النشاط التجاري وتقاريره ذات الصلة على جهازك ضمن صلاحيات حسابك. ويرسل النتائج اللازمة للإجابة إلى خوادمنا وإلى OpenAI بحسب الحاجة. يمكن للمساعد قراءة البيانات والإجابة عن الأسئلة، ولا يمكنه إنشاء سجلات النشاط التجاري أو تعديلها.",
+          "نحتفظ بسجل محادثات الذكاء الاصطناعي ضمن حسابك ونشاطك التجاري. ونسجّل الاستخدام ونخصم تكلفة الخدمة من رصيد المحفظة المعنية. تتطلب ميزات الذكاء الاصطناعي اتصالاً بالإنترنت."
+        ]
+      },
+      {
+        "heading": "4. صلاحيات الجهاز والملفات",
+        "blocks": [
+          "يمكنك على الأجهزة المدعومة السماح باستخدام الكاميرا لمسح الباركود وتفعيل الإشعارات لتلقي تنبيهات النشاط التجاري. إذا فعّلت الإشعارات الفورية، نعالج رمز الإشعارات الخاص بالجهاز ونستخدم Expo وخدمة الإشعارات في نظام التشغيل لإيصالها.",
+          "عندما تختار ملفاً للاستيراد أو الإرفاق، يقرأ التطبيق ذلك الملف. وقد تتزامن المرفقات المدعومة مع سجلات النشاط التجاري المرتبطة بها. تبقى نسخ التقارير والنسخ الاحتياطية التي تصدّرها تحت تحكمك، وأنت تحدد مكان حفظها والجهات التي تشاركها معها."
+        ]
+      },
+      {
+        "heading": "5. التشخيص والدعم",
+        "blocks": [
+          "نستخدم معلومات إصدار التطبيق ونظام التشغيل وتقارير الأخطاء والأعطال ومعلومات الاتصال والمزامنة وأحداث استخدام التطبيق لتشخيص المشكلات وحماية الخدمة وتحسين موثوقيتها. تتلقى خدمة Sentry تقارير تشخيصية قد تتضمن عنوان بروتوكول الإنترنت ومعلومات عن الجهاز أو الحساب. إذا أرسلت إلينا حزمة تشخيص للدعم، نستخدم المعلومات الواردة فيها لمعالجة طلبك."
+        ]
+      },
+      {
+        "heading": "6. زيارات الموقع وطلبات التنزيل",
+        "blocks": [
+          "يخزّن الموقع اللغة التي تفضلها ومعرّفاً للزيارة في متصفحك. نستخدم معرّف الزائر لحفظ حالة طلب التنزيل وقياس الإحالات والحملات. عند طلب التنزيل، نعالج رقم هاتفك وبلدك وحالة التحقق والمنصة التي اخترتها وبيانات الإحالة أو الحملة، بالإضافة إلى اسمك إذا أدخلته.",
+          "نستخدم Google Analytics على الموقع لقياس الزيارات والتفاعلات. قد تستخدم الخدمة ملفات تعريف الارتباط أو معرّفات المتصفح. يمكنك إدارة ملفات تعريف الارتباط وبيانات الموقع من إعدادات متصفحك."
+        ]
+      },
+      {
+        "heading": "7. الجهات التي تتلقى البيانات",
+        "blocks": [
+          "نستعين بمزودي خدمات الاستضافة وتخزين الملفات والتحقق من الهاتف والذكاء الاصطناعي والتشخيص والتحليلات والإشعارات وتوزيع التطبيق. يتلقى مزوّدو التحقق من الهاتف، ومنهم Talkalize وAman Gate عند استخدامهما، رقم الهاتف والمعلومات اللازمة لإيصال الرمز. عند تفعيل Telegram، نستخدمه لإرسال تنبيهات داخلية بشأن أحداث مثل طلبات التنزيل وإعداد الأنشطة التجارية وإضافة الموظفين وتعذّر إرسال رموز التحقق. وقد تتضمن هذه التنبيهات أسماء وأرقام هواتف وتفاصيل مرتبطة بالنشاط التجاري أو الجهاز أو الإحالة.",
+          "لا نبيع البيانات الشخصية أو بيانات النشاط التجاري. وقد نفصح عن المعلومات إذا تطلّب القانون ذلك أو لحماية الخدمة ومستخدميها."
+        ]
+      },
+      {
+        "heading": "8. الاحتفاظ بالبيانات وحذف الحساب",
+        "blocks": [
+          "نحتفظ بسجلات النشاط التجاري المتزامنة ما دامت لازمة لتشغيل مساحة العمل. ونحتفظ بمعلومات الحساب والدعم والتشخيص بقدر الحاجة إلى تشغيل الخدمة وتأمينها ومعالجة الطلبات والوفاء بالالتزامات القانونية.",
+          {
+            "runs": [
+              "يمكنك حذف حسابك نهائياً من الإعدادات ← حذف حسابي أو من ",
+              {
+                "text": "صفحة حذف الحساب",
+                "href": "https://badenjki.business/ar/account-deletion"
+              },
+              ". تتطلب الطريقتان إدخال كلمة المرور وتأكيد الحذف صراحةً. ننهي جلساتك ونزيل ملفك الشخصي وبيانات تسجيل الدخول والعضويات ومحادثات الذكاء الاصطناعي الخاصة بك والسجلات الشخصية المرتبطة بها من الخدمة."
+            ]
+          },
+          "إذا كنت المالك النشط الأخير لنشاط تجاري، يؤدي حذف حسابك أيضاً إلى حذف ذلك النشاط وسجلاته المتزامنة. ونجدول إزالة ملفاته المخزّنة. وتحتفظ الأنشطة التجارية التي لها مالك نشط آخر بسجلاتها المشتركة وتاريخها المحاسبي. نحتفظ ببيانات مرجعية محدودة عن الحذف والسجلات السابقة لمنع إعادة استخدام بيانات تسجيل الدخول المحذوفة والحفاظ على سلامة سجلات الأنشطة المستمرة.",
+          "يتعرّف التطبيق على الحذف عند عودة الجهاز إلى الاتصال. تبقى الملفات المصدّرة والنسخ الموجودة خارج التطبيق لدى من يحتفظ بها. وقد تخضع البيانات التي سبق إرسالها إلى أحد مزودي الخدمة لإجراءات الاحتفاظ الخاصة به."
+        ]
+      },
+      {
+        "heading": "9. الأمان",
+        "blocks": [
+          "نستخدم بروتوكول HTTPS للاتصال بخوادمنا، ونحفظ بصمات رقمية لكلمات المرور، ونتحقق من العضوية وتسجيل الجهاز عند الوصول عبر الإنترنت. احرص على حماية كلمة مرورك وأجهزتك وملفاتك المصدّرة."
+        ]
+      },
+      {
+        "heading": "10. خصوصية الأطفال",
+        "blocks": [
+          "بادنجكي الإداري مخصص للأعمال. لا نجمع عن علم بيانات شخصية من الأطفال."
+        ]
+      },
+      {
+        "heading": "11. تحديثات السياسة والتواصل",
+        "blocks": [
+          "ننشر تحديثات هذه السياسة على موقع badenjki.business ونتيح النسخة الحالية داخل التطبيق. يشير التاريخ أعلاه إلى هذه النسخة.",
+          {
+            "runs": [
+              "للاستفسارات المتعلقة بالخصوصية أو للمساعدة بخصوص حسابك أو بياناتك، تواصل مع بادنجكي الإداري عبر ",
+              {
+                "text": "contact@rabeh.sy",
+                "href": "mailto:contact@rabeh.sy"
+              },
+              "."
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
