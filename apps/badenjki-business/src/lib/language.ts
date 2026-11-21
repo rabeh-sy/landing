@@ -1,7 +1,7 @@
 export const languages = ['ar', 'en'] as const;
 export type Language = (typeof languages)[number];
 
-export const pagePaths = ['/', '/privacy', '/terms', '/account-deletion'] as const;
+export const pagePaths = ['/', '/privacy', '/terms', '/account-deletion', '/pricing'] as const;
 export type PagePath = (typeof pagePaths)[number];
 
 export const siteCopy = {

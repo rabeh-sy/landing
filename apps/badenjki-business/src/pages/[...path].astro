@@ -1,10 +1,11 @@
 ---
 import BadenjkiHome from '../components/BadenjkiHome.astro';
 import AccountDeletion from '../components/AccountDeletion.astro';
+import Layout from '../layouts/Layout.astro';
 import LegalLayout from '../layouts/LegalLayout.astro';
 import privacyPolicy from '../content/privacy-policy.json';
 import terms from '../content/terms.json';
-import { languages, localizedPath, pagePaths, type Language, type PagePath } from '../lib/language';
+import { languages, localizedPath, pagePaths, siteCopy, type Language, type PagePath } from '../lib/language';
 
 export function getStaticPaths() {
   return pagePaths.flatMap((page) => [
@@ -22,6 +23,7 @@ interface Props {
 }
 
 const { lang, page } = Astro.props;
+const pricingMessage = lang === 'ar' ? 'نعمل على تقديم أسعار مناسبة.' : 'We’re working on good prices.';
 ---
 
 {
@@ -29,6 +31,13 @@ const { lang, page } = Astro.props;
     <BadenjkiHome {lang} />
   ) : page === '/privacy' || page === '/terms' ? (
     <LegalLayout {lang} {page} document={(page === '/privacy' ? privacyPolicy : terms)[lang]} />
+  ) : page === '/pricing' ? (
+    <Layout {lang} {page} title={siteCopy[lang].pricing} description={pricingMessage} analytics={false}>
+      <section class="mx-auto min-h-[65vh] max-w-[1440px] px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
+        <h1 class="text-4xl font-black md:text-5xl">{siteCopy[lang].pricing}</h1>
+        <p class="mt-5 text-lg text-[#445a4d]">{pricingMessage}</p>
+      </section>
+    </Layout>
   ) : (
     <AccountDeletion {lang} />
   )

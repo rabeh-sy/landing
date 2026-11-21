@@ -20,6 +20,7 @@ const copy = siteCopy[lang];
 const alternate = lang === 'ar' ? 'en' : 'ar';
 const home = localizedPath(lang, '/');
 const pricingPath = home + '/pricing';
+const isPricing = page === '/pricing';
 const canonical = new URL(localizedPath(lang, page), Astro.site);
 const englishPath = localizedPath('en', page);
 const detectLanguage = (Astro.url.pathname.replace(/\/$/, '') || '/') === page;
@@ -36,6 +37,7 @@ const analyticsId = analytics && import.meta.env.PROD ? 'G-Y40B7NYV2Z' : null;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {isPricing && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
     <link rel="alternate" hreflang="ar" href={new URL(localizedPath('ar', page), Astro.site)} />
     <link rel="alternate" hreflang="en" href={new URL(englishPath, Astro.site)} />

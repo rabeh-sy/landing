@@ -22,8 +22,8 @@ In Dokploy, select the `rabeh-sy/landing` GitHub repository and set the build pa
 
 ## Syria-only pricing preview
 
-The [pricing Worker](cloudflare/pricing.mjs) serves `/pricing`, `/ar/pricing`, and `/en/pricing` only when Cloudflare classifies the request country as `SY`. Nginx returns `404` for pricing requests sent directly to Dokploy. The site header displays the localized Pricing link after a successful `HEAD` request to the same route.
+Astro builds `/pricing`, `/ar/pricing`, and `/en/pricing` with the site's shared layout. The [pricing Worker](cloudflare/pricing.mjs) forwards requests to Dokploy only when Cloudflare classifies the visitor's country as `SY`. The site header displays the localized Pricing link after a successful `HEAD` request to the same route.
 
-Deploy changes to `cloudflare/pricing.mjs` through **Edit code** on the `badenjki-pricing-preview` Worker. The Cloudflare routes are `badenjki.business/pricing*`, `badenjki.business/ar/pricing*`, and `badenjki.business/en/pricing*`. Dokploy continues to deploy the rest of the website from `main`.
+Deploy page changes through Dokploy from `main`. Deploy changes to the access rule through **Edit code** on the `badenjki-pricing-preview` Worker. Its routes are `badenjki.business/pricing*`, `badenjki.business/ar/pricing*`, and `badenjki.business/en/pricing*`. Enable **IP Geolocation** on the Cloudflare zone so Nginx receives `CF-IPCountry`. Nginx accepts that header only when Traefik's last forwarded hop matches a [Cloudflare IP range](https://www.cloudflare.com/ips/). Keep the application port internal to Dokploy and refresh `nginx-cloudflare-ips.conf` if those ranges change.
 
 Check from a Syrian connection that Pricing appears in the header and opens the preview. Check from another country that the link is hidden and direct requests return `404`, including `/en/pricing/index.html`. Pricing responses include `X-Robots-Tag: noindex` and `Cache-Control: private, no-store`.
