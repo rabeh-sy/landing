@@ -8,7 +8,7 @@ import { localizedPath, siteCopy, type Language, type PagePath } from '../lib/la
 
 interface Props {
   title: string;
-  description: string;
+  description?: string;
   lang: Language;
   page: PagePath;
   analytics?: boolean;
@@ -19,6 +19,8 @@ const { title, description, lang, page, analytics = true, structuredData } = Ast
 const copy = siteCopy[lang];
 const alternate = lang === 'ar' ? 'en' : 'ar';
 const home = localizedPath(lang, '/');
+const pricingPath = localizedPath(lang, '/pricing');
+const isPricing = page === '/pricing';
 const canonical = new URL(localizedPath(lang, page), Astro.site);
 const englishPath = localizedPath('en', page);
 const detectLanguage = (Astro.url.pathname.replace(/\/$/, '') || '/') === page;
@@ -34,7 +36,8 @@ const analyticsId = analytics && import.meta.env.PROD ? 'G-Y40B7NYV2Z' : null;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
-    <meta name="description" content={description} />
+    {description && <meta name="description" content={description} />}
+    {isPricing && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
     <link rel="alternate" hreflang="ar" href={new URL(localizedPath('ar', page), Astro.site)} />
     <link rel="alternate" hreflang="en" href={new URL(englishPath, Astro.site)} />
@@ -104,7 +107,12 @@ const analyticsId = analytics && import.meta.env.PROD ? 'G-Y40B7NYV2Z' : null;
           <img src={appMark.src} width="40" height="40" alt="" class="rounded-xl" />
           {copy.brand}
         </a>
-        <nav aria-label={copy.navigation} class="flex items-center gap-4 text-sm font-bold sm:gap-6">
+        <nav
+          aria-label={copy.navigation}
+          class="flex flex-wrap items-center gap-4 text-sm font-bold sm:gap-6"
+          data-pricing-path={pricingPath}
+          data-pricing-label={copy.pricing}
+        >
           <a
             href={localizedPath(alternate, page)}
             lang={alternate}
@@ -132,3 +140,24 @@ const analyticsId = analytics && import.meta.env.PROD ? 'G-Y40B7NYV2Z' : null;
     </footer>
   </body>
 </html>
+
+<script>
+  const navigation = document.querySelector<HTMLElement>('[data-pricing-path]');
+  const { pricingPath, pricingLabel } = navigation?.dataset ?? {};
+
+  if (navigation && pricingPath && pricingLabel && !('languageRedirect' in document.documentElement.dataset)) {
+    fetch(pricingPath, { method: 'HEAD', cache: 'no-store', redirect: 'error' })
+      .then((response) => {
+        if (!response.ok) return;
+
+        const link = document.createElement('a');
+        link.href = pricingPath;
+        link.textContent = pricingLabel;
+        link.className = 'hover:underline';
+        navigation.prepend(link);
+      })
+      .catch(() => {
+        // Keep the link hidden if the access check fails.
+      });
+  }
+</script>

@@ -7,6 +7,11 @@ export default defineConfig({
   trailingSlash: 'never',
   integrations: [
     icon({ iconDir: 'src/assets' }),
-    sitemap({ filter: (url) => /^\/(ar|en)(\/|$)/.test(new URL(url).pathname) }),
+    sitemap({
+      filter: (url) => {
+        const pathname = new URL(url).pathname;
+        return /^\/(ar|en)(\/|$)/.test(pathname) && !/^\/(ar|en)\/pricing\/?$/.test(pathname);
+      },
+    }),
   ],
 });
