@@ -8,7 +8,7 @@ cp .env.example .env
 npm run dev
 ```
 
-Run `npm run check` for Astro diagnostics and `npm run build` to inspect the generated pages locally. Deploy with the Dockerfile below and set `PUBLIC_BADENJKI_API_ORIGIN` to the Rails HTTPS origin at build time. The Docker build moves the pricing files out of the public document root so Nginx can enforce access.
+Run `npm run check` for Astro diagnostics and `npm run build` to inspect the generated pages locally. Deploy with the Dockerfile below and set `PUBLIC_BADENJKI_API_ORIGIN` to the Rails HTTPS origin at build time.
 
 Add `https://badenjki.business` to Rails `WEBSITE_ALLOWED_ORIGINS` before launch. Verify signup on the new domain before deploying the main site's link changes and permanent redirects. See the [signup and referral documentation](../../docs/badenjki-business-signup.md) for the API and campaign behavior.
 
@@ -22,19 +22,8 @@ In Dokploy, select the `rabeh-sy/landing` GitHub repository and set the build pa
 
 ## Syria-only pricing preview
 
-`/pricing`, `/ar/pricing`, and `/en/pricing` use the same access check. The header displays the localized Pricing link after a successful `HEAD` request to the localized page. Without the Cloudflare configuration below, production pricing requests return `404`.
+The [pricing Worker](cloudflare/pricing.mjs) serves `/pricing`, `/ar/pricing`, and `/en/pricing` only when Cloudflare classifies the request country as `SY`. Nginx returns `404` for pricing requests sent directly to Dokploy. The site header displays the localized Pricing link after a successful `HEAD` request to the same route.
 
-1. Generate an origin token with `openssl rand -hex 32`. Set it as the runtime environment variable `BADENJKI_PRICING_ORIGIN_TOKEN` in Dokploy.
-2. In Cloudflare, add two [Request Header Transform Rules](https://developers.cloudflare.com/rules/transform/request-header-modification/) in this order. First, remove `X-Badenjki-Pricing-Access` from all requests to `badenjki.business`. Then set that header to the same token using **Set static** for requests matching this expression.
+Deploy changes to `cloudflare/pricing.mjs` through **Edit code** on the `badenjki-pricing-preview` Worker. The Cloudflare routes are `badenjki.business/pricing*`, `badenjki.business/ar/pricing*`, and `badenjki.business/en/pricing*`. Dokploy continues to deploy the rest of the website from `main`.
 
-   ```text
-   (http.host eq "badenjki.business" and ip.src.country eq "SY" and (
-     http.request.uri.path in {"/pricing" "/ar/pricing" "/en/pricing"}
-     or starts_with(http.request.uri.path, "/pricing/")
-     or starts_with(http.request.uri.path, "/ar/pricing/")
-     or starts_with(http.request.uri.path, "/en/pricing/")
-   ))
-   ```
-
-3. Add a Cloudflare Cache Rule with **Bypass cache** using the same expression with `ip.src.country eq "SY" and` removed. Keep the token in the Dokploy and Cloudflare settings.
-4. Check from a Syrian connection that Pricing appears in the header and opens the blank page. Check from another country that the link is hidden and direct requests return `404`, including `/en/pricing/index.html`. Allowed responses include `X-Robots-Tag: noindex` and `Cache-Control: private, no-store`.
+Check from a Syrian connection that Pricing appears in the header and opens the preview. Check from another country that the link is hidden and direct requests return `404`, including `/en/pricing/index.html`. Pricing responses include `X-Robots-Tag: noindex` and `Cache-Control: private, no-store`.

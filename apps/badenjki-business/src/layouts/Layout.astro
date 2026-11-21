@@ -8,7 +8,7 @@ import { localizedPath, siteCopy, type Language, type PagePath } from '../lib/la
 
 interface Props {
   title: string;
-  description?: string;
+  description: string;
   lang: Language;
   page: PagePath;
   analytics?: boolean;
@@ -19,8 +19,7 @@ const { title, description, lang, page, analytics = true, structuredData } = Ast
 const copy = siteCopy[lang];
 const alternate = lang === 'ar' ? 'en' : 'ar';
 const home = localizedPath(lang, '/');
-const pricingPath = localizedPath(lang, '/pricing');
-const isPricing = page === '/pricing';
+const pricingPath = home + '/pricing';
 const canonical = new URL(localizedPath(lang, page), Astro.site);
 const englishPath = localizedPath('en', page);
 const detectLanguage = (Astro.url.pathname.replace(/\/$/, '') || '/') === page;
@@ -36,8 +35,7 @@ const analyticsId = analytics && import.meta.env.PROD ? 'G-Y40B7NYV2Z' : null;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
-    {description && <meta name="description" content={description} />}
-    {isPricing && <meta name="robots" content="noindex" />}
+    <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="alternate" hreflang="ar" href={new URL(localizedPath('ar', page), Astro.site)} />
     <link rel="alternate" hreflang="en" href={new URL(englishPath, Astro.site)} />
