@@ -34,6 +34,9 @@ const { lang, page } = Astro.props;
     <Layout {lang} {page} title={siteCopy[lang].pricing} analytics={false}>
       <section class="mx-auto min-h-[65vh] max-w-[1440px] px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
         <h1 class="text-4xl font-black md:text-5xl">{siteCopy[lang].pricing}</h1>
+        <p class="mt-5 text-lg text-[#445a4d]">
+          {lang === 'ar' ? 'نعمل على تقديم أسعار مناسبة.' : 'We’re working on good prices.'}
+        </p>
       </section>
     </Layout>
   ) : (
